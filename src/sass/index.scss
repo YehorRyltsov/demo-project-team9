@@ -1,2 +1,15 @@
-@import './common';
-@import './example';
+@import './base/common';
+@import './base/reset';
+
+@import './components/conteiner';
+@import './components/modal-review';
+@import './components/modal-sign-in';
+@import './components/modal-team';
+
+@import './utils/backdrop';
+@import './utils/vars';
+@import './utils/visually-hidden';
+
+@import './header';
+@import './hero.scss';
+@import './footer';
