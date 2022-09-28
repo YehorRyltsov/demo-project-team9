@@ -6,7 +6,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+
   <body>
-    <script src="./js/modal-sign-in.js" type="module"></script>
+  <div class="backdrop">
+    <!-- MODAL -->
+    <div class="modal modal__container">
+      <div class="modal__window">
+
+        <section class="modal-item">
+          <h2 class="modal-item__title">If you are our user already, please log in.</h2>
+          <button class="modal-item__btn sign-in-btn">Log in</button>
+        </section>
+
+        <section class="modal-item">
+          <h2 class="modal-item__title">Regist if you are new user.</h2>
+          <button class="modal-item__btn sign-up-btn">Regist</button>
+        </section>
+
+      </div>
+
+      <!-- FORM -->
+      <div class="form-box">
+        <form action="submit" id="login-form"  class="form">
+          <h3 class="form__title">Login</h3>
+
+          <p>
+            <input type="email" class="form__input" placeholder="enter email" id="login-email-input"></input>
+          </p>
+
+          <p>
+            <input type="password" class="form__input"placeholder="enter password" id="login-pwd-input"></input>
+          </p>
+
+          <p>
+            <button type="submit" class="form__btn">login</button>
+          </p>
+
+        </form>
+
+        <div class="form-box">
+          <form class="form">
+            <h3 class="form__title">Login</h3>
+  
+            <p>
+              <input type="email" class="form__input" placeholder="enter email" id="login-email-input"></input>
+            </p>
+  
+            <p>
+              <input type="password" class="form__input"placeholder="enter password" id="login-pwd-input"></input>
+            </p>
+  
+            <p>
+              <button type="submit" class="form__btn">login</button>
+            </p>
+            <form action="submit" id="login-form">
+              <input type="email" placeholder="enter email" id="login-email-input"></input>
+              <input type="password" placeholder="enter password" id="login-pwd-input"></input>
+              <button type="submit">login</button>
+            </form>
+          </form>
+      </div>
+    </div>
+  </div>
+
+    <script src="./js/modal-sign-in.js" defer type="module"></script>
   </body>
 </html>
