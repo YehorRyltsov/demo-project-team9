@@ -1,4 +1,4 @@
-import { create, login, onAuth, signOut } from './firebase';
+import { create, login, onAuth, logOut } from './firebase';
 
 const emailInput = document.querySelector('#email-input');
 const pwdInput = document.querySelector('#pwd-input');
@@ -10,7 +10,7 @@ const loginForm = document.querySelector('#login-form');
 
 let currentUserId = null;
 
-logOutBtn.addEventListener('click', signOut);
+logOutBtn.addEventListener('click', logOut);
 registerForm.addEventListener('submit', registrationUser);
 loginForm.addEventListener('submit', onLogin);
 
