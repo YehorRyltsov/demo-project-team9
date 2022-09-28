@@ -57,6 +57,6 @@ export function onAuth(fn) {
   onAuthStateChanged(auth, fn);
 }
 
-export function signOut() {
+export function logOut() {
   signOut(auth);
 }
