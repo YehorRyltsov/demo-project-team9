@@ -1,12 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body>
-    <script src="./js/modal-review.js" type="module"></script>
-  </body>
-</html>
+<div class="hero">
+      <button type="button" class="button" data-modal-open>Заказать услугу</button>
+</div>
+<!--Модальное окно-->
+<div class="backdrop is-hidden" data-modal>
+      <div class="modal-review">
+            <button type="button" class="review__btn-close" data-modal-close aria-label="Close">
+                  <svg width="14" height="14"> 
+                        <use href="./images/icons.svg#close"></use>
+                  </svg>
+            </button>
+            <div class="modal-review__body">
+                  <div class="modal-review__card">
+                        <img class="modal-review__content" id="img-review">
+                  </div>
+                  <div>
+                        <h2 class="modal-review__title">A FISTFUL OF LEAD</h2>
+                        <ul class="modal-review__items">
+                              <li class="modal-review__item list"> Vote / Votes</li> <p class="modal-review__item--grid"><span class="modal-review__item--rating"> 7.3 </span> <span class="modal-review__slash"> / </span>  <span class="modal-review__item--dark"> 1260 </span> </p>
+                              <li class="modal-review__item list"> Popularity </li><p class="modal-review__item--dark">100.2</p>
+                              <li class="modal-review__item list"> Original Title </li><p class="modal-review__item--dark">A FISTFUL OF LEAD</p>
+                              <li class="modal-review__item list"> Genre </li><p class="modal-review__item--dark">Western </p>
+                        </ul>
+                  <p class="modal-review__subtitle">About </p>
+                  <p class="modal-review__about">Four of the West’s most infamous outlaws assemble to steal a huge stash of gold 
+                        from the most corrupt settlement of the gold rush towns. But not all goes to 
+                        plan one is killed and the other three escapes with bags of gold hide out in 
+                        the abandoned gold mine where they happen across another gang of three – who 
+                        themselves were planning to hit the very same bank! As tensions rise, things 
+                        go from bad to worse as they realise the bags of gold are filled with lead... 
+                        they’ve been double crossed – but by who and how?
+                  </p>
+                  <div class="modal-review__btn-container">
+                        <button type="button" class="modal-review__btn">add to Watched</button>
+                        <button type="button" class="modal-review__btn">add to queue</button>
+                  </div>
+                  </div>
+                  
+            </div>
+      </div>
+</div>
