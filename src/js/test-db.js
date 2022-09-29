@@ -1,4 +1,4 @@
-import { currentUserId } from '../index';
+import { currentUserId } from './user';
 
 import {
   addWatchedFilmByUser,
@@ -104,7 +104,7 @@ function onRemoveWatchedClick() {
 }
 
 function onRemoveQueueClick() {
-  deleteQueueFilmById(currentUserId, filmId);
+  deleteQueueFilmById(currentUserId, '616037');
 }
 
 function onWatchedClick() {

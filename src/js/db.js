@@ -26,8 +26,15 @@ export function addQueueFilmByUser(userId, film) {
 }
 
 export function deleteQueueFilmById(userId, filmId) {
-  const queueFilmToRemove = ref(db, `user/${userId}/queue/${filmId}`);
-  set(queueFilmToRemove, null);
+  const queueFilmToRemove = query(
+    ref(db, `user/${userId}/queue/`),
+    equalTo(filmId)
+  );
+
+  console.log(queueFilmToRemove);
+
+  // const queueFilmToRemove = ref(db, `user/${userId}/queue/${filmId}`);
+  // set(queueFilmToRemove, null);
 }
 
 export function getWatchedFilmsByUser(userId) {
@@ -44,7 +51,7 @@ export function getWatchedFilmsByUser(userId) {
       onlyOnce: true,
     }
   );
-  // console.log(result);
+  console.log(result);
   return result;
 }
 
@@ -62,6 +69,6 @@ export function getQueueFilmsByUser(userId) {
       onlyOnce: true,
     }
   );
-  // console.log(result);
+  console.log(result);
   return result;
 }
