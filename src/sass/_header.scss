@@ -246,6 +246,7 @@
     color: ($color-text-header);
   }
 
+
   @media screen and (min-width: 768px) {
     .home-header-bg {
       background-image: linear-gradient(
@@ -255,7 +256,6 @@
         ),
         url(../images/home-header-bg-tablet.jpg);
     }
-
     .header__my-library-bg {
       background-image: linear-gradient(
           to right,
