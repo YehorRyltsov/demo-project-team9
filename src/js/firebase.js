@@ -6,9 +6,8 @@ import {
   onAuthStateChanged,
   signOut,
 } from 'firebase/auth';
-import { getDatabase } from 'firebase/database';
 
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: 'AIzaSyCBxxRSUEogARLc21jYUMyG-oQ62S7fczo',
   authDomain: 'filmoteka-9ac74.firebaseapp.com',
   projectId: 'filmoteka-9ac74',
@@ -20,9 +19,8 @@ const firebaseConfig = {
     'https://filmoteka-9ac74-default-rtdb.europe-west1.firebasedatabase.app',
 };
 
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const database = getDatabase(app);
 
 export function create(email, password) {
   // const auth = getAuth(app);
