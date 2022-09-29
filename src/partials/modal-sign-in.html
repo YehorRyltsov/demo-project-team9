@@ -1,6 +1,8 @@
-  <div class="backdrop">
+  <button  class="test-for-open-modal" data-modal-open ></button>
+  
+  <div class="backdrop backdrop is-hidden" data-modal>
     <!-- MODAL -->
-    <div class="modal modal__container">
+    <div class="modal modal__container modal data-modal">
       <div class="modal__window">
 
         <section class="modal-item">
@@ -17,6 +19,8 @@
 
       <!-- FORM -->
       <div class="form-box">
+          <button  type ="button" class="test-for-close-modal" data-modal-close ></button>
+        
         <form action="submit" id="login-form"  class="form form__sign-in">
           <h3 class="form__title">Login</h3>
 
@@ -58,4 +62,4 @@
     </div>
       
   </div>
-    <script src="./js/modal-sign-in.js" defer type="module"></script>
+    <script src="./js/hideAndOpen-modal.js" defer type="module"></script>
