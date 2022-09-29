@@ -8,7 +8,7 @@
 }
 
 .logo-link {
-  cursor: default;
+  cursor: pointer;
   color: ($color-text-header);
   display: flex;
   align-items: center;
@@ -72,21 +72,22 @@
 }
 
 .header__my-library-bg {
+  background-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.56),
+      rgba(0, 0, 0, 0.56)
+    ),
+    url(../images/my-library-header-mob.jpg);
   background-repeat: no-repeat;
-  background-color: black;
   background-position: bottom;
+  background-color: black;
+
   width: 100%;
   height: 230px;
   padding-bottom: 97px;
   padding-top: 46px;
   margin: 0 auto;
   position: relative;
-  background-image: linear-gradient(
-      to right,
-      rgba(0, 0, 0, 0.56),
-      rgba(0, 0, 0, 0.56)
-    ),
-    url(../images/library-header-bg-mobile.jpg);
 }
 
 @media (min-device-pixel-ratio: 2) and (min-width: 320px),
@@ -98,7 +99,7 @@
         rgba(0, 0, 0, 0.56),
         rgba(0, 0, 0, 0.56)
       ),
-      url(../images/library-header-bg-mobile@2x.jpg);
+      url(../images/my-library-header-mob@2x.jpg);
   }
 }
 
@@ -225,13 +226,13 @@
       url(../images/home-header-bg-tablet.jpg);
   }
 
-  .library-header-bg {
+  .header__my-library-bg {
     background-image: linear-gradient(
         to right,
         rgba(0, 0, 0, 0.56),
         rgba(0, 0, 0, 0.56)
       ),
-      url(../images/library-header-bg-tablet.jpg);
+      url(../images/my-library-header-tab.jpg);
   }
 }
 
@@ -244,9 +245,9 @@
         rgba(0, 0, 0, 0.56),
         rgba(0, 0, 0, 0.56)
       ),
-      url(../images/library-header-bg-tablet@2x.jpg);
+      url(../images/home-header-bg-tablet@2x.jpg);
   }
-  .library-header-bg {
+  .header__my-library-bg {
     background-image: linear-gradient(
         to right,
         rgba(0, 0, 0, 0.56),
@@ -279,13 +280,13 @@
       url(../images/home-header-bg-desktop.jpg);
   }
 
-  .library-header-bg {
+  .header__my-library-bg {
     background-image: linear-gradient(
         to right,
         rgba(0, 0, 0, 0.56),
         rgba(0, 0, 0, 0.56)
       ),
-      url(../images/library-header-bg-tablet.jpg);
+      url(../images/my-library-header-desktop.jpg);
   }
 }
 
@@ -300,7 +301,7 @@
       ),
       url(../images/home-header-bg-desktop@2x.jpg);
   }
-  .library-header-bg {
+  .header__my-library-bg {
     background-image: linear-gradient(
         to right,
         rgba(0, 0, 0, 0.56),
