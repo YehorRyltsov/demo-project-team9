@@ -1,6 +1,8 @@
-import firebase from 'firebase/compat/app';
-import * as firebaseui from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
+import './js/user';
+
+import './js/my-library-header';
+
 
 const div = document.querySelector(".gallary-films");
 
@@ -58,3 +60,6 @@ export function fetchMoves() {
     });
 }
 fetchMoves()
+
+
+

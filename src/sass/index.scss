@@ -1,5 +1,21 @@
-@import './common';
-@import './example';
+@import './base/common';
+@import './base/reset';
+@import './utils/backdrop';
+@import './utils/vars';
+@import './utils/visually-hidden';
+
+@import './components/conteiner';
+@import './components/modal-review';
+@import './components/modal-sign-in';
+@import './components/modal-team';
+@import './components/pre_loader';
+@import './components/my-library-btn';
+@import './components/pagination';
+
+@import './header';
+@import './hero.scss';
+@import './footer';
+
 
 .gallary-films {
     display: flex;
