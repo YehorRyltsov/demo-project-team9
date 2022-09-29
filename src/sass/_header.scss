@@ -7,7 +7,7 @@
     background-repeat: no-repeat;
   }
   
-  .home-header-bg {
+  .header {
     background-image: url(../images/home-header-bg-mobile.jpg);
   
     @media (min-device-pixel-ratio: 2),
@@ -48,25 +48,6 @@
     font-weight: 500;
     line-height: 1.16667;
   }
-  .library-header-bg {
-    background-image: linear-gradient(
-        to right,
-        rgba(#000000, 0.56),
-        rgba(#000000, 0.56)
-      ),
-      url(../images/home-header-bg-mobile.jpg);
-  
-    @media (min-device-pixel-ratio: 2),
-      (min-resolution: 192dpi),
-      (min-resolution: 2dppx) {
-      background-image: linear-gradient(
-          to right,
-          rgba(#000000, 0.56),
-          rgba(#000000, 0.56)
-        ),
-        url(../images/home-header-bg-mobile@2x.jpg);
-    }
-  }
   
   .naw-wrapper {
     display: flex;
@@ -81,6 +62,7 @@
   }
   
   .naw-list {
+    
     display: flex;
   }
   
@@ -180,7 +162,10 @@
     color: ($color-text-header);
   }
   
- 
+  @media screen and (min-width: 768px) {
+    .header{height: 216px;}
+  }
+
     .home-header-bg {
       background-image: url(../images/home-header-bg-tablet.jpg);
   
@@ -188,26 +173,6 @@
         (min-resolution: 192dpi),
         (min-resolution: 2dppx) {
         background-image: url(../images/home-header-bg-tablet@2x.jpg);
-      }
-    }
-  
-    .library-header-bg {
-      background-image: linear-gradient(
-          to right,
-          rgba(#000000, 0.556),
-          rgba(#000000, 0.556)
-        ),
-        url(../images/library-header-bg-tablet.jpg);
-  
-      @media (min-device-pixel-ratio: 2),
-        (min-resolution: 192dpi),
-        (min-resolution: 2dppx) {
-        background-image: linear-gradient(
-            to right,
-            rgba(#000000, 0.556),
-            rgba(#000000, 0.556)
-          ),
-          url(../images/library-header-bg-tablet@2x.jpg);
       }
     }
   
@@ -224,26 +189,17 @@
         width: 150px;
       }
 
-      .library-header-bg {
-        background-image: linear-gradient(
-            to right,
-            rgba(#000000, 0.5556),
-            rgba(#000000, 0.5556)
-          ),
-          url(../images/home-header-bg-desktop.jpg);
-    
-        @media (min-device-pixel-ratio: 2),
-          (min-resolution: 192dpi),
-          (min-resolution: 2dppx) {
-          background-image: linear-gradient(
-              to right,
-              rgba(#000000, 0.5556),
-              rgba(#000000, 0.5556)
-            ),
-            url(../images/home-header-bg-desktop@2x.jpg);
+      @media screen and (min-width: 1280px){
+        .home-header-bg {
+          background-image: url(../images/home-header-bg-desktop.jpg);
+      
+          @media (min-device-pixel-ratio: 2),
+            (min-resolution: 192dpi),
+            (min-resolution: 2dppx) {
+            background-image: url(../images/home-header-bg-desktop@2x.jpg);
+          }
         }
       }
-    
       .search-form {
         width: 396px;
       }
