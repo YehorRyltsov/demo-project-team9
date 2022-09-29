@@ -10,6 +10,28 @@ signInBtn.addEventListener("click", function() {
   formBox.classList.remove("active");
 })
 
+const refs = {
+  openModalBtn: document.querySelector("[data-modal-log-open]"),
+  closeModalBtn: document.querySelector("[data-modal-log-close]"),
+  modal: document.querySelector("[data-log-modal]"),
+  
+};
+
+refs.openModalBtn.addEventListener("click", showModal);
+refs.closeModalBtn.addEventListener("click", hideModal);
+
+
+function showModal() {
+  console.log("oops")
+  // document.body.classList.toggle("modal-open");
+  refs.modal.classList.remove("is-hidden");
+}
+
+function hideModal(){
+  console.log("oops")
+  refs.modal.classList.add("is-hidden");
+}
+
 // (() => {
 //   const refs = {
 //     openModalBtn: document.querySelector("[data-modal-open]"),
@@ -25,23 +47,3 @@ signInBtn.addEventListener("click", function() {
 //     refs.modal.classList.toggle("is-hidden");
 //   }
 // })();
-
-const refs = {
-  openModalBtn: document.querySelector("[data-modal-open]"),
-  closeModalBtn: document.querySelector("[data-modal-close]"),
-  modal: document.querySelector("[data-modal]"),
-  
-};
-
-refs.openModalBtn.addEventListener("click", showModal);
-refs.closeModalBtn.addEventListener("click", hideModal);
-
-
-function showModal() {
-  // document.body.classList.toggle("modal-open");
-  refs.modal.classList.remove("is-hidden");
-}
-
-function hideModal(){
-  refs.modal.classList.add("is-hidden");
-}
