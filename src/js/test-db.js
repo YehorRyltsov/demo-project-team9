@@ -72,7 +72,7 @@ const film = {
   vote_average: 6.772,
   vote_count: 3840,
 };
-const idToRemove = 'ND9RtXPA9J5Yz5_ocWW';
+let idToRemove = 616037;
 
 ref.addWatched.addEventListener('click', onAddWatchedClick);
 ref.removeWatched.addEventListener('click', onRemoveWatchedClick);
@@ -96,15 +96,16 @@ function onAddQueueClick() {
     //TODO: добавить всплывашку залогинься
     console.log('добавить всплывашку залогинься');
   }
-  addQueueFilmByUser(currentUserId, film);
+  idToRemove = addQueueFilmByUser(currentUserId, film);
+  console.log(idToRemove);
 }
 
 function onRemoveWatchedClick() {
-  deleteWatchedFilmById(currentUserId);
+  deleteWatchedFilmById(currentUserId, idToRemove);
 }
 
 function onRemoveQueueClick() {
-  deleteQueueFilmById(currentUserId, '616037');
+  deleteQueueFilmById(currentUserId, idToRemove);
 }
 
 function onWatchedClick() {
