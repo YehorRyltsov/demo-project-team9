@@ -12,3 +12,7 @@ const ref = {
   getWatched: document.querySelector('#get-watched'),
   getQueue: document.querySelector('#get-queue'),
 };
+
+ref.addWatched.addEventListener('click', () => {
+  addWatchedFilmById(user.uid);
+});
