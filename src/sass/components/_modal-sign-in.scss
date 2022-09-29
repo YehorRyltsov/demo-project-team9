@@ -81,16 +81,42 @@
   z-index: 1000;
 
   transition: 0.5s ease-in-out;
+  overflow: hidden;
 }
 
 .form-box.active{
   left:50%;
 }
 
+.form__sign-in{
+  left:0;
+  transition-delay: 0.25s;
+}
+
+.form__sign-up{
+  left:100%;
+  transition-delay: 0s;
+}
+
+.form-box.active .form__sign-in{
+  left:-100%;
+  transition-delay: 0s;
+
+}
+
+.form-box.active .form__sign-up{
+  left:0;
+  
+}
+
+
 .form{
   width: 100%;
   padding: 50px;
   font-size: 16px;
+
+  position: absolute;
+  transition: 0.5s;
 }
 
 .form__title{
@@ -117,4 +143,8 @@
 
 form p {
   margin: 16px 0px;
+}
+
+.form__btn__sign-up{
+  background-color: orangered;
 }
