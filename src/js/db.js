@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from './firebase';
-import { getDatabase, ref, set, onValue, push } from 'firebase/database';
+import { getDatabase, ref, set, onValue, push, get } from 'firebase/database';
 
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
@@ -25,6 +25,11 @@ export function deleteWatchedFilmById(userId, filmId) {
       snapshot.forEach(childSnapshot => {
         if (childSnapshot.val().id === filmId) {
           idToDelete = childSnapshot.key;
+          const watchedFilmToRemove = ref(
+            db,
+            `user/${userId}/watched/${idToDelete}`
+          );
+          set(watchedFilmToRemove, null);
         }
       });
     },
@@ -32,8 +37,6 @@ export function deleteWatchedFilmById(userId, filmId) {
       onlyOnce: true,
     }
   );
-  const watchedFilmToRemove = ref(db, `user/${userId}/watched/${idToDelete}`);
-  set(watchedFilmToRemove, null);
 }
 
 // Принимет уникальный id пользователя,
@@ -55,6 +58,11 @@ export function deleteQueueFilmById(userId, filmId) {
       snapshot.forEach(childSnapshot => {
         if (childSnapshot.val().id === filmId) {
           idToDelete = childSnapshot.key;
+          const queueFilmToRemove = ref(
+            db,
+            `user/${userId}/queue/${idToDelete}`
+          );
+          set(queueFilmToRemove, null);
         }
       });
     },
@@ -62,8 +70,6 @@ export function deleteQueueFilmById(userId, filmId) {
       onlyOnce: true,
     }
   );
-  const queueFilmToRemove = ref(db, `user/${userId}/queue/${idToDelete}`);
-  set(queueFilmToRemove, null);
 }
 
 // Принимет уникальный id пользователя и возвращает массив объектов
@@ -82,7 +88,7 @@ export function getWatchedFilmsByUser(userId) {
       onlyOnce: true,
     }
   );
-  console.log(result);
+  console.dir(result);
   return result;
 }
 
@@ -109,47 +115,35 @@ export function getQueueFilmsByUser(userId) {
 // Проверяет находится ли фильм в списке watched
 // Принимет уникальный id пользователя и id фильма из объекта(с API)
 // если такой есть - возвращает true, если отсутствует - false
+// !!!!АСИНХРОННАЯ!!!! вызов только в асинхр виде с await - см тестовый
 
-export function isWatched(userId, filmId) {
+export async function isWatched(userId, filmId) {
   let result = false;
   const dbRef = ref(db, `user/${userId}/watched/`);
-  onValue(
-    dbRef,
-    snapshot => {
-      snapshot.forEach(childSnapshot => {
-        if (childSnapshot.val().id === filmId) {
-          result = true;
-          return result;
-        }
-      });
-    },
-    {
-      onlyOnce: true,
+  const snapshot = await get(dbRef);
+  snapshot.forEach(childSnapshot => {
+    // console.log(childSnapshot.val().id);
+    if (childSnapshot.val().id === filmId) {
+      result = true;
     }
-  );
+  });
   return result;
 }
 
 // Проверяет находится ли фильм в списке queue
 // Принимет уникальный id пользователя и id фильма из объекта(с API)
 // если такой есть - возвращает true, если отсутствует - false
+// !!!!АСИНХРОННАЯ!!!! вызов только в асинхр виде с await - см тестовый
 
-export function isQueue(userId, filmId) {
+export async function isQueue(userId, filmId) {
   let result = false;
   const dbRef = ref(db, `user/${userId}/queue/`);
-  onValue(
-    dbRef,
-    snapshot => {
-      snapshot.forEach(childSnapshot => {
-        if (childSnapshot.val().id === filmId) {
-          result = true;
-          return result;
-        }
-      });
-    },
-    {
-      onlyOnce: true,
+  const snapshot = await get(dbRef);
+  snapshot.forEach(childSnapshot => {
+    // console.log(childSnapshot.val().id);
+    if (childSnapshot.val().id === filmId) {
+      result = true;
     }
-  );
+  });
   return result;
 }
