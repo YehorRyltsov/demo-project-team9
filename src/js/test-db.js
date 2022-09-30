@@ -1,5 +1,9 @@
+// Тестовый для проверки работы с Realtime Database
+
+//Импортируем текущего пользователя
 import { currentUserId } from './user';
 
+//Импортирем функции из db.js
 import {
   addWatchedFilmByUser,
   deleteWatchedFilmById,
@@ -9,6 +13,7 @@ import {
   getQueueFilmsByUser,
 } from './db';
 
+//Добавлены ref-ы слушатели на кнопки
 const ref = {
   addWatched: document.querySelector('#add-watched'),
   addQueue: document.querySelector('#add-queue'),
@@ -18,6 +23,14 @@ const ref = {
   getQueue: document.querySelector('#get-queue'),
 };
 
+ref.addWatched.addEventListener('click', onAddWatchedClick);
+ref.removeWatched.addEventListener('click', onRemoveWatchedClick);
+ref.addQueue.addEventListener('click', onAddQueueClick);
+ref.removeQueue.addEventListener('click', onRemoveQueueClick);
+ref.getWatched.addEventListener('click', onWatchedClick);
+ref.getQueue.addEventListener('click', onQueueClick);
+
+//Тестовый объект фильма, полученный с API, для отправки в БД
 const film = {
   adult: false,
   backdrop_path: '/jsoz1HlxczSuTx0mDl2h0lxy36l.jpg',
@@ -72,14 +85,11 @@ const film = {
   vote_average: 6.772,
   vote_count: 3840,
 };
-let idToRemove = 616037;
 
-ref.addWatched.addEventListener('click', onAddWatchedClick);
-ref.removeWatched.addEventListener('click', onRemoveWatchedClick);
-ref.addQueue.addEventListener('click', onAddQueueClick);
-ref.removeQueue.addEventListener('click', onRemoveQueueClick);
-ref.getWatched.addEventListener('click', onWatchedClick);
-ref.getQueue.addEventListener('click', onQueueClick);
+//Тестовый id фильма, полученный из объекта
+let idToRemove = film.id;
+
+//Вызовы функций
 
 function onAddWatchedClick() {
   console.log(currentUserId);
