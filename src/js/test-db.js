@@ -125,3 +125,5 @@ function onWatchedClick() {
 function onQueueClick() {
   getQueueFilmsByUser(currentUserId);
 }
+
+export { onQueueClick };
