@@ -1,8 +1,8 @@
 .gallary-films {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;  
-    
+    justify-content: center;
+    margin-right: auto;
 }
 .photo-card {
     margin: 20px;
@@ -36,6 +36,7 @@ img {
     margin-top: 32px;
     margin-left: 32px;
     justify-content: flex-start;
+    margin-right: auto;
 }
 .photo-card {
     margin-left: 0px;
