@@ -3,7 +3,6 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 62px;
-  cursor: pointer;
   @media screen and (min-width: 768px) {
     margin-bottom: 60px;
   }
@@ -16,10 +15,12 @@
   border-radius: 5px;
   font-family: $font-stack;
   font-weight: 500;
+  font-size: 12px;
   line-height: 1.33;
   text-transform: uppercase;
   color: $color-text-header;
   background-color: rgba(28, 28, 28, 0);
+  cursor: pointer;
 
   @media screen and (min-width: 768px) {
     width: 152px;
