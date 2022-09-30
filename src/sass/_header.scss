@@ -272,13 +272,6 @@ body {
   background-color: ($color-hoverfocus-orange);
 }
 
-.search-icon {
-  position: absolute;
-  top: 0;
-  right: 0;
-  transform: translateY(50%);
-}
-
 .search-form {
   display: block;
   position: relative;
@@ -314,4 +307,14 @@ body {
   .search-form {
     width: 394px;
   }
+}
+
+.search-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0;
+  border: none;
+  background-color: rgba(28, 28, 28, 0);
+  cursor: pointer;
 }
