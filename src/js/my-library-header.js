@@ -1,3 +1,11 @@
+import { getWatchedFilmsByUser, getQueueFilmsByUser } from './db';
+import { currentUserId } from './user';
+
+console.log(currentUserId);
+
+// let movieWatchedList = getWatchedFilmsByUser(); // ----- working version !!!
+let movieWatchedList = []; // ------ JUST FOR TEST !!!
+let movieQueueList = getQueueFilmsByUser();
 // import emptyLibraryPageUrl from '../images/empty-library-page'; // Импортирует картинку
 
 const header = document.querySelector('.header');
@@ -39,11 +47,17 @@ function onMyLibraryClick(evt) {
 function onWatchedBtnClick() {
   queueBtn.classList.remove('active');
   watchedBtn.classList.add('active');
+  watchedBtn.disabled = true;
+  queueBtn.disabled = false;
+  retrieveWatchedMovies(movieWatchedList);
 }
 
 function onQueueBtnClick() {
   watchedBtn.classList.remove('active');
   queueBtn.classList.add('active');
+  watchedBtn.disabled = false;
+  queueBtn.disabled = true;
+  retrieveWatchedMovies(movieQueueList);
 }
 
 export { onWatchedBtnClick, onQueueBtnClick };
@@ -59,3 +73,44 @@ export { onWatchedBtnClick, onQueueBtnClick };
 //   </li>`;
 //   pagination.style.display = 'none';
 // }
+
+//------------------ My library functional -----------------
+const movieList = document.querySelector('body'); // - временный выбор для тестирования
+
+function retrieveWatchedMovies(movies) {
+  if (movies.length === 0) {
+    console.log('There is no items yet');
+    showEmptyLibrary();
+    // ----- рендер сторінки про відсутність фільмів у бібліотеці
+  } else {
+    return renderWatchedList(movies);
+  }
+}
+
+function renderWatchedList(array) {
+  const renderMovies = array.map(item => {
+    let { poster_path, original_title, genres, release_date, vote_average } =
+      item;
+    return makeMoviesListMarkup(
+      poster_path,
+      original_title,
+      genres,
+      release_date,
+      vote_average
+    );
+  });
+  console.log(renderMovies);
+  //   movieList.innerHTML = renderMovies;
+  movieList.insertAdjacentHTML('beforeend', renderMovies); //---- указать контейнер в котором рендерить список
+}
+
+function makeMoviesListMarkup(
+  poster_path,
+  original_title,
+  genres,
+  release_date,
+  vote_average
+) {
+  const markup = `${poster_path}, ${original_title}, ${genres}, ${release_date}, ${vote_average}`;
+  return markup;
+} //------ взять функцию разметки с основной страницы. Пока только тестовый вариант
