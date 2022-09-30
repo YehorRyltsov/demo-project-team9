@@ -38,9 +38,7 @@ position: relative;
 }
 .team-image{
 margin-bottom: 10px;
-
     width: 100%;
-
     border-radius: 50%;
     box-shadow: 5px 5px 11px -2px #000000;
 }
@@ -54,7 +52,8 @@ color: $color-text-secondary;
 }
 .team-git{
 position: absolute;
-
+width: 25px;
+height: 25px;
     top: 65px;
     right: -10px;
 
@@ -75,6 +74,7 @@ position: absolute;
     }
 }
 .logo__icon{
-    width: 24;
-        height: 24;
+  
+        fill:tomato;
+            stroke:#000000;
 }
