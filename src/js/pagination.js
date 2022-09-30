@@ -3,6 +3,8 @@ import { fetchMoves } from './main-movies';
 // import {} from
 // import {} from Тут будуть імпорти робочих функцій пошуку,топ фільмів та кнопки підняття угору
 
+const pagin = document.querySelector('#pagination');
+
 export const paginationInit = {
   startPage: 1,
   searchType: '',
