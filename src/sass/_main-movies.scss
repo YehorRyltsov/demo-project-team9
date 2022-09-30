@@ -1,35 +1,86 @@
 .gallary-films {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;    
+    justify-content: center;  
+    
 }
-img { 
-    width: 480px;   
-    display: block;
-    width: 100%;
-    height: 200px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+.photo-card {
+    margin: 20px;
+    
 }
-// .photo-card {    
-//     width: 320px;
-//     margin-right: 10px;
-//     margin-bottom: 10px;
-//     background: white;
-//     border: 1px solid #cddad0;
-//     box-sizing: border-box;
-//     border-radius: 8px;
-//     background-color: rgb(207, 241, 230);
-// }
-// a { 
-//     display: flex;
-//     justify-content: space-around;
-//     text-decoration: none;
-// }
-// .info-item {
-//     text-align: center;
-//     font-size: 12px;
-//     line-height: 1.40;
-//     color:black;
-//     margin: 0px;
-// }
+img {    
+    width: 280px;
+    height: 402px;   
+    // left: 20px;
+    // top: 2093px;
+    // display: block;
+    border-radius: 5px;
+}
+
+.info {
+    width: 280px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: #000000;
+}
+
+.info-genres {
+    color: #FF6B08;
+}
+
+@media screen and (min-width: 768px) {
+.gallary-films {
+    margin-top: 32px;
+    margin-left: 32px;
+    justify-content: flex-start;
+}
+.photo-card {
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-bottom: 32px;
+    margin-top: 0px;
+}
+img {    
+    width: 336px;
+    height: 455px;
+    left: 400px;
+    top: 275px;
+    border-radius: 5px;
+}
+.info {
+    width: 368px;
+}
+.info-item {
+    word-wrap: break-word;
+}
+}
+
+
+@media screen and (min-width: 1280px) {
+
+.photo-card {
+    margin-left: 0px;
+    margin-right: 16px;
+    margin-bottom: 32px;
+    margin-top: 0px;
+}
+img {    
+    width: 395px;
+    height: 574px;
+    left: 32px;
+    top: 942px;
+}
+.info {
+    width: 395px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+}
+.info-item {
+    word-wrap: break-word;
+}
+    
+}
