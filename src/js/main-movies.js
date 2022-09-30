@@ -32,20 +32,16 @@ export function fetchMoves() {
                 const year = date.getFullYear();
                 return `
                 <div class="photo-card">
-                  <img src= "https://image.tmdb.org/t/p/w500${move.poster_path}" alt="${move.original_title} loading="lazy">
+                  <img src= "https://image.tmdb.org/t/p/w500${move.poster_path}" alt="${move.original_title} loading="lazy" width: 0px>
                   <div class="info">
                     <p class="info-item">
-                      <b>${move.title}</b>
+                      <b>${move.title.toUpperCase()}</b>
                     </p>
-                    <p class="info-item">
-                      <b>${year}</b>
-                    </p>
-                    <p class="info-item">
-                      <b>${move.genres.join(', ')}</b>
-                    </p>
-                    <p class="info-item">
-                      <b></b>
-                    </p>
+                    <p class="info-item">                      
+                      <b class="info-genres">${move.genres.join(', ')}</b>
+                      <b class="info-genres"> | </b>
+                      <b class="info-genres">${year}</b>
+                    </p>                   
                   </a>
                   </div>
                 </div>` }).join('');               
