@@ -8,7 +8,7 @@ const loginEmail = document.querySelector('#login-email-input');
 const loginPwd = document.querySelector('#login-pwd-input');
 const loginForm = document.querySelector('#login-form');
 
-let currentUserId = null;
+export let currentUserId = null;
 
 logOutBtn.addEventListener('click', logOut);
 registerForm.addEventListener('submit', registrationUser);
