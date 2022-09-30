@@ -9,12 +9,10 @@
       </a>
       <div class="naw-list-container">
         <ul class="naw-list list">
-          <li class="naw-list-item">
-            <a class="naw-list-link current" href="index.html" data-name="Home"
-              >Home</a
-            >
+          <li class="naw-list-item home-link current">
+            <a class="naw-list-link" href="index.html" data-name="Home">Home</a>
           </li>
-          <li class="naw-list-item">
+          <li class="naw-list-item library-link">
             <a
               class="naw-list-link library"
               href="index.html"
@@ -23,21 +21,22 @@
             >
           </li>
           <li class="naw-list-item">
-             <button
-               class="naw-list-link login"
-               href="index.html"
-               data-name="login"
-               >log in
-             </button>
+            <button
+              class="naw-list-link login-btn"
+              data-name="login"
+              data-modal-log-open
+            >
+              log in
+            </button>
+            <button
+              class="logout-btn visually-hidden"
+              type="button"
+              data-id=" log-out"
+            >
+              log Out
+            </button>
           </li>
         </ul>
-        <button
-          class="logout-btn is-hidden-logout"
-          type="button"
-          data-id=" log-out"
-        >
-          log Out
-        </button>
       </div>
     </div>
     <label class="search-form">
@@ -53,10 +52,8 @@
     </label>
 
     <div class="library-btn__wrap visually-hidden">
-      <button class="library-btn watched-btn active" type="button">
-        Watched
-      </button>
-      <button class="library-btn queue-btn" type="button">Queue</button>
+      <button class="library-btn watched-btn" type="button">Watched</button>
+      <button class="library-btn queue-btn active" type="button">Queue</button>
     </div>
   </div>
 </header>
