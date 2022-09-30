@@ -1,6 +1,11 @@
 .backdrop.is-hidden .modal-review {
-      transform: translate(-50%, -50%) scale(0.7);
-      // transition: transform $transition-durattion $timing-function;
+      // transform: translate(-50%, -50%) scale(0.7);
+      transition: transform 250ms $timing-function;
+
+      transform: perspective(600px)
+      translate(0%, -100%)
+      rotateX(45deg);
+
 }
 
 .modal-review {
@@ -11,12 +16,14 @@
       padding: 48px 20px 40px 20px;
 
       overflow: visible;
+      
+      // transform: translate(-50%, -50%) scale(1);
+      transform: perspective(600px)
+      translate(-50%, -50%)
+      rotateX(0deg);
+      transition: transform 250ms $timing-function;
 
-      transform: translate(-50%, -50%) scale(1);
-      transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-
-      background-color: #ffffff;
-      outline: 1px solid red;
+      background-color: $color-text-header;
 
       @media screen and (min-width: 320px) {
             width: 280px;
@@ -45,48 +52,48 @@
 
 .modal-review__body{
       @media screen and (min-width: 767.98px) {
-      display: flex;
+            display: flex;
+
       }
+
 }
 
 .modal-review__card{
       @media screen and (min-width: 767.98px) {
-      margin-right: 68px;
+            margin-right: 68px;
       }
 
       @media screen and (min-width: 1280px) {
             margin-right: 16px;
       }
+
 }
 
 .review__btn-close {
       position: absolute;
 
-      top: 16px;
-      right: 16px;
-      width: 14px;
-      height: 14px;
-
-      cursor: pointer;
-
+      padding: 0;
+      top: 8px;
+      right: 8px;
       background-color: transparent;
+      border: 1px solid transparent;
       
-      color: #000000;
-      fill: #000000;
- 
-
-      // .button-close:focus>&,
-      // .button-close:hover>& {
-      //       fill: $accent-text-color;
-      // }
+      stroke: $color-text-primary;
+      cursor: pointer;
+  
+      &:hover,
+      &:focus{
+            stroke: $color-text-footer;
+      }
+   
 }
 
 .modal-review__content{
       margin-bottom: 20px;
 
-   min-width: 240px;
-   height: 357px;
-   border-radius: 5px; 
+      min-width: 240px;
+      height: 357px;
+      border-radius: 5px; 
    
    @media screen and (min-width: 767.98px) {
       width: 264px; 
@@ -96,54 +103,46 @@
       @media screen and (min-width: 1280px) {
       width: 375px; 
       height: 478px; 
-}
+
+      }
+
 }
 
 .modal-review__title{
       margin-bottom: 20px;
 
-      font-weight: 500;
+      font-weight: $font-weight;
       font-size: 20px;
       line-height: 1.15;
-      color:#000000;
+      color: $color-text-primary;
 
       @media screen and (min-width: 1280px) {
             font-size: 30px;
-            line-height: 1.16;  
+            line-height: 1.16;
+
       }
+
 }
 
 .modal-review__subtitle{
       margin-bottom: 8px;
 
-      font-weight: 500;
+      font-weight: $font-weight;
       font-size: 12px;
       line-height: 1.33;
-      color:#000000;
+      color: $color-text-primary;
+
 }
 
 .modal-review__about{
       margin-bottom: 20px;
 
-      font-weight: 500;
+      font-weight: $font-weight;
       font-size: 12px;
       line-height: 1.67;
 
-      color: #000000;
-}
+      color: $color-text-primary;
 
-.modal_close {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-
-      // fill: #000000;
-
-      // .button-close:focus>&,
-      // .button-close:hover>& {
-      //       fill: $accent-text-color;
-      // }
 }
 
 .modal-review__items{
@@ -156,32 +155,35 @@
 
       @media screen and (min-width:320px) and (max-width:467px){
             grid-template-columns: 118px 118px;
+
       }
 }
 
 .modal-review__item--grid{
-     display: flex; 
+     display: flex;
+
 }
 
 .modal-review__item{
-      font-weight: 500;
+      font-weight: $font-weight;
       font-size: 12px;
       line-height: 1.33;
       
       cursor: pointer;
 
-      color: #8c8c8c;
+      color: $color-text-grey;
       transition:color 250ms, background-color 250ms, border 250ms;
-      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-timing-function: $timing-function;
 
       &--dark{
             display: block;
 
-            font-weight: 500;
+            font-weight: $font-weight;
             font-size: 12px;
             line-height: 1.33;
 
-            color: #000000;
+            color: $color-text-primary;
+
       }
 
       &--rating{
@@ -189,18 +191,21 @@
             padding: 1px 10px;
             margin-right: 1px;
 
-            font-weight: 500;
+            font-weight: $font-weight;
             font-size: 12px;
             line-height: 1.33;
 
-            color: #ffffff;
-            background: #FF6B01;
+            color: $color-text-header;
+            background: $color-hoverfocus-orange;
             border-radius: 5px;
+
       }
 
       &:last-child{
-            margin-bottom: 0;  
+      margin-bottom: 0;
+
       }
+
 }
 
 .modal-review__slash{
@@ -209,19 +214,22 @@
       margin-right: 7px;
       margin-left: 3px;
 
-      font-weight: 500;
+      font-weight: $font-weight;
       font-size: 12px;
       line-height: 1.33;
       
-      color: #8c8c8c;
+      color: $color-text-grey;
+
 }
 
 .modal-review__btn-container{
       display: flex;
 
       @media screen and (min-width: 1280px) {
-        margin-left: 6px;
+            margin-left: 6px;
+
       }
+
 }
 
 .modal-review__btn{
@@ -232,23 +240,25 @@
       width: 110px;
       height: 44px;
 
-      font-weight: 500;
+      font-weight: $font-weight;
       font-size: 12px;
       line-height: 1.33;
 
-      border: 1px solid #000000;
+      border: 1px solid $color-text-primary;
       border-radius: 5px;
       background-color: transparent;
 
       &:first-child{
-            margin-right: 20px;
+      margin-right: 20px;
+
       }
 
       &:hover,
       &:focus{
-            color: #FFFFFF;
-            background-color: #FF6B01;
-            border: 1px solid transparent;
+      color: $color-text-header;
+      background-color: $color-hoverfocus-orange;
+      border: 1px solid transparent;
+
       }
 
       @media screen and (min-width: 767.98px) {
@@ -258,12 +268,15 @@
             width: 125px;
 
             &:first-child{
-                  margin-right: 15px;
-            } 
+            margin-right: 15px;
+
+            }
+
       }
 
       @media screen and (min-width: 1280px) {
-            width: 136px; 
+            width: 136px;
+
       }
 
 }
