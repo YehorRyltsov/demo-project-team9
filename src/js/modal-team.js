@@ -6,7 +6,7 @@ import  {markup } from './footer';
 
   const openModal = document.querySelector('[data-modal-open-team]')
  
-console.log("1", openModal);
+// console.log("1", openModal);
 
 
 openModal.addEventListener('click', onOpenModal);
