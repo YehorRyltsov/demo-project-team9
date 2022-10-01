@@ -88,7 +88,7 @@ export const markup = `<div class="modal-team" id="modalTeam"><div class="team-c
     <img src="${urlDmytroKuzko}" alt="Dmytro" class="team-image">
     <p class="team-name">Dmytro</p>
     <p class="team-role">'Developer'</p>
-    <a href="https://github.com/" target="_blank" class="team-git"><svg class="logo__icon" width="24" height="24">
+    <a href="https://github.com/bigmandarine" target="_blank" class="team-git"><svg class="logo__icon" width="24" height="24">
       <use href="${spriteUrl}#github"></use>
     </svg></a>
 </div>
