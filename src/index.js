@@ -10,5 +10,5 @@ import { currentUserId } from './js/user';
 import './js/main-movies';
 import './js/my-library-header';
 import './js/pagination';
-import './js/Local-Storage';
+import './js/push-data-to-database';
 import './js/modal-team';
