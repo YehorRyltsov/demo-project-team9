@@ -15,13 +15,13 @@ openModal.addEventListener('click', onOpenModal);
 function onOpenModal() {
   modal.show();
   window.addEventListener('keydown', onCloseModal);
-
+  onCloseModal();
  
 }
   function onCloseModal(e) {
     if (e.code === 'Escape') {
       modal.close();
-      window.removeEventListener('keydown', onCloseModal);
+      // window.removeEventListener('keydown', onCloseModal);
     }
-    openModal.removeEventListener('click', onOpenModal);
+    // openModal.removeEventListener('click', onOpenModal);
   }
