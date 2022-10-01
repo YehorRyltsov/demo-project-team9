@@ -5,11 +5,14 @@ import {
   deleteWatchedFilmById,
   isQueue,
   isWatched,
+  getWatchedFilmsByUser,
+  getQueueFilmsByUser,
 } from './db';
 import { currentUserId } from './user';
 
 const KEY = 'a115fde3660c9e5b413d785f288ed44e';
 const btnWatchedEl = document.querySelector('#test-watched');
+const btnQueueEl = document.querySelector('#test-queue');
 async function fetchFilms() {
   const data = await fetch(`
      https://api.themoviedb.org/3/trending/all/week?api_key=${KEY}`);
@@ -18,24 +21,23 @@ async function fetchFilms() {
   return films.results;
 }
 
-btnWatchedEl.addEventListener('click', onBtnClickWatched(113988));
+btnWatchedEl.addEventListener('click', () => onBtnClickWatched(760741));
+btnQueueEl.addEventListener('click', () => onBtnClickQueue(762504));
 
 function onBtnClickQueue(filmId) {
   findFilmById(filmId).then(film => {
-    const filmKeyForStorage = `${filmId}`;
-    const films = {
-      name: `${film.title}`,
-      id: `${film.id}`,
-      genres: `${film.genres.map(genre => ` ${genre.name}`)}`,
-      year: `${film.release_date.slice(0, 4)}`,
-      raiting: `${film.vote_average.toFixed(1)}`,
-    };
-
-    localStorage.setItem(filmKeyForStorage, JSON.stringify(films));
+    if (isQueue(currentUserId, filmId)) {
+      deleteQueueFilmById(currentUserId, filmId);
+      console.log('вызвали удалить');
+      return;
+    } else {
+      addQueueFilmByUser(currentUserId, film);
+      console.log('вызвали добавить');
+    }
+    console.log(film);
   });
 }
 function onBtnClickWatched(filmId) {
-  console.log(isWatched(currentUserId, filmId));
   findFilmById(filmId).then(film => {
     if (isWatched(currentUserId, filmId)) {
       deleteWatchedFilmById(currentUserId, filmId);
@@ -45,10 +47,9 @@ function onBtnClickWatched(filmId) {
       addWatchedFilmByUser(currentUserId, film);
       console.log('вызвали добавить');
     }
+    console.log(film);
   });
 }
-
-onBtnClickQueue(113988);
 
 async function findFilmById(filmId) {
   const data = await fetch(`
@@ -58,3 +59,5 @@ https://api.themoviedb.org/3/movie/${filmId}?api_key=${KEY}&language=en-US`);
   return film;
 }
 findFilmById(113988);
+getWatchedFilmsByUser(currentUserId);
+getQueueFilmsByUser(currentUserId);
