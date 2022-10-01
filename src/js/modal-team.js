@@ -17,6 +17,7 @@ function onOpenModal() {
 function onCloseModal(e) {
   if (e.code === 'Escape') {
     modal.close();
-    window.removeEventListener('keydown', closeModalHandler);
+    window.removeEventListener('keydown', onCloseModal);
   }
+  openModal.removeEventListener('click', onOpenModal);
 }
