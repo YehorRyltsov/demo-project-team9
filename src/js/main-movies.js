@@ -4,7 +4,6 @@ const div = document.querySelector('.gallary-films');
 
 fetchMoves().then(movies => {
   fetchGenres().then(genres => {
-    // console.log(genres);
     const arrayGen = genres.genres;
     console.log(arrayGen);
 

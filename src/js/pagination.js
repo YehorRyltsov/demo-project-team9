@@ -54,4 +54,4 @@ export const createPagination = (page, itemsPerPage, totalItems) => {
   return pagination;
 };
 // Тут я вручну викликаю цю функцію щоб відобразити кнопки
-createPagination(1, 1, 25);
+createPagination(1, 1, 24);
