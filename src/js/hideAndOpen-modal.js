@@ -2,6 +2,15 @@ const signInBtn = document.querySelector(".sign-in-btn")
 const signUpBtn = document.querySelector(".sign-up-btn")
 const formBox = document.querySelector(".form-box")
 
+const refs = {
+  openModalBtn: document.querySelector("[data-modal-log-open]"),
+  closeModalBtn: document.querySelector("[data-modal-log-close]"),
+  modal: document.querySelector("[data-log-modal]"),
+  body:document.querySelector ("body"),
+};
+
+///////////// -------MOVE--BTN-------------///////////////////
+
 signUpBtn.addEventListener("click", function() {
   formBox.classList.add("active");
 })
@@ -10,40 +19,40 @@ signInBtn.addEventListener("click", function() {
   formBox.classList.remove("active");
 })
 
-const refs = {
-  openModalBtn: document.querySelector("[data-modal-log-open]"),
-  closeModalBtn: document.querySelector("[data-modal-log-close]"),
-  modal: document.querySelector("[data-log-modal]"),
-  
-};
+
+
+/////////////////------CLOSE/OPEN--BTN---------//////////////////
 
 refs.openModalBtn.addEventListener("click", showModal);
 refs.closeModalBtn.addEventListener("click", hideModal);
 
-
 function showModal() {
-  console.log("oops")
-  // document.body.classList.toggle("modal-open");
   refs.modal.classList.remove("is-hidden");
+  refs.body.classList.add("no-scroll");
+
+  refs.modal.addEventListener('click', onBackdropClick);
+  window.addEventListener('keydown', onEscKeyPressExit);
 }
 
 function hideModal(){
-  console.log("oops")
-  refs.modal.classList.add("is-hidden");
+  refs.modal.classList.add("is-hidden")
+  refs.body.classList.remove("no-scroll");
+
+  refs.modal.removeEventListener('click', onBackdropClick);
+  window.removeEventListener('keydown', onEscKeyPressExit); 
 }
 
-// (() => {
-//   const refs = {
-//     openModalBtn: document.querySelector("[data-modal-open]"),
-//     closeModalBtn: document.querySelector("[data-modal-close]"),
-//     modal: document.querySelector("[data-modal]"),
-//   };
+function onBackdropClick(event) {
+  if (event.target === event.currentTarget) {
+    hideModal();
+  }
+}
 
-//   refs.openModalBtn.addEventListener("click", toggleModal);
-//   refs.closeModalBtn.addEventListener("click", toggleModal);
+function onEscKeyPressExit(event) {
+  if (event.code === 'Escape') {
+    hideModal();
+  }
+}
 
-//   function toggleModal() {
-//     document.body.classList.toggle("modal-open");
-//     refs.modal.classList.toggle("is-hidden");
-//   }
-// })();
+//////////////////-------------/////////////////////////
+
