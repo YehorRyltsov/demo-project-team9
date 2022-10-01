@@ -1,5 +1,17 @@
 .basicLightbox {
     overflow: scroll;
+   
+}
+.basicLightbox__placeholder {   
+    height: 95%;
+@media screen and(min-width:767.98px) {
+      height: 80%;
+    }
+
+    @media screen and (min-width: 1280px) {
+        height: 70%;
+
+    }
 }
 .modal-team{
 display: flex;
@@ -8,12 +20,15 @@ background-color: $color-text-header;
 margin: -20px;
 border-radius: 15px;
 width: 240px;
+justify-content: space-evenly;
+
 @media screen and (max-width: 767px) {
         margin-top: 70px;
     }
-@media screen and(min-width:768px) {       
-        width: 600px;        
-        border-radius: 25px;
+@media screen and(min-width:767.98px) { 
+    
+    width: 600px;        
+    border-radius: 25px;
     }
  @media screen and (min-width: 1280px) {
             margin: -30px;            
@@ -29,13 +44,13 @@ align-items: center;
 
 margin: 20px;
 width: calc((100% - 80px) / 2);
-    @media screen and(min-width:768px) {
-        width: calc((100% - 160px) / 3);
-        margin: 20px;
+    @media screen and(min-width:767.98px) {
+        width: calc((100% - 160px) / 5);
+        
     }
      @media screen and (min-width: 1280px) {
         margin: 30px;        
-         width: calc((100% - 240px) / 4);
+         width: calc((100% - 240px) / 5);
     
         }
 }
@@ -59,12 +74,12 @@ position: absolute;
 top: 65px;
 right: -10px;
 fill: #000000;
-    @media screen and (min-width:768px) {
-        top: 100px;
+    @media screen and (min-width:767.98px) {
+        top: 80px;
     }
 
     @media screen and (min-width:  1280px) {
-        top: 120px;
+        top: 100px;
     }
 
 transform: scale(1);
