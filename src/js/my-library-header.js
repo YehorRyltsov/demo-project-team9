@@ -1,12 +1,12 @@
 import { getWatchedFilmsByUser, getQueueFilmsByUser } from './db';
 import { currentUserId } from './user';
 
-// console.log(currentUserId);
+console.log(currentUserId);
 
-let movieWatchedList = getWatchedFilmsByUser(currentUserId); // ----- working version !!!
-// let movieWatchedList = []; // ------ JUST FOR TEST !!!
-let movieQueueList = getQueueFilmsByUser(currentUserId);
-import emptyLibraryPageUrl from '../images/empty-library-page.jpg'; // Импортирует картинку
+// let movieWatchedList = getWatchedFilmsByUser(); // ----- working version !!!
+let movieWatchedList = []; // ------ JUST FOR TEST !!!
+let movieQueueList = getQueueFilmsByUser();
+// import emptyLibraryPageUrl from '../images/empty-library-page'; // Импортирует картинку
 
 const header = document.querySelector('.header');
 const searchInput = document.querySelector('.search-form');
@@ -42,9 +42,6 @@ function onMyLibraryClick(evt) {
   homeHeader.classList.remove('current');
   header.classList.remove('home-header-bg');
   header.classList.add('header__my-library-bg');
-  if (myLibraryHeader.classList.contains('current')) {
-    retrieveWatchedMovies(movieQueueList);
-  }
 }
 
 function onWatchedBtnClick() {
@@ -67,19 +64,18 @@ export { onWatchedBtnClick, onQueueBtnClick };
 
 // Функция для пустого массива
 
-function showEmptyLibrary() {
-  cardList.innerHTML = `<li>
-  <a>
-  <p class="empty-library__text"> There is nothing here yet! </p>
-  <img class="empty-library__image" src="${emptyLibraryPageUrl}" alt="empty cinema hall">
-  </a>
-  </li>`;
-  pagination.style.display = 'none';
-}
+// function showEmptyLibrary() {
+//   renderList.innerHTML = `<li>
+//   <a>
+//   <p class="empty-library__text"> There is nothing here yet! </p>
+//   <img class="empty-library__image" src="${emptyLibraryPageUrl}" alt="empty cinema hall">
+//   </a>
+//   </li>`;
+//   pagination.style.display = 'none';
+// }
 
 //------------------ My library functional -----------------
-// const movieList = document.querySelector('body'); // - временный выбор для тестирования
-const cardList = document.querySelector('.gallery-films');
+const movieList = document.querySelector('body'); // - временный выбор для тестирования
 
 function retrieveWatchedMovies(movies) {
   if (movies.length === 0) {
@@ -105,8 +101,7 @@ function renderWatchedList(array) {
   });
   console.log(renderMovies);
   //   movieList.innerHTML = renderMovies;
-  cardList.innerHTML = renderMovies;
-  // cardList.insertAdjacentHTML('beforeend', renderMovies); //---- указать контейнер в котором рендерить список
+  movieList.insertAdjacentHTML('beforeend', renderMovies); //---- указать контейнер в котором рендерить список
 }
 
 function makeMoviesListMarkup(
@@ -116,30 +111,6 @@ function makeMoviesListMarkup(
   release_date,
   vote_average
 ) {
-  const date = new Date(`${release_date}`);
-  const year = date.getFullYear();
-
-  const genresNames = [];
-  const genreName = genres.map(genre => genresNames.push(genre.name));
-
-  const markup = `
-                <li class="photo-card">
-                <a class="link" href="#">
-                  <img src= "https://image.tmdb.org/t/p/w500${poster_path}" alt="${original_title} loading="lazy" width: 0px class="card-image">
-                  <div class="info">
-                    <p class="info-item">
-                      <b>${original_title.toUpperCase()}</b>
-                    </p>
-                    <p class="info-item">                      
-                      <b class="info-genres">${genresNames.join(', ')}</b>
-                      <b class="info-genres"> | </b>
-                      <b class="info-genres">${year}</b>
-                      <b class="info-genres vote-average">${vote_average.toFixed(
-                        1
-                      )}</b>
-                    </p>                   
-                  </div>
-                  </a>
-                </li>`;
+  const markup = `${poster_path}, ${original_title}, ${genres}, ${release_date}, ${vote_average}`;
   return markup;
 } //------ взять функцию разметки с основной страницы. Пока только тестовый вариант
