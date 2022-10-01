@@ -17,9 +17,12 @@ const refs = {
   btnQueueItemAdd: document.querySelector('.d-add-queue'),
   btnQueueItemRemove: document.querySelector('.d-remove-queue'),
 };
+
 refs.btnQueueEl.classList.remove('active');
 refs.btnWatchedEl.addEventListener('click', () => onBtnClickWatched(642885));
 refs.btnQueueEl.addEventListener('click', () => onBtnClickQueue(762504));
+
+// -------------- При клике на кнопку Queue ---------------
 
 async function onBtnClickQueue(filmId) {
   refs.btnWatchedEl.classList.remove('active');
@@ -41,6 +44,8 @@ async function onBtnClickQueue(filmId) {
   refs.btnQueueItemRemove.classList.toggle('hide');
 }
 
+// -------------- При клике на кнопку Watched ---------------
+
 async function onBtnClickWatched(filmId) {
   refs.btnWatchedEl.classList.add('active');
   refs.btnQueueEl.classList.remove('active');
@@ -61,16 +66,23 @@ async function onBtnClickWatched(filmId) {
   refs.btnWatchedItemRemove.classList.toggle('hide');
 }
 
+// -------------- Для поиска фильма по ID ---------------
+
 async function findFilmById(filmId) {
   const data = await fetch(`
 https://api.themoviedb.org/3/movie/${filmId}?api_key=${refs.KEY}&language=en-US`);
   const film = await data.json();
   return film;
 }
+
+// -------------- Узнать есть фильм в базе или нет (возвращает true/false) ---------------
+
 async function answerIsWatched(currentUserId, filmId) {
   const answer = await isWatched(currentUserId, filmId);
   return answer;
 }
+
+answerIsWatched(currentUserId, 438148).then(console.log);
 // answerIsWatched(currentUserId, 438148).then(answer => {
 //   if (answer) {
 //     refs.btnWatchedItemAdd.classList.add('hide');
@@ -82,4 +94,3 @@ async function answerIsWatched(currentUserId, filmId) {
 //     refs.btnWatchedItemRemove.classList.add('hide');
 //   }
 // });
-answerIsWatched(currentUserId, 438148).then(console.log);
