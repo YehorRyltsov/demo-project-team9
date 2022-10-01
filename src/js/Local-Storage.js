@@ -5,75 +5,81 @@ import {
   deleteWatchedFilmById,
   isQueue,
   isWatched,
-  getWatchedFilmsByUser,
-  getQueueFilmsByUser,
 } from './db';
 import { currentUserId } from './user';
 
 const refs = {
   KEY: 'a115fde3660c9e5b413d785f288ed44e',
-  btnWatchedEl: document.querySelector('#test-watched'),
-  btnQueueEl: document.querySelector('#test-queue'),
+  btnWatchedEl: document.querySelector('#dima-btn-watched'),
+  btnQueueEl: document.querySelector('#dima-btn-queue'),
   btnWatchedItemAdd: document.querySelector('.d-add-watched'),
   btnWatchedItemRemove: document.querySelector('.d-remove-watched'),
   btnQueueItemAdd: document.querySelector('.d-add-queue'),
   btnQueueItemRemove: document.querySelector('.d-remove-queue'),
 };
-
-refs.btnWatchedEl.addEventListener('click', () => onBtnClickWatched(438148));
+refs.btnQueueEl.classList.remove('active');
+refs.btnWatchedEl.addEventListener('click', () => onBtnClickWatched(642885));
 refs.btnQueueEl.addEventListener('click', () => onBtnClickQueue(762504));
 
-function onBtnClickQueue(filmId) {
+async function onBtnClickQueue(filmId) {
+  refs.btnWatchedEl.classList.remove('active');
+  refs.btnQueueEl.classList.add('active');
+  const answer = await isQueue(currentUserId, filmId);
+
   findFilmById(filmId).then(film => {
-    if (isQueue(currentUserId, filmId)) {
+    if (answer) {
       deleteQueueFilmById(currentUserId, filmId);
       console.log('вызвали удалить');
       return;
     } else {
       addQueueFilmByUser(currentUserId, film);
       console.log('вызвали добавить');
+      console.log(film);
     }
-    console.log(film);
   });
+  refs.btnQueueItemAdd.classList.toggle('hide');
+  refs.btnQueueItemRemove.classList.toggle('hide');
 }
-function onBtnClickWatched(filmId) {
+
+async function onBtnClickWatched(filmId) {
+  refs.btnWatchedEl.classList.add('active');
+  refs.btnQueueEl.classList.remove('active');
+  const answer = await isWatched(currentUserId, filmId);
+
   findFilmById(filmId).then(film => {
-    if (isWatched(currentUserId, filmId)) {
+    if (answer) {
       deleteWatchedFilmById(currentUserId, filmId);
       console.log('вызвали удалить');
       return;
     } else {
       addWatchedFilmByUser(currentUserId, film);
       console.log('вызвали добавить');
+      console.log(film);
     }
-    console.log(film);
   });
+  refs.btnWatchedItemAdd.classList.toggle('hide');
+  refs.btnWatchedItemRemove.classList.toggle('hide');
 }
 
 async function findFilmById(filmId) {
   const data = await fetch(`
 https://api.themoviedb.org/3/movie/${filmId}?api_key=${refs.KEY}&language=en-US`);
   const film = await data.json();
-  //   console.log(film);
   return film;
 }
+async function answerIsWatched(currentUserId, filmId) {
+  const answer = await isWatched(currentUserId, filmId);
+  return answer;
+}
+// answerIsWatched(currentUserId, 438148).then(answer => {
+//   if (answer) {
+//     refs.btnWatchedItemAdd.classList.add('hide');
+//     refs.btnWatchedItemRemove.classList.remove('hide');
 
-async function onIsWatchedClick() {
-  const answer = await isWatched(currentUserId, 438148);
-  //   if (answer) {
-  //     refs.btnWatchedItemRemove.classList.add('show');
-  //     console.log(answer);
-  //   } else {
-  //     return;
-  //   }
-  console.log(answer);
-}
-onIsWatchedClick();
-async function onIsQueueClick() {
-  const answer = await isQueue(currentUserId, folm.id);
-  if (answer) {
-    refs.btnQueueItemRemove.classList.add('show');
-  } else {
-    return;
-  }
-}
+//     console.log(answer);
+//   } else {
+//     refs.btnWatchedItemAdd.classList.remove('hide');
+//     refs.btnWatchedItemRemove.classList.add('hide');
+//   }
+// });
+answerIsWatched(currentUserId, 438148).then(console.log);

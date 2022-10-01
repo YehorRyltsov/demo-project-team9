@@ -88,7 +88,7 @@ export function getWatchedFilmsByUser(userId) {
       onlyOnce: true,
     }
   );
-  console.log(result);
+  console.dir(result);
   return result;
 }
 
@@ -115,6 +115,7 @@ export function getQueueFilmsByUser(userId) {
 // Проверяет находится ли фильм в списке watched
 // Принимет уникальный id пользователя и id фильма из объекта(с API)
 // если такой есть - возвращает true, если отсутствует - false
+// !!!!АСИНХРОННАЯ!!!! вызов только в асинхр виде с await - см тестовый
 
 export async function isWatched(userId, filmId) {
   let result = false;
@@ -132,6 +133,7 @@ export async function isWatched(userId, filmId) {
 // Проверяет находится ли фильм в списке queue
 // Принимет уникальный id пользователя и id фильма из объекта(с API)
 // если такой есть - возвращает true, если отсутствует - false
+// !!!!АСИНХРОННАЯ!!!! вызов только в асинхр виде с await - см тестовый
 
 export async function isQueue(userId, filmId) {
   let result = false;
