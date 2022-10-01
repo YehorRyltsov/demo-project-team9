@@ -1,86 +1,93 @@
-.gallary-films {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;  
-    
+.gallery-wrap {
+  margin-bottom: 40px;
 }
-.photo-card {
-    margin: 20px;
-    
+
+.gallery-films {
+  margin-top: 20px;
 }
-img {    
-    width: 280px;
-    height: 402px;   
-    // left: 20px;
-    // top: 2093px;
-    // display: block;
-    border-radius: 5px;
+
+@media screen and (max-width: 1280px) {
+  .photo-card {
+    margin: 0 auto;
+  }
+}
+
+.photo-card:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.card-image {
+  margin-bottom: 10px;
+  width: 280px;
+  height: 402px;
+  border-radius: 5px;
 }
 
 .info {
-    width: 280px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 12px;
-    line-height: 16px;
-    color: #000000;
+  font-family: $font-stack;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  color: $color-text-primary;
 }
 
 .info-genres {
-    color: #FF6B08;
+  color: $color-text-secondary;
 }
 
 @media screen and (min-width: 768px) {
-.gallary-films {
-    margin-top: 32px;
+  .gallery-wrap {
+    margin-bottom: 60px;
+  }
+
+  .gallery-films {
+    margin-top: 60px;
+    margin-left: -32px;
+    margin-bottom: -32px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .photo-card {
+    flex-basis: calc(100% / 2 - 32px);
     margin-left: 32px;
-    justify-content: flex-start;
-}
-.photo-card {
-    margin-left: 0px;
-    margin-right: 0px;
+  }
+
+  .photo-card:not(:last-child) {
     margin-bottom: 32px;
-    margin-top: 0px;
-}
-img {    
+  }
+
+  .card-image {
+    margin-bottom: 8px;
     width: 336px;
     height: 455px;
-    left: 400px;
-    top: 275px;
-    border-radius: 5px;
-}
-.info {
-    width: 368px;
-}
-.info-item {
-    word-wrap: break-word;
-}
-}
+  }
 
+  .info-item {
+    word-wrap: break-word;
+  }
+}
 
 @media screen and (min-width: 1280px) {
+  .gallery-films {
+    margin-left: -16px;
+    justify-content: flex-start;
+  }
 
-.photo-card {
-    margin-left: 0px;
-    margin-right: 16px;
-    margin-bottom: 32px;
-    margin-top: 0px;
-}
-img {    
+  .photo-card {
+    flex-basis: calc(100% / 3 - 16px);
+    margin-left: 16px;
+  }
+
+  .card-image {
+    margin-bottom: 12px;
     width: 395px;
     height: 574px;
-    left: 32px;
-    top: 942px;
-}
-.info {
-    width: 395px;
-    font-weight: 500;
+  }
+
+  .info {
     font-size: 20px;
-    line-height: 24px;
-}
-.info-item {
-    word-wrap: break-word;
-}
-    
+    line-height: 1.2;
+  }
 }
