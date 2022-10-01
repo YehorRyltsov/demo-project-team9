@@ -12,20 +12,15 @@ import  {markup } from './footer';
 openModal.addEventListener('click', onOpenModal);
  const modal = basicLightbox.create(markup);
 
-function onOpenModal(e) {
- e.preventDefault();
+function onOpenModal() {
   modal.show();
   window.addEventListener('keydown', onCloseModal);
 
-// document.body.style.position = 'fixed';
-// document.body.style.top = `-${window.scrollY}px`;
  
 }
-function onCloseModal(e) {
-    
+  function onCloseModal(e) {
     if (e.code === 'Escape') {
       modal.close();
       window.removeEventListener('keydown', closeModalHandler);
-      
     }
-}
+  }
