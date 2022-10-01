@@ -1,110 +1,36 @@
-<<<<<<< HEAD
 .gallary-films {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;  
+
     justify-content: center;
     margin-right: auto;
-=======
-.gallery-wrap {
-  margin-bottom: 40px;
->>>>>>> 1ded2d46ccf38dc86c9a720932fc4e59275c7bb2
 }
-
-.gallery-films {
-  margin-top: 20px;
-}
-
-@media screen and (max-width: 1280px) {
-  .photo-card {
-    margin: 0 auto;
-  }
-}
-
-.photo-card:not(:last-child) {
-  margin-bottom: 20px;
-}
-
-.card-image {
-  margin-bottom: 10px;
-  width: 280px;
-  height: 402px;
-  border-radius: 5px;
-}
-
-.info {
-  font-family: $font-stack;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 1.33;
-  color: $color-text-primary;
-}
-
-.info-genres {
-  color: $color-text-secondary;
-}
-
-@media screen and (min-width: 768px) {
-  .gallery-wrap {
-    margin-bottom: 60px;
-  }
-
-  .gallery-films {
-    margin-top: 60px;
-    margin-left: -32px;
-    margin-bottom: -32px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .photo-card {
-    flex-basis: calc(100% / 2 - 32px);
+.photo-card {
+    margin: 20px;
+@@ -36,6 +36,7 @@ img {
+    margin-top: 32px;
     margin-left: 32px;
-<<<<<<< HEAD
     justify-content: flex-start;
     margin-right: auto;
 }
 .photo-card {
     margin-left: 0px;
     margin-right: 0px;
-=======
-  }
-
-  .photo-card:not(:last-child) {
->>>>>>> 1ded2d46ccf38dc86c9a720932fc4e59275c7bb2
     margin-bottom: 32px;
-  }
-
-  .card-image {
-    margin-bottom: 8px;
+    margin-top: 0px;
+}
+img {    
     width: 336px;
     height: 455px;
-  }
-
-  .info-item {
-    word-wrap: break-word;
-  }
+    left: 400px;
+    top: 275px;
+    border-radius: 5px;
 }
-
-@media screen and (min-width: 1280px) {
-  .gallery-films {
-    margin-left: -16px;
-    justify-content: flex-start;
-  }
-
-  .photo-card {
-    flex-basis: calc(100% / 3 - 16px);
-    margin-left: 16px;
-  }
-
-  .card-image {
-    margin-bottom: 12px;
-    width: 395px;
-    height: 574px;
-  }
-
-  .info {
-    font-size: 20px;
-    line-height: 1.2;
-  }
+.info {
+    width: 368px;
+}
+.info-item {
+    word-wrap: break-word;
+}
 }
