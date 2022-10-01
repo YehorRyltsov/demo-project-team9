@@ -1,5 +1,5 @@
 import Pagination from 'tui-pagination';
-import { fetchMoves } from './main-movies';
+import { fetchMoves } from './fetch-moves';
 // import {} from
 // import {} from Тут будуть імпорти робочих функцій пошуку,топ фільмів та кнопки підняття угору
 
