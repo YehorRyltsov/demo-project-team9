@@ -1,5 +1,5 @@
 import Pagination from 'tui-pagination';
-import { fetchMoves } from './fetch-movies';
+import { fetchMovies } from './fetch-movies';
 // import {} from
 // import {} from Тут будуть імпорти робочих функцій пошуку,топ фільмів та кнопки підняття угору
 
@@ -43,7 +43,7 @@ export const createPagination = (page, itemsPerPage, totalItems) => {
   pagination.on('afterMove', async event => {
     const currentPage = event.page;
     if (paginationInit.searchType === 'popular films') {
-      fetchMoves(currentPage);
+      fetchMovies(currentPage);
       // pageUp();
     }
     if (paginationInit.searchType === 'search films') {
