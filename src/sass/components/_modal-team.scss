@@ -2,14 +2,14 @@
     overflow: scroll;
 }
 .basicLightbox__placeholder {
-    height: 95%;
+    height: 110%;
 
     @media screen and(min-width:767.98px) {
-        height: 80%;
+        height: 70%;
     }
 
     @media screen and (min-width: 1280px) {
-        height: 70%;
+        height: 80%;
 
     }
 }
@@ -48,7 +48,7 @@ position: relative;
     }
      @media screen and (min-width: 1280px) {
         margin: 30px;        
-         width: calc((100% - 240px) / 5);
+         width: calc((100% - 150px) / 6);
     
         }
 }
@@ -71,7 +71,7 @@ color: $color-text-secondary;
 position: absolute;
 // width: 25px;
 // height: 25px;
-    top: 65px;
+    top: 70px;
     right: -10px;
 fill: #000000;
     @media screen and (min-width:768px) {
@@ -79,7 +79,7 @@ fill: #000000;
     }
 
     @media screen and (min-width:  1280px) {
-        top: 100px;
+        top: 90px;
     }
 
     transform: scale(1);
