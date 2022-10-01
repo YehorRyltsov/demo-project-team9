@@ -7,7 +7,10 @@ const logOutBtn = document.querySelector('button[data-id="log-out"]');
 const loginEmail = document.querySelector('#login-email-input');
 const loginPwd = document.querySelector('#login-pwd-input');
 const loginForm = document.querySelector('#login-form');
+
 const logInHeaderBtn = document.querySelector('button[data-id="log-in"]');
+const modal = document.querySelector("[data-log-modal]");
+const body = document.querySelector ("body");
 
 export let currentUserId = null;
 
@@ -40,6 +43,7 @@ onAuth(user => {
     //  все для залогиненого юзера
     hideLogInBtn()
     showLogOutBtn()
+    hideModal()
     currentUserId = user.uid;
     console.log(`юзер залогинен, ID = ${user.uid}`);
     // ...
@@ -73,4 +77,11 @@ function showLogOutBtn(){
 function hideLogOutBtn(){
   logOutBtn.classList.add("visually-hidden");
 
+}
+
+/////////////---HIDE-MODAL--- ///////////
+
+function hideModal(){
+  modal.classList.add("is-hidden")
+  body.classList.remove("no-scroll");
 }
