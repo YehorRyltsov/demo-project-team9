@@ -1,3 +1,4 @@
+import {onCardClick} from './modal-review';
 import { searchMovies, fetchGenres } from './fetch-movies';
 import { createPagination } from './pagination';
 import { pageUp } from './page-up-pagination';
@@ -56,7 +57,7 @@ function searchMovie(query, page) {
                 }
 
                 return `
-                <li class="photo-card">
+                <li class="photo-card" data-idcard="${move.id}">
                 <a class="link" href="#">
                   <img src= "${src}" alt="${
                   move.original_title
@@ -78,6 +79,7 @@ function searchMovie(query, page) {
             cardList.innerHTML = '';
             cardList.insertAdjacentHTML('afterbegin', arrMove);
             createPagination(page, 20, movies.total_results);
+            cardList.addEventListener('click', onCardClick);
             pageUp();
           });
         } else {
