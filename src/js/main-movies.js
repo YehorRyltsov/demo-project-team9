@@ -1,3 +1,4 @@
+import {onCardClick} from './modal-review';
 import {fetchMoves, fetchGenres} from './fetch-movies';
 const cardList = document.querySelector('.gallery-films');
 
@@ -28,7 +29,7 @@ fetchMoves()
               const date = new Date(`${move.release_date}`);
               const year = date.getFullYear();
               return `
-                <li class="photo-card">
+                <li class="photo-card" data-idcard="${move.id}">
                 <a class="link" href="#">
                   <img src= "https://image.tmdb.org/t/p/w500${
                     move.poster_path
@@ -50,6 +51,7 @@ fetchMoves()
             })
             .join('');
           cardList.insertAdjacentHTML('afterbegin', arrMove);
+          cardList.addEventListener('click', onCardClick);
         });
     });
 
