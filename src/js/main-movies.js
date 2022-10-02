@@ -1,3 +1,4 @@
+import {onCardClick} from './modal-review';
 import { fetchMoves, fetchGenres } from './fetch-movies';
 import { createPagination } from './pagination';
 import { searchMovieEx } from './search-line';
@@ -37,7 +38,7 @@ function fetchMove(page) {
           const date = new Date(`${move.release_date}`);
           const year = date.getFullYear();
           return `
-                <li class="photo-card">
+                <li class="photo-card" data-idcard="${move.id}">
                 <a class="link" href="#">
                   <img src= "https://image.tmdb.org/t/p/w500${
                     move.poster_path
@@ -62,6 +63,7 @@ function fetchMove(page) {
       cardList.insertAdjacentHTML('afterbegin', arrMove);
       createPagination(page, 20, movies.total_results);
       pageUp();
+      cardList.addEventListener('click', onCardClick);
     });
   });
 }
