@@ -17,7 +17,7 @@ export const createPagination = (page, itemsPerPage, totalItems) => {
     page,
     centerAlign: true,
     template: {
-      page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+      page: '<a href="#" class="tui-page-btn link">{{page}}</a>',
       currentPage:
         '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
       moveButton:
