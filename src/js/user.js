@@ -60,6 +60,7 @@ onAuth(user => {
   } else {
     // все для отсутствия юзера
     console.log('нема юзера');
+    currentUserId = null;
     showLogInBtn();
     hideLogOutBtn();
     // ...
