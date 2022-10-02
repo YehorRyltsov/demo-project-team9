@@ -1,5 +1,6 @@
 import { searchMovies, fetchGenres } from './fetch-movies';
 import { createPagination } from './pagination';
+import { pageUp } from './page-up-pagination';
 import Notiflix from 'notiflix';
 Notiflix.Notify.init({
   position: 'center-top',
@@ -77,6 +78,7 @@ function searchMovie(query, page) {
             cardList.innerHTML = '';
             cardList.insertAdjacentHTML('afterbegin', arrMove);
             createPagination(page, 20, movies.total_results);
+            pageUp();
           });
         } else {
           cardList.innerHTML = '';

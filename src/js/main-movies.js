@@ -2,6 +2,7 @@ import {onCardClick} from './modal-review';
 import { fetchMoves, fetchGenres } from './fetch-movies';
 import { createPagination } from './pagination';
 import { searchMovieEx } from './search-line';
+import { pageUp } from './page-up-pagination';
 
 const cardList = document.querySelector('.gallery-films');
 const searchButton = document.querySelector('#search-form');
@@ -61,6 +62,7 @@ function fetchMove(page) {
       cardList.innerHTML = '';
       cardList.insertAdjacentHTML('afterbegin', arrMove);
       createPagination(page, 20, movies.total_results);
+      pageUp();
       cardList.addEventListener('click', onCardClick);
     });
   });
