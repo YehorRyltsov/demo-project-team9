@@ -12,3 +12,4 @@ import './js/my-library-header';
 import './js/pagination';
 import './js/push-data-to-database';
 import './js/modal-team';
+import './js/search-line';
