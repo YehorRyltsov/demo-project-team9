@@ -56,3 +56,5 @@ function onEscKeyPressExit(event) {
 }
 
 //////////////////-------------/////////////////////////
+
+export { showModal };

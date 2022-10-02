@@ -16,7 +16,7 @@ export function fetchGenres() {
 
 export function searchMovies(query, page) {
   return fetch(
-    `https://api.themoviedb.org/3/search/movie/?api_key=cfb01d01cf730c010b0d096c15822b40&query=${query}&page=${page}`
+    `https://api.themoviedb.org/3/search/movie?api_key=cfb01d01cf730c010b0d096c15822b40&query=${query}&page=${page}`
   ).then(response => {
     return response.json();
   });
