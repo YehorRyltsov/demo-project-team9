@@ -12,3 +12,4 @@ import './js/push-data-to-database';
 import './js/modal-team';
 import './js/search-line';
 import './js/hideAndOpen-modal.js';
+import './js/scroll_up.js';
