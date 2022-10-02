@@ -76,7 +76,6 @@ export { onWatchedBtnClick, onQueueBtnClick };
 // Функция для пустого массива
 
 function showEmptyLibrary() {
-  sectionPagination.innerHTML = '';
   cardList.innerHTML = `<li>
   <p class="empty-library__text"> There is nothing here yet! </p>
   <img class="empty-library__image" src="${emptyLibraryPageUrl}" alt="empty cinema hall">
@@ -89,9 +88,9 @@ function retrieveWatchedMovies(movies) {
   if (movies.length !== 0) {
     return renderWatchedList(movies);
   } else {
+    console.log('No Movies');
     showEmptyLibrary();
     sectionPagination.style.display = 'none';
-    // cardList.classList.remove('gallery-films');
   }
 }
 
