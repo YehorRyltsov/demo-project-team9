@@ -10,7 +10,7 @@
 // fn for your code
 
 export function showLoader() { 
-  document.querySelector('.overlay').classList.toggle("is-hidden");
+  document.querySelector('.overlay').classList.add("is-hidden");
 }
 
 export function hideLoader() { 
