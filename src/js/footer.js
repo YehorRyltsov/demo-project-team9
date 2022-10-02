@@ -102,7 +102,7 @@ export const markup = `<div class="modal-team" id="modalTeam"><div class="team-c
 </div>
 <div class="team-card">
     <img src="${urlDmytroKoschavka}" alt="Dmytro" class="team-image">
-    <p class="team-name">DmytroK</p>
+    <p class="team-name">Dmytro</p>
     <p class="team-role">'Developer'</p>
     <a href="https://github.com/Scumsy" target="_blank" class="team-git"><svg class="logo__icon" width="24" height="24">
       <use href="${spriteUrl}#github"></use>
@@ -124,7 +124,7 @@ export const markup = `<div class="modal-team" id="modalTeam"><div class="team-c
 </div>
 <div class="team-card">
     <img src="${urlArseniy}" alt="Arseniy" class="team-image">
-    <p class="team-name">Arseny</p>
+    <p class="team-name">Arseniy</p>
     <p class="team-role">'Developer'</p>
     <a href="https://github.com/arseniy-grinev" target="_blank" class="team-git"><svg class="logo__icon" width="24" height="24">
       <use href="${spriteUrl}#github"></use>
