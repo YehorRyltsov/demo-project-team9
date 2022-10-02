@@ -47,7 +47,7 @@ function searchMovie(query, page) {
               .map(move => {
                 const date = new Date(`${move.release_date}`);
                 const year = date.getFullYear();
-                let src = 'https://i.ibb.co/t4cZFpW/noimg.png';
+                let src = 'https://i.ibb.co/0GKG6L1/img-Modal-Review.jpg';
                 if (move.poster_path != null && move.poster_path != 'null') {
                   src = `https://image.tmdb.org/t/p/w500${move.poster_path}`;
                 }
