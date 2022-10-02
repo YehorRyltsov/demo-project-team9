@@ -14,3 +14,4 @@ import './js/search-line';
 import './js/hideAndOpen-modal.js';
 import './js/modal-review';
 import './js/scroll_up.js';
+import './js/pre_loader.js';
