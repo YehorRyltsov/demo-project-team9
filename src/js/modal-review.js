@@ -6,90 +6,29 @@ import {
   isQueue,
   isWatched,
 } from './db';
-// import { showLoader, hideLoader } from './pre_loader';
 import { currentUserId } from './user';
 import {
-  // onBtnClickQueue,
-  // onBtnClickWatched,
   findFilmById,
+  answerIsQueue,
+  answerIsWatched,
 } from './push-data-to-database';
-
 const refs = {
   modal: document.querySelector('[data-modal]'),
   body: document.querySelector('body'),
-  closeModalBtn: document.querySelector('[data-modal-close]'),
-
-  // modalImgReview:document.querySelector('#img-review'),
-  // captionImgText:document.querySelector('#caption-review'),
-  // voteImgReview:document.querySelector('#vote-review'),
-  // votesImgReview:document.querySelector('#votes-review'),
-  // popularityImgReview:document.querySelector('#popularity-review'),
-  // titleImgReview:document.querySelector('#title-review'),
-  // genreImgReview:document.querySelector('#genre-review'),
-  // aboutImgReview:document.querySelector('#about-review'),
-  // Dima
-  // btnWatchedItemAdd: document.querySelector('.d-add-watched'),
-  // btnWatchedItemRemove: document.querySelector('.d-remove-watched'),
-  // btnQueueItemAdd: document.querySelector('.d-add-queue'),
-  // btnQueueItemRemove: document.querySelector('.d-remove-queue'),
-  // btnWatchedEl: document.querySelector('#dima-btn-watched'),
-  // btnQueueEl: document.querySelector('#dima-btn-queue'),
-  galleryFims: document.querySelector('.gallery-films'),
 };
 
-// import {onCardClick} from './modal-review';
-// data-idcard="${move.id}
-// cardList.addEventListener('click', onCardClick);
-refs.galleryFims.addEventListener('click', onCardClick);
-function openModalReview(id) {
+function openModalReview() {
   refs.modal.classList.remove('is-hidden');
   refs.body.classList.add('no-scroll');
-
   refs.modal.addEventListener('click', onBackdropClick);
   window.addEventListener('keydown', onEscKeyPressExit);
-  // Dima
-  // showLoader();
-  // refs.btnWatchedEl.addEventListener('click', () => onBtnClickWatched(id));
-  // refs.btnQueueEl.addEventListener('click', () => onBtnClickQueue(id));
-  // answerIsWatched(currentUserId, id).then(answer => {
-  //   if (answer) {
-  //     refs.btnWatchedItemAdd.classList.add('hide');
-  //     refs.btnWatchedItemRemove.classList.remove('hide');
-
-  //     console.log(answer);
-  //   } else {
-  //     refs.btnWatchedItemAdd.classList.remove('hide');
-  //     refs.btnWatchedItemRemove.classList.add('hide');
-  //   }
-  // });
-  // answerIsQueue(currentUserId, id).then(answer => {
-  //   if (answer) {
-  //     refs.btnQueueItemAdd.classList.add('hide');
-  //     refs.btnQueueItemRemove.classList.remove('hide');
-
-  //     console.log(answer);
-  //   } else {
-  //     refs.btnQueueItemAdd.classList.remove('hide');
-  //     refs.btnQueueItemRemove.classList.add('hide');
-  //   }
-  // });
-}
-// Dima
-// refs.modal.classList.add('loader');
-async function answerIsWatched(currentUserId, filmId) {
-  const answer = await isWatched(currentUserId, filmId);
-  return answer;
-}
-async function answerIsQueue(currentUserId, filmId) {
-  const answer = await isQueue(currentUserId, filmId);
-  return answer;
 }
 
 export function onCardClick(e) {
   e.preventDefault();
-  const сardId = e.target.closest('li').dataset.id;
+  const сardId = e.target.closest('li').dataset.idcard;
   console.log(сardId);
-  openModalReview(сardId);
+  openModalReview();
   fetchMoveId(сardId)
     .then(renderModalCardReview)
     .catch(error => console.error(error));
@@ -111,7 +50,6 @@ async function fetchMoveId(сardId) {
 function closeModalReview() {
   refs.modal.classList.add('is-hidden');
   refs.body.classList.remove('no-scroll');
-
   refs.modal.removeEventListener('click', onBackdropClick);
   window.removeEventListener('keydown', onEscKeyPressExit);
 }
@@ -129,24 +67,7 @@ function onEscKeyPressExit(event) {
 }
 
 function renderModalCardReview(move) {
-  // refs.modalImgReview.src = `https://image.tmdb.org/t/p/w500${
-  //   card.poster_path}`
-  //   ?`https://image.tmdb.org/t/p/w500${
-  //   card.poster_path}`
-  //   : './images/imgModalReview.jpg';
-  // refs.captionImgText.textContent = card.title;
-  // refs.voteImgReview.textContent = card.vote_average.toFixed(1);
-  // refs.votesImgReview.textContent = card.vote_count.toFixed(0);
-  // refs.popularityImgReview.textContent = card.popularity.toFixed(1);
-  // refs.titleImgReview.textContent = card.original_title;
-  // refs.genreImgReview.textContent = card.genres.map(genre => genre.name).join(", ");
-  // refs.aboutImgReview.textContent = card.overview? card.overview : 'An excellent film and worthy of your attention!';
-
-  console.log('move', move);
-  refs.closeModalBtn.addEventListener('click', closeModalReview);
-  listenerBtnWatched(move.id);
-
-  return (refs.modal.innerHTML = `<div class="modal-review">
+  refs.modal.innerHTML = `<div class="modal-review">
     <button
     type ="button" class="review__btn-close close"
     >
@@ -156,36 +77,33 @@ function renderModalCardReview(move) {
         <img class="modal-review__content" 
         src="https://image.tmdb.org/t/p/w500${move.poster_path}"
             ? "https://image.tmdb.org/t/p/w500${move.poster_path}"
-            : "./images/imgModalReview.jpg" />
+            : "./images/imgModalReview.jpg" 
+            alt="${move.original_title}" />
       </div>
       <div class="modal-review__container">
-        <h2 class="modal-review__title" id="caption-review">${move.title}</h2>
-        <ul class="modal-review__items">
-          <li class="modal-review__item list">Vote / Votes</li>
+        <h2 class="modal-review__title">${move.title}</h2>
+        <div class="modal-review__items">
+          <div class="modal-review__item list">Vote / Votes</div>
           <p class="modal-review__item--grid">
-            <span class="modal-review__item--rating" id="vote-review"> ${move.vote_average.toFixed(
+            <span class="modal-review__item--rating"> ${move.vote_average.toFixed(
               1
             )} </span>
             <span class="modal-review__slash"> / </span>
-            <span class="modal-review__item--dark"  id="votes-review"> ${move.vote_count.toFixed(
+            <span class="modal-review__item--dark"> ${move.vote_count.toFixed(
               0
             )} </span>
           </p>
-          <li class="modal-review__item list">Popularity</li>
-          <p class="modal-review__item--dark" id="popularity-review">${move.popularity.toFixed(
-            1
-          )} </p>
-          <li class="modal-review__item list">Original Title</li>
-          <p class="modal-review__item--dark" id="title-review">${
-            move.original_title
-          }</p>
-          <li class="modal-review__item list">Genre</li>
-          <p class="modal-review__item--dark" id="genre-review">${move.genres
+          <div class="modal-review__item list">Popularity</div>
+          <p class="modal-review__item--dark">${move.popularity.toFixed(1)} </p>
+          <div class="modal-review__item list">Original Title</div>
+          <p class="modal-review__item--dark">${move.original_title}</p>
+          <div class="modal-review__item list">Genre</div>
+          <p class="modal-review__item--dark">${move.genres
             .map(genre => genre.name)
             .join(', ')} </p>
-        </ul>
+        </div>
         <p class="modal-review__subtitle">About</p>
-        <p class="modal-review__about" id="about-review">${
+        <p class="modal-review__about">${
           move.overview
             ? move.overview
             : 'An excellent film and worthy of your attention!'
@@ -211,51 +129,46 @@ function renderModalCardReview(move) {
         </div>
       </div>
     </div>
-  </div>`);
-}
+  </div>`;
 
-// Dima ----------------------------------
-async function listenerBtnWatched(id) {
-  const filmId = await id;
-  const dimarefs = await {
-    btnWatchedEl: document.querySelector('#dima-btn-watched'),
-    btnQueueEl: document.querySelector('#dima-btn-queue'),
-    btnWatchedItemAdd: document.querySelector('.d-add-watched'),
-    btnWatchedItemRemove: document.querySelector('.d-remove-watched'),
-    btnQueueItemAdd: document.querySelector('.d-add-queue'),
-    btnQueueItemRemove: document.querySelector('.d-remove-queue'),
-  };
-  answerIsWatched(currentUserId, filmId).then(answer => {
+  const closeModalBtn = document.querySelector('.review__btn-close');
+  closeModalBtn.addEventListener('click', closeModalReview);
+  // --------------------------------------------  DIMA  ------------------------------------------------
+  const btnWatchedEl = document.querySelector('#dima-btn-watched');
+  const btnQueueEl = document.querySelector('#dima-btn-queue');
+  const btnWatchedItemAdd = document.querySelector('.d-add-watched');
+  const btnWatchedItemRemove = document.querySelector('.d-remove-watched');
+  const btnQueueItemAdd = document.querySelector('.d-add-queue');
+  const btnQueueItemRemove = document.querySelector('.d-remove-queue');
+  answerIsWatched(currentUserId, move.id).then(answer => {
     if (answer) {
-      dimarefs.btnWatchedItemAdd.classList.add('hide');
-      dimarefs.btnWatchedItemRemove.classList.remove('hide');
+      btnWatchedItemAdd.classList.add('hide');
+      btnWatchedItemRemove.classList.remove('hide');
 
       console.log(answer);
     } else {
-      dimarefs.btnWatchedItemAdd.classList.remove('hide');
-      dimarefs.btnWatchedItemRemove.classList.add('hide');
+      btnWatchedItemAdd.classList.remove('hide');
+      btnWatchedItemRemove.classList.add('hide');
     }
   });
-  answerIsQueue(currentUserId, filmId).then(answer => {
+  answerIsQueue(currentUserId, move.id).then(answer => {
     if (answer) {
-      dimarefs.btnQueueItemAdd.classList.add('hide');
-      dimarefs.btnQueueItemRemove.classList.remove('hide');
+      btnQueueItemAdd.classList.add('hide');
+      btnQueueItemRemove.classList.remove('hide');
 
       console.log(answer);
     } else {
-      dimarefs.btnQueueItemAdd.classList.remove('hide');
-      dimarefs.btnQueueItemRemove.classList.add('hide');
+      btnQueueItemAdd.classList.remove('hide');
+      btnQueueItemRemove.classList.add('hide');
     }
   });
-  dimarefs.btnQueueEl.classList.remove('active');
-  dimarefs.btnWatchedEl.addEventListener('click', () =>
-    onBtnClickWatched(filmId)
-  );
-  dimarefs.btnQueueEl.addEventListener('click', () => onBtnClickQueue(filmId));
-  // -----
+  btnQueueEl.classList.remove('active');
+  btnWatchedEl.addEventListener('click', () => onBtnClickWatched(move.id));
+  btnQueueEl.addEventListener('click', () => onBtnClickQueue(move.id));
+  // -------------- При клике на кнопку Watched ---------------
   async function onBtnClickWatched(filmId) {
-    dimarefs.btnWatchedEl.classList.add('active');
-    dimarefs.btnQueueEl.classList.remove('active');
+    btnWatchedEl.classList.add('active');
+    btnQueueEl.classList.remove('active');
     const answer = await isWatched(currentUserId, filmId);
 
     findFilmById(filmId).then(film => {
@@ -269,12 +182,13 @@ async function listenerBtnWatched(id) {
         console.log(film);
       }
     });
-    dimarefs.btnWatchedItemAdd.classList.toggle('hide');
-    dimarefs.btnWatchedItemRemove.classList.toggle('hide');
+    btnWatchedItemAdd.classList.toggle('hide');
+    btnWatchedItemRemove.classList.toggle('hide');
   }
+  // -------------- При клике на кнопку Queue ---------------
   async function onBtnClickQueue(filmId) {
-    dimarefs.btnWatchedEl.classList.remove('active');
-    dimarefs.btnQueueEl.classList.add('active');
+    btnWatchedEl.classList.remove('active');
+    btnQueueEl.classList.add('active');
     const answer = await isQueue(currentUserId, filmId);
 
     findFilmById(filmId).then(film => {
@@ -288,9 +202,16 @@ async function listenerBtnWatched(id) {
         console.log(film);
       }
     });
-    dimarefs.btnQueueItemAdd.classList.toggle('hide');
-    dimarefs.btnQueueItemRemove.classList.toggle('hide');
+    btnQueueItemAdd.classList.toggle('hide');
+    btnQueueItemRemove.classList.toggle('hide');
   }
-  // -----
 }
-// -----------------
+
+async function answerIsWatched(currentUserId, filmId) {
+  const answer = await isWatched(currentUserId, filmId);
+  return answer;
+}
+async function answerIsQueue(currentUserId, filmId) {
+  const answer = await isQueue(currentUserId, filmId);
+  return answer;
+}

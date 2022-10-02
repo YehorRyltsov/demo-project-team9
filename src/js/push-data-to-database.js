@@ -74,21 +74,14 @@ https://api.themoviedb.org/3/movie/${filmId}?api_key=${dimarefs.KEY}&language=en
   const film = await data.json();
   return film;
 }
-async function answerIsWatched(currentUserId, filmId) {
-  const answer = await isWatched(currentUserId, filmId);
-  return answer;
-}
 
 // -------------- Узнать есть фильм в базе или нет (возвращает true/false) ---------------
 
-// answerIsWatched(currentUserId, 438148).then(answer => {
-//   if (answer) {
-//     dimarefs.btnWatchedItemAdd.classList.add('hide');
-//     dimarefs.btnWatchedItemRemove.classList.remove('hide');
-
-//     console.log(answer);
-//   } else {
-//     dimarefs.btnWatchedItemAdd.classList.remove('hide');
-//     dimarefs.btnWatchedItemRemove.classList.add('hide');
-//   }
-// });
+export async function answerIsWatched(currentUserId, filmId) {
+  const answer = await isWatched(currentUserId, filmId);
+  return answer;
+}
+export async function answerIsQueue(currentUserId, filmId) {
+  const answer = await isQueue(currentUserId, filmId);
+  return answer;
+}
