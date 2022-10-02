@@ -6,6 +6,7 @@ import {
   isQueue,
   isWatched,
 } from './db';
+// import { showLoader, hideLoader } from './pre_loader';
 import { currentUserId } from './user';
 import {
   // onBtnClickQueue,
@@ -47,6 +48,7 @@ function openModalReview(id) {
   refs.modal.addEventListener('click', onBackdropClick);
   window.addEventListener('keydown', onEscKeyPressExit);
   // Dima
+  // showLoader();
   // refs.btnWatchedEl.addEventListener('click', () => onBtnClickWatched(id));
   // refs.btnQueueEl.addEventListener('click', () => onBtnClickQueue(id));
   // answerIsWatched(currentUserId, id).then(answer => {
@@ -73,6 +75,7 @@ function openModalReview(id) {
   // });
 }
 // Dima
+// refs.modal.classList.add('loader');
 async function answerIsWatched(currentUserId, filmId) {
   const answer = await isWatched(currentUserId, filmId);
   return answer;
@@ -142,6 +145,7 @@ function renderModalCardReview(move) {
   console.log('move', move);
   refs.closeModalBtn.addEventListener('click', closeModalReview);
   listenerBtnWatched(move.id);
+
   return (refs.modal.innerHTML = `<div class="modal-review">
     <button
     type ="button" class="review__btn-close close"
@@ -221,6 +225,28 @@ async function listenerBtnWatched(id) {
     btnQueueItemAdd: document.querySelector('.d-add-queue'),
     btnQueueItemRemove: document.querySelector('.d-remove-queue'),
   };
+  answerIsWatched(currentUserId, filmId).then(answer => {
+    if (answer) {
+      dimarefs.btnWatchedItemAdd.classList.add('hide');
+      dimarefs.btnWatchedItemRemove.classList.remove('hide');
+
+      console.log(answer);
+    } else {
+      dimarefs.btnWatchedItemAdd.classList.remove('hide');
+      dimarefs.btnWatchedItemRemove.classList.add('hide');
+    }
+  });
+  answerIsQueue(currentUserId, filmId).then(answer => {
+    if (answer) {
+      dimarefs.btnQueueItemAdd.classList.add('hide');
+      dimarefs.btnQueueItemRemove.classList.remove('hide');
+
+      console.log(answer);
+    } else {
+      dimarefs.btnQueueItemAdd.classList.remove('hide');
+      dimarefs.btnQueueItemRemove.classList.add('hide');
+    }
+  });
   dimarefs.btnQueueEl.classList.remove('active');
   dimarefs.btnWatchedEl.addEventListener('click', () =>
     onBtnClickWatched(filmId)
@@ -266,28 +292,5 @@ async function listenerBtnWatched(id) {
     dimarefs.btnQueueItemRemove.classList.toggle('hide');
   }
   // -----
-
-  answerIsWatched(currentUserId, filmId).then(answer => {
-    if (answer) {
-      dimarefs.btnWatchedItemAdd.classList.add('hide');
-      dimarefs.btnWatchedItemRemove.classList.remove('hide');
-
-      console.log(answer);
-    } else {
-      dimarefs.btnWatchedItemAdd.classList.remove('hide');
-      dimarefs.btnWatchedItemRemove.classList.add('hide');
-    }
-  });
-  answerIsQueue(currentUserId, filmId).then(answer => {
-    if (answer) {
-      dimarefs.btnQueueItemAdd.classList.add('hide');
-      dimarefs.btnQueueItemRemove.classList.remove('hide');
-
-      console.log(answer);
-    } else {
-      dimarefs.btnQueueItemAdd.classList.remove('hide');
-      dimarefs.btnQueueItemRemove.classList.add('hide');
-    }
-  });
 }
 // -----------------

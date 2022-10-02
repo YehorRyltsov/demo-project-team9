@@ -9,12 +9,12 @@
 
 // fn for your code
 
-function showLoader() { 
-  document.querySelector('.loader').classList.toggle("loader-is-open");
+function showLoader() {
+  document.querySelector('.loader').classList.toggle('loader-is-open');
 }
 
-function hideLoader() { 
-  document.querySelector('.loader').classList.remove("loader-is-open");
+function hideLoader() {
+  document.querySelector('.loader').classList.remove('loader-is-open');
 }
 
-export {showLoader, hideLoader};
+export { showLoader, hideLoader };
