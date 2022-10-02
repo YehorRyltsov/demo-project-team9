@@ -25,7 +25,6 @@ function searchMovie(query, page) {
   if (query.length > 1) {
     searchMovies(query, page)
       .then(movies => {
-        console.log(movies);
         if (movies.results.length > 0) {
           fetchGenres().then(genres => {
             const arrayGen = genres.genres;
