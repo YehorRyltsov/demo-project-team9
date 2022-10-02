@@ -4,9 +4,10 @@ import '../../node_modules/basiclightbox/dist/basicLightbox.min.css';
 import  {markup } from './footer';
 
 
-  const openModal = document.querySelector('[data-modal-open-team]')
+const openModal = document.querySelector('[data-modal-open-team]');
+const body = document.querySelector('body');
 //  const backdrop = document.querySelector('.modal-team');
-// console.log("1", openModal);
+
 
 
 openModal.addEventListener('click', onOpenModal);
@@ -20,7 +21,7 @@ function onOpenModal(e) {
  
 }
 function onCloseModal(e) {
-    // e.preventDefault();
+    
     if (e.code === 'Escape') {
       modal.close();
       //  body.classList.remove('noScroll');

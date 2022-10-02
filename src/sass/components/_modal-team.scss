@@ -1,9 +1,10 @@
+.noScroll {
+    position: fixed;
+}
 .basicLightbox {
     overflow: scroll;  
 }
-.noScroll{
-    position: fixed;
-}
+
 .basicLightbox__placeholder {
     height: 110%;
 

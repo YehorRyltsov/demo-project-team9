@@ -10,7 +10,7 @@ import urlDmytroKuzko from '../images/DmytroKuzko.jpg';
 import urlDmytroKoschavka from '../images/DmytroKoschavka.jpg';
 import urlArseniy from '../images/ArsenyGrinev.jpg';
 import spriteUrl from '../images/gitHub.svg';
-// import spriteInUrl from '../images/gitHub.svg';
+
  
 export const markup = `<div class="modal-team" id="modalTeam"><div class="team-card">
     <img src="${urlYegor}" alt="Yegor" class="team-image">
@@ -137,102 +137,3 @@ export const markup = `<div class="modal-team" id="modalTeam"><div class="team-c
 `;
 
 
-// export const teamItems = [
-//   // {
-//   //   photo: '',
-//   //   name: 'Наша',
-//   //   family: 'команда',
-//   //   description: '',
-//   //   rol: '',
-//   //   gitHub: "https://github.com/",
-//   // },
-//   {
-//     photo: 'urlYegor',
-//     name: 'Yegor',
-//     family: 'Ryltsov',
-//     description: '',
-//     rol: 'Developer, TeamLead',
-//     gitHub: "https://github.com/YehorRyltsov",
-//     },
-//   {
-//     photo: 'urlValerii',
-//     name: 'Valerii',
-//     family: 'Postrubailo',
-//     description: '',
-//     rol: 'Developer, Scram master',
-//     gitHub: "https://github.com/Valerii-Postrybailo",
-//     },
-//    {
-//     photo: 'urlKhrystyna',
-//     name: 'Khrystyna',
-//     family: 'Mykolaichuk',
-//     description: '',
-//      rol: 'Developer',
-//     gitHub: "https://github.com/kmykolaichuk",
-//     },
-//       {
-//     photo: 'urlNataliiaK',
-//     name: 'Nataliia',
-//     family: 'Kulchytska',
-//     description: '',
-//         rol: 'Developer',
-//     gitHub: "https://github.com/NataliiaKulchytska",
-//     },
-//      {
-//     photo:' urlNataliiaP',
-//     name: 'Nataliia',
-//     family: 'Polyakova',
-//     description: '',
-//        rol: 'Developer',
-//     gitHub: "https://github.com/Nataliphoenix",
-//     },
-//     {
-//     photo: 'urlSergei',
-//     name: 'Sergei',
-//     family: 'Cherkesov',
-//     description: '',
-//       rol: 'Developer',
-//     gitHub: "https://github.com/seroga213",
-//     },
-//         {
-//     photo: 'urlVitaii',
-//     name: 'Vitaii',
-//     family: 'Mazur',
-//     description: '',
-//           rol: 'Developer',
-//     gitHub: "https://github.com/VitaliiMazur",
-//     },
-//                 {
-//     photo: 'urlYuriy',
-//     name: 'Yuriy',
-//     family: 'Shavurskiy',
-//     description: '',
-//                   rol: 'Developer',
-//     gitHub: "https://github.com/",
-//     },
-//                                {
-//     photo: 'urlArseny',
-//     name: 'Arseny',
-//     family: 'Grinev',
-//     description: '',
-//     rol: 'Developer',
-//     gitHub: "https://github.com/arseniy-grinev",
-//     },
-//                                                               {
-//     photo: 'urlDmytroKuzko',
-//     name: 'Dmitro',
-//     family: 'Kuzko',
-//     description: '',
-//     rol: 'Developer',
-//     gitHub: "https://github.com/",
-//     },
-//                                                                                              {
-//     photo: 'urlDmytroKoschavka',
-//     name: 'Dmytro',
-//     family: 'Koshchavka',
-//     description: '',
-//     rol: 'Developer',
-//     gitHub: "https://github.com/",
-//   },
- 
-// ];
