@@ -77,11 +77,7 @@ https://api.themoviedb.org/3/movie/${filmId}?api_key=${dimarefs.KEY}&language=en
 
 // -------------- Узнать есть фильм в базе или нет (возвращает true/false) ---------------
 
-export async function answerIsWatched(currentUserId, filmId) {
-  const answer = await isWatched(currentUserId, filmId);
-  return answer;
-}
-export async function answerIsQueue(currentUserId, filmId) {
-  const answer = await isQueue(currentUserId, filmId);
-  return answer;
-}
+// async function answerIsWatched(currentUserId, filmId) {
+//   const answer = await isWatched(currentUserId, filmId);
+//   return answer;
+// }
