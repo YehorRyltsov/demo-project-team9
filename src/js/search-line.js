@@ -1,6 +1,9 @@
 import { searchMovies, fetchGenres } from './fetch-movies';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { createPagination } from './pagination';
+import Notiflix from 'notiflix';
+Notiflix.Notify.init({
+  position: 'center-top',
+});
 
 const searchButton = document.querySelector('#search-form');
 const cardList = document.querySelector('.gallery-films');
@@ -78,11 +81,11 @@ function searchMovie(query, page) {
         } else {
           cardList.innerHTML = '';
           pagin.innerHTML = '';
-          Notify.info('Oops, there is no movies');
+          Notiflix.Notify.info('Oops, there is no movies');
         }
       })
       .catch(error => {
-        Notify.failure('Oops, there is something wrong');
+        Notiflix.Notify.failure('Oops, there is something wrong');
         console.log(error);
       });
   } else {
