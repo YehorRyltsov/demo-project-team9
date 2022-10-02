@@ -1,6 +1,7 @@
 import { searchMovies, fetchGenres } from './fetch-movies';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { createPagination } from './pagination';
+import { pageUp } from './page-up-pagination';
 
 const searchButton = document.querySelector('#search-form');
 const cardList = document.querySelector('.gallery-films');
@@ -74,6 +75,7 @@ function searchMovie(query, page) {
             cardList.innerHTML = '';
             cardList.insertAdjacentHTML('afterbegin', arrMove);
             createPagination(page, 20, movies.total_results);
+            pageUp();
           });
         } else {
           cardList.innerHTML = '';
