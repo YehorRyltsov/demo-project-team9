@@ -14,7 +14,7 @@ function submitSearchForm(evt) {
   query = query.replace(/\s+/g, ' ').trim();
   searchMovie(query, 1);
 }
-
+// functiom for export
 export function searchMovieEx(page) {
   let query = searchButton.elements['search'].value;
   query = query.replace(/\s+/g, ' ').trim();
