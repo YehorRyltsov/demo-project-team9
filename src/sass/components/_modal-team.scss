@@ -1,5 +1,8 @@
 .basicLightbox {
-    overflow: scroll;
+    overflow: scroll;  
+}
+.noScroll{
+    position: fixed;
 }
 .basicLightbox__placeholder {
     height: 110%;
@@ -13,7 +16,7 @@
 
     }
 }
-.modal-team{
+.modal-team {
 display: flex;
 flex-wrap: wrap;
 background-color: #f7eae6;
