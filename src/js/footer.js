@@ -80,7 +80,7 @@ export const markup = `<div class="modal-team" id="modalTeam"><div class="team-c
 </div>
 <div class="team-card">
     <img src="${urlVitalii}" alt="Vitalii" class="team-image">
-    <p class="team-name">Vitalii</p>
+    <p class="team-name">Vitaliy</p>
     <p class="team-role">'Developer'</p>
     <a href="https://github.com/VitaliiMazur" target="_blank" class="team-git"><svg class="logo__icon" width="24" height="24">
       <use href="${spriteUrl}#github"></use>
@@ -91,7 +91,7 @@ export const markup = `<div class="modal-team" id="modalTeam"><div class="team-c
 </div>
 <div class="team-card">
     <img src="${urlYuriy}" alt=">Yuriy" class="team-image">
-    <p class="team-name">Yuriy</p>
+    <p class="team-name">Yura</p>
     <p class="team-role">'Developer'</p>
     <a href="https://github.com/Shavursky" target="_blank" class="team-git"><svg class="logo__icon" width="24" height="24">
       <use href="${spriteUrl}#github"></use>
