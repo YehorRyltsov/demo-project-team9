@@ -10,6 +10,7 @@ import Notiflix from 'notiflix';
 Notiflix.Notify.init({
   position: 'center-top',
 });
+import { mainMovieEx } from './main-movies';
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCBxxRSUEogARLc21jYUMyG-oQ62S7fczo',
@@ -59,4 +60,5 @@ export function onAuth(fn) {
 export function logOut() {
   signOut(auth);
   Notiflix.Notify.info('You just logOut');
+  mainMovieEx(1);
 }
