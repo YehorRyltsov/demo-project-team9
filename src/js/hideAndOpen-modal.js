@@ -1,3 +1,5 @@
+import { loginCheck } from './user';
+
 const signInBtn = document.querySelector('.sign-in-btn');
 const signUpBtn = document.querySelector('.sign-up-btn');
 const formBox = document.querySelector('.form-box');
@@ -30,6 +32,7 @@ function showModal() {
 
   refs.modal.addEventListener('click', onBackdropClick);
   window.addEventListener('keydown', onEscKeyPressExit);
+  loginCheck();
 }
 
 function hideModal() {
