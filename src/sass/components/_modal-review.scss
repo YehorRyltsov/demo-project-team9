@@ -1,10 +1,10 @@
 .backdrop.is-hidden .modal-review {
-      // transform: translate(-50%, -50%) scale(0.7);
-      transition: transform 250ms $timing-function;
+      transform: translate(-50%, -50%) scale(0.7);
+      transition: transform 300ms $timing-function;
 
-      transform: perspective(600px)
-      translate(0%, -100%)
-      rotateX(45deg);
+      // transform: perspective(600px)
+      // translate(0%, -100%)
+      // rotateX(45deg);
 
 }
 
@@ -13,21 +13,23 @@
 
       left: 50%;
       height: auto;
-      padding: 48px 20px 40px 20px;
+      padding: 16px 16px 40px 20px;
 
       overflow: visible;
       
-      // transform: translate(-50%, -50%) scale(1);
-      transform: perspective(600px)
-      translate(-50%, -50%)
-      rotateX(0deg);
-      transition: transform 250ms $timing-function;
+      transform: translate(-50%, -50%) scale(1);
+      // transform: perspective(600px)
+      // translate(-50%, -50%)
+      // rotateX(0deg);
+      transition: transform 300ms $timing-function;
 
       background-color: $color-text-header;
+      box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
+    0px 2px 1px rgba(0, 0, 0, 0.2);
 
       @media screen and (min-width: 320px) {
             width: 280px;
-            top: 500px;
+            top: 370px;
             
             overflow-y: auto;
       }
@@ -35,7 +37,7 @@
       @media screen and (min-width: 767.98px) {
             top: 50%; 
 
-            padding: 36px 40px 72px 40px;
+            padding: 16px 16px 40px 36px;
             min-width: 704px;
 
       } 
@@ -43,11 +45,18 @@
       @media screen and (min-width: 1280px) {
             top: 50%;
 
-            padding: 40px 12px;
+            padding: 16px 20px 40px 20px;
             width: 806px;
             
       }
       
+}
+
+.modal-review__container{
+      @media screen and (min-width: 767.98px) {
+      width: 270px; 
+            
+      }
 }
 
 .modal-review__body{
@@ -69,39 +78,37 @@
 
 }
 
-.review__btn-close {
+.review__btn-close { 
       position: absolute;
+      padding: 12px;
+      top: 0px;
+      right: 0px;
 
-      padding: 0;
-      top: 8px;
-      right: 8px;
-      background-color: transparent;
-      border: 1px solid transparent;
-      
-      stroke: $color-text-primary;
       cursor: pointer;
-  
-      &:hover,
-      &:focus{
-            stroke: $color-text-footer;
-      }
-   
+
+      background-color:transparent;
+      
 }
 
 .modal-review__content{
+      max-width: 240px;
+      height: 357px;
+      border-radius: 5px;
+      object-fit: cover;
+
+      @media (min-width: 320px) and (max-width: 768px) {
       margin-bottom: 20px;
 
-      min-width: 240px;
-      height: 357px;
-      border-radius: 5px; 
-   
-   @media screen and (min-width: 767.98px) {
-      width: 264px; 
+      }
+    
+      @media screen and (min-width: 767.98px) {
+      max-width: 264px; 
       height: 374px; 
+      
       }
 
       @media screen and (min-width: 1280px) {
-      width: 375px; 
+      max-width: 375px; 
       height: 478px; 
 
       }
@@ -147,14 +154,19 @@
 
 .modal-review__items{
       display: grid;
-      grid-template-columns: 152px 152px;
+      grid-template-columns: 108px 108px;
       gap: 8px 0;
  
       padding-left: 0;
       margin-bottom: 20px;
 
-      @media screen and (min-width:320px) and (max-width:467px){
-            grid-template-columns: 118px 118px;
+      // @media screen and (min-width: 767.98px){
+      // grid-template-columns: 110px 110px;
+
+      // }
+
+      @media screen and (min-width: 1280px) {
+      grid-template-columns: 152px 152px;
 
       }
 }
@@ -280,6 +292,3 @@
       }
 
 }
-
-
-
