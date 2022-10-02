@@ -5,6 +5,7 @@ import { createPagination } from './pagination';
 const searchButton = document.querySelector('#search-form');
 const cardList = document.querySelector('.gallery-films');
 const pagin = document.querySelector('#pagination');
+
 searchButton.addEventListener('submit', submitSearchForm);
 
 function submitSearchForm(evt) {
