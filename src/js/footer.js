@@ -41,7 +41,7 @@ export const markup = `<div class="modal-team" id="modalTeam"><div class="team-c
     <a href="https://github.com/kmykolaichuk" target="_blank" class="team-git"><svg class="logo__icon" width="24" height="24">
       <use href="${spriteUrl}#github"></use>
     </svg></a>
-      <a href="https://linkedin.com/" target="_blank" class="team-git team-in"><svg class="logo__icon" width="24" height="24">
+      <a href="https://linkedin.com/in/khrystyna-mykolaichuk-29275b163" target="_blank" class="team-git team-in"><svg class="logo__icon" width="24" height="24">
       <use  href="${spriteUrl}#in"></use>
     </svg></a>
 </div>
