@@ -5,7 +5,7 @@ import { fetchMoves, fetchGenres } from './fetch-movies';
 
 import { createPagination } from './pagination';
 
-console.log(currentUserId);
+// console.log(currentUserId);
 
 let movieWatchedList = getWatchedFilmsByUser(currentUserId);
 let movieQueueList = getQueueFilmsByUser(currentUserId);
@@ -19,7 +19,7 @@ const myLibraryBtnWrap = document.querySelector('.library-btn__wrap');
 const watchedBtn = document.querySelector('.watched-btn');
 const queueBtn = document.querySelector('.queue-btn');
 const logo = document.querySelector('.logo-link');
-// const renderList = document.querySelector(); // Выбирает ul в разметке карточек
+const sectionPagination = document.querySelector('.section-pagination');
 
 homeHeader.addEventListener('click', onHeaderHomeClick);
 myLibraryHeader.addEventListener('click', onMyLibraryClick);
@@ -35,6 +35,8 @@ function onHeaderHomeClick(evt) {
   myLibraryHeader.classList.remove('current');
   header.classList.remove('header__my-library-bg');
   header.classList.add('home-header-bg');
+  pagin.style.display = 'flex';
+  cardList.classList.add('gallery-films');
   onClickReturnFromLibrary();
 }
 
@@ -75,12 +77,9 @@ export { onWatchedBtnClick, onQueueBtnClick };
 
 function showEmptyLibrary() {
   cardList.innerHTML = `<li>
-  <a>
   <p class="empty-library__text"> There is nothing here yet! </p>
   <img class="empty-library__image" src="${emptyLibraryPageUrl}" alt="empty cinema hall">
-  </a>
   </li>`;
-  pagination.style.display = 'none';
 }
 
 //------------------ My library functional -----------------
@@ -89,8 +88,10 @@ const cardList = document.querySelector('.gallery-films');
 
 function retrieveWatchedMovies(movies) {
   if (movies.length === 0) {
-    console.log('There is no items yet');
+    // console.log('There is no items yet');
     showEmptyLibrary();
+    pagin.style.display = 'none';
+    cardList.classList.remove('gallery-films');
     // ----- рендер сторінки про відсутність фільмів у бібліотеці
   } else {
     return renderWatchedList(movies);
@@ -109,7 +110,7 @@ function renderWatchedList(array) {
       vote_average
     );
   });
-  console.log(renderMovies);
+  // console.log(renderMovies);
   //   movieList.innerHTML = renderMovies;
   cardList.innerHTML = renderMovies;
   if (array.lenght > 20) {
@@ -205,7 +206,7 @@ function onClickReturnFromLibrary() {
       // cardList.insertAdjacentHTML('afterbegin', arrMove);
       cardList.innerHTML = arrMove;
 
-      createPagination(1, 20, arrMove.total_results);
+      createPagination(page, 20, arrMove.total_results);
       // console.log(createPagination(1, 20, movies.total_results));
     });
   });
