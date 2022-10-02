@@ -1,4 +1,4 @@
-import { loginCheck } from './user';
+import { loginCheck } from './user.js';
 
 const signInBtn = document.querySelector('.sign-in-btn');
 const signUpBtn = document.querySelector('.sign-up-btn');

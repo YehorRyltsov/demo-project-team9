@@ -1,6 +1,6 @@
-export function fetchMoves() {
+export function fetchMoves(page) {
   return fetch(
-    'https://api.themoviedb.org/3/trending/movie/week?api_key=cfb01d01cf730c010b0d096c15822b40'
+    `https://api.themoviedb.org/3/trending/movie/week?api_key=cfb01d01cf730c010b0d096c15822b40&page=${page}`
   ).then(response => {
     return response.json();
   });
