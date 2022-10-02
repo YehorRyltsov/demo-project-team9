@@ -86,7 +86,6 @@ function hideModal() {
 }
 
 export function loginCheck() {
-  console.log('проверка');
   pwdRepeatInput.addEventListener('input', onPwdRepeatInput);
 }
 

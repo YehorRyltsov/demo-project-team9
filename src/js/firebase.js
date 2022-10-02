@@ -6,6 +6,10 @@ import {
   onAuthStateChanged,
   signOut,
 } from 'firebase/auth';
+import Notiflix from 'notiflix';
+Notiflix.Notify.init({
+  position: 'center-top',
+});
 
 export const firebaseConfig = {
   apiKey: 'AIzaSyCBxxRSUEogARLc21jYUMyG-oQ62S7fczo',

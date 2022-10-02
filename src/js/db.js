@@ -88,7 +88,6 @@ export function getWatchedFilmsByUser(userId) {
       onlyOnce: true,
     }
   );
-  console.dir(result);
   return result;
 }
 
@@ -108,7 +107,6 @@ export function getQueueFilmsByUser(userId) {
       onlyOnce: true,
     }
   );
-  console.dir(result);
   return result;
 }
 
@@ -122,7 +120,6 @@ export async function isWatched(userId, filmId) {
   const dbRef = ref(db, `user/${userId}/watched/`);
   const snapshot = await get(dbRef);
   snapshot.forEach(childSnapshot => {
-    // console.log(childSnapshot.val().id);
     if (childSnapshot.val().id === filmId) {
       result = true;
     }
@@ -140,7 +137,6 @@ export async function isQueue(userId, filmId) {
   const dbRef = ref(db, `user/${userId}/queue/`);
   const snapshot = await get(dbRef);
   snapshot.forEach(childSnapshot => {
-    // console.log(childSnapshot.val().id);
     if (childSnapshot.val().id === filmId) {
       result = true;
     }
