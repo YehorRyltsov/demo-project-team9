@@ -53,6 +53,7 @@ fetchMoves().then(movies => {
       .join('');
     cardList.insertAdjacentHTML('afterbegin', arrMove);
     createPagination(page, 20, movies.total_results);
+
     cardList.addEventListener('click', onCardClick);
   });
 });
