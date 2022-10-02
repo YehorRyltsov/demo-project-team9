@@ -29,7 +29,7 @@ fetchMoves().then(movies => {
         const date = new Date(`${move.release_date}`);
         const year = date.getFullYear();
         return `
-                <li class="photo-card">
+                <li class="photo-card" data-id=${move.id}>
                 <a class="link" href="#">
                   <img src= "https://image.tmdb.org/t/p/w500${
                     move.poster_path
