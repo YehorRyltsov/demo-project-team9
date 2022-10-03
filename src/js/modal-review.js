@@ -1,4 +1,8 @@
-import { onBtnClickWatched } from './push-data-to-database';
+import {hideLoader, showLoader} from './pre_loader';
+
+
+
+
 
 const refs = {
   modal: document.querySelector('[data-modal]'),
@@ -13,11 +17,31 @@ function openModalReview() {
   window.addEventListener('keydown', onEscKeyPressExit);
 }
 
-export function onCardClick(e) {
-  e.preventDefault();
-  const сardId = e.target.closest('li').dataset.idcard;
-  openModalReview();
-  fetchMoveId(сardId)
+
+
+
+
+
+  };
+
+
+  function openModalReview() {
+    
+    refs.modal.classList.remove("is-hidden");
+    refs.body.classList.add("no-scroll");
+
+    refs.modal.addEventListener('click', onBackdropClick);
+    window.addEventListener('keydown', onEscKeyPressExit);
+
+  }
+
+
+  export function onCardClick(e){
+    e.preventDefault();
+    showLoader();
+    const сardId = e.target.closest('li').dataset.idcard;
+    openModalReview();
+    fetchMoveId(сardId)
     .then(renderModalCardReview)
     .catch(error => console.error(error));
 }
@@ -101,7 +125,7 @@ function renderModalCardReview(move) {
         </p>
         <div class="modal-review__btn-container">
           <button type="button" class="modal-review__btn">
-            ADD TO WACHAD
+            ADD TO WATCHAD
           </button>
           <button type="button" class="modal-review__btn">ADD TO QUEUE</button>
         </div>
@@ -109,6 +133,8 @@ function renderModalCardReview(move) {
     </div>
   </div>`;
 
-  const closeModalBtn = document.querySelector('.review__btn-close');
-  closeModalBtn.addEventListener('click', closeModalReview);
+  hideLoader();
+
+  const closeModalBtn = document.querySelector(".review__btn-close");
+  closeModalBtn.addEventListener("click", closeModalReview);
 }
