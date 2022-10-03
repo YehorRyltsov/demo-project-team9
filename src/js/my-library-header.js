@@ -1,8 +1,9 @@
 import { getWatchedFilmsByUser, getQueueFilmsByUser, watchedFilms } from './db';
 import { currentUserId } from './user';
+watchedFilms;
 import { showModal } from './hideAndOpen-modal';
 import { fetchMoves, fetchGenres } from './fetch-movies';
-
+import { pageUp } from './page-up-pagination';
 import { createPagination } from './pagination';
 
 // console.log(currentUserId);
@@ -19,6 +20,7 @@ const queueBtn = document.querySelector('.queue-btn');
 const logo = document.querySelector('.logo-link');
 const sectionPagination = document.querySelector('.section-pagination');
 const cardList = document.querySelector('.gallery-films');
+let movieQueueList = [];
 
 homeHeader.addEventListener('click', onHeaderHomeClick);
 myLibraryHeader.addEventListener('click', onMyLibraryClick);
@@ -43,8 +45,10 @@ function onMyLibraryClick(evt) {
   console.log(currentUserId);
   // console.log(getWatchedFilmsByUser(currentUserId));
   getWatchedFilmsByUser(currentUserId);
-  // const movieQueueList = getQueueFilmsByUser(currentUserId);
   console.log(watchedFilms);
+  movieQueueList = getQueueFilmsByUser(currentUserId);
+  console.log(movieQueueList);
+
   if (currentUserId !== null) {
     searchInput.classList.add('visually-hidden');
     myLibraryBtnWrap.classList.remove('visually-hidden');
@@ -52,7 +56,11 @@ function onMyLibraryClick(evt) {
     homeHeader.classList.remove('current');
     header.classList.remove('home-header-bg');
     header.classList.add('header__my-library-bg');
-    retrieveWatchedMovies(watchedFilms);
+    console.log(movieQueueList);
+    setTimeout(function () {
+      retrieveWatchedMovies(watchedFilms);
+    }, 500);
+
     // console.log(movieWatchedList);
   } else {
     showModal();
@@ -61,6 +69,7 @@ function onMyLibraryClick(evt) {
 
 function onWatchedBtnClick() {
   queueBtn.classList.remove('active');
+  console.log(1);
   watchedBtn.classList.add('active');
   watchedBtn.disabled = true;
   queueBtn.disabled = false;
@@ -69,6 +78,7 @@ function onWatchedBtnClick() {
 
 function onQueueBtnClick() {
   watchedBtn.classList.remove('active');
+  console.log(2);
   queueBtn.classList.add('active');
   watchedBtn.disabled = false;
   queueBtn.disabled = true;
@@ -100,8 +110,9 @@ function retrieveWatchedMovies(movies) {
   }
 }
 
-function renderWatchedList(array) {
-  const renderMovies = array.map(item => {
+function renderWatchedList(arrayMovies) {
+  // console.log(renderMovies);
+  const renderMovies = arrayMovies.map(item => {
     let { poster_path, original_title, genres, release_date, vote_average } =
       item;
     return makeMoviesListMarkup(
@@ -112,8 +123,11 @@ function renderWatchedList(array) {
       vote_average
     );
   });
-
+  cardList.innerHTML = '';
   cardList.innerHTML = renderMovies;
+
+  createPagination(1, 20, 20);
+  pageUp();
   // if (array.lenght > 20) {
   //   createPagination(page, 20, array.length);
   // }
