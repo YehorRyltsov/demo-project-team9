@@ -1,8 +1,13 @@
-import {hideLoader, showLoader} from './pre_loader';
-
-
-
-
+import { hideLoader, showLoader } from './pre_loader';
+import {
+  answerIsQueue,
+  answerIsWatched,
+  onBtnClickWatched,
+  onBtnClickQueue,
+  findFilmById,
+  OnBtnClickCheckUser,
+} from './push-data-to-database';
+import { currentUserId } from './user';
 
 const refs = {
   modal: document.querySelector('[data-modal]'),
@@ -17,13 +22,16 @@ function openModalReview() {
   window.addEventListener('keydown', onEscKeyPressExit);
 }
 
+refs.modal.addEventListener('click', onBackdropClick);
+window.addEventListener('keydown', onEscKeyPressExit);
 
+function openModalReview() {
+  refs.modal.classList.remove('is-hidden');
+  refs.body.classList.add('no-scroll');
 
-
-
-
-
-
+  refs.modal.addEventListener('click', onBackdropClick);
+  window.addEventListener('keydown', onEscKeyPressExit);
+}
 
   function openModalReview() {
 
@@ -42,6 +50,7 @@ function openModalReview() {
     const сardId = e.target.closest('li').dataset.idcard;
     openModalReview();
     fetchMoveId(сardId)
+
     .then(renderModalCardReview)
     .catch(error => console.error(error));
 }
@@ -124,17 +133,58 @@ function renderModalCardReview(move) {
         }
         </p>
         <div class="modal-review__btn-container">
-          <button type="button" class="modal-review__btn">
-            ADD TO WATCHAD
+          <button type="button" class="modal-review__btn watched">
+            <span class="d-add-watched">ADD TO WATCHED</span>
+    <span class="d-remove-watched hide">REMOVE WATCHED</span>
           </button>
-          <button type="button" class="modal-review__btn">ADD TO QUEUE</button>
+          <button type="button" class="modal-review__btn queue"> <span class="d-add-queue">ADD TO QUEUE</span>
+    <span class="d-remove-queue hide">REMOVE QUEUE</span></button>
         </div>
       </div>
     </div>
   </div>`;
 
   hideLoader();
+  const closeModalBtn = document.querySelector('.review__btn-close');
+  closeModalBtn.addEventListener('click', closeModalReview);
+  // ------------------ DIMA ------------------------------
+  const btnWatchedEl = document.querySelector('.watched');
+  const btnQueueEl = document.querySelector('.queue');
+  const btnWatchedItemAdd = document.querySelector('.d-add-watched');
+  const btnWatchedItemRemove = document.querySelector('.d-remove-watched');
+  const btnQueueItemAdd = document.querySelector('.d-add-queue');
+  const btnQueueItemRemove = document.querySelector('.d-remove-queue');
 
-  const closeModalBtn = document.querySelector(".review__btn-close");
-  closeModalBtn.addEventListener("click", closeModalReview);
+  btnWatchedEl.addEventListener('click', () =>
+    onBtnClickWatched(move.id, btnWatchedItemAdd, btnWatchedItemRemove)
+  );
+  btnQueueEl.addEventListener('click', () =>
+    onBtnClickQueue(move.id, btnQueueItemAdd, btnQueueItemRemove)
+  );
+  if (currentUserId === null) {
+    return;
+  } else {
+    answerIsWatched(currentUserId, move.id).then(answer => {
+      if (answer) {
+        btnWatchedItemAdd.classList.add('hide');
+        btnWatchedItemRemove.classList.remove('hide');
+
+        console.log(answer);
+      } else {
+        btnWatchedItemAdd.classList.remove('hide');
+        btnWatchedItemRemove.classList.add('hide');
+      }
+    });
+    answerIsQueue(currentUserId, move.id).then(answer => {
+      if (answer) {
+        btnQueueItemAdd.classList.add('hide');
+        btnQueueItemRemove.classList.remove('hide');
+
+        console.log(answer);
+      } else {
+        btnQueueItemAdd.classList.remove('hide');
+        btnQueueItemRemove.classList.add('hide');
+      }
+    });
+  }
 }

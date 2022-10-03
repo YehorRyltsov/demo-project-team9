@@ -36,7 +36,7 @@ const loaderMain = () => {
   Loading.pulse({
     svgSize: '150px',
     svgColor: '#FF6B08',
-  });
+ });
   Loading.remove(400);
 };
 loaderMain();
