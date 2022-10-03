@@ -22,11 +22,11 @@ function openModalReview() {
 
 
 
-  };
+
 
 
   function openModalReview() {
-    
+
     refs.modal.classList.remove("is-hidden");
     refs.body.classList.add("no-scroll");
 
@@ -91,7 +91,7 @@ function renderModalCardReview(move) {
     </button>
     <div class="modal-review__body">
       <div class="modal-review__card">
-        <img class="modal-review__content" 
+        <img class="modal-review__content"
         src="${src}" />
       </div>
       <div class="modal-review__container">
