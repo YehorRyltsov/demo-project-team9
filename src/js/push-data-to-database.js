@@ -24,7 +24,7 @@ refs.btnQueueEl.addEventListener('click', () => onBtnClickQueue(762504));
 
 // -------------- При клике на кнопку Queue ---------------
 
-async function onBtnClickQueue(filmId) {
+export async function onBtnClickQueue(filmId) {
   refs.btnWatchedEl.classList.remove('active');
   refs.btnQueueEl.classList.add('active');
   const answer = await isQueue(currentUserId, filmId);
@@ -46,7 +46,7 @@ async function onBtnClickQueue(filmId) {
 
 // -------------- При клике на кнопку Watched ---------------
 
-async function onBtnClickWatched(filmId) {
+export async function onBtnClickWatched(filmId) {
   refs.btnWatchedEl.classList.add('active');
   refs.btnQueueEl.classList.remove('active');
   const answer = await isWatched(currentUserId, filmId);
