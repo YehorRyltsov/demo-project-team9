@@ -37,7 +37,10 @@ function fetchMove(page) {
         })
         .map(move => {
           const date = new Date(`${move.release_date}`);
-          const year = date.getFullYear();
+          let year = date.getFullYear();
+              if (isNaN(year)) {
+                year = "pending"
+              }
           return `
                 <li class="photo-card" data-idcard="${move.id}">
                 <a class="link" href="#">
