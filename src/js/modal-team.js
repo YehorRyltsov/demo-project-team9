@@ -12,22 +12,21 @@ const lightBox = document.querySelector('.basicLightbox--visible');
 openModal.addEventListener('click', onOpenModal);
  const modal = basicLightbox.create(markup);
 
-window.addEventListener('keydown', onCloseModal);
+
 
 function onOpenModal(e) {
   e.preventDefault();
   modal.show();
-  
+  window.addEventListener('keydown', onCloseModal);
   // body.classList.add('noScroll');
   // lightBox.addEventListener('click', onClickBackdrop); 
   
-  onCloseModal();
-  onClickBackdrop();
-  openModal.removeEventListener('click', onOpenModal);
+  onCloseModal(e);
+  // onClickBackdrop();
+  // openModal.removeEventListener('click', onOpenModal);
 };
   
 function onCloseModal(event) {    
-   
     if (event.code === 'Escape') {
       modal.close();
       // body.classList.remove('noScroll');
