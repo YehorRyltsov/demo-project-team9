@@ -72,11 +72,9 @@ function searchMovie(query, page) {
                     <p class="info-item">
                       <b>${move.title.toUpperCase()}</b>
                     </p>
-                    <p class="info-item">                      
-                      <b class="info-genres">${move.genres.join(', ')}</b>
-                      <b class="info-genres"> | </b>
-                      <b class="info-genres">${year}</b>
-                    </p>                   
+                    <p class="info-item">
+                    <b class="info-genres">${move.genres.join(', ')} | ${year}</b>
+                    </p>
                   </div>
                   </a>
                 </li>`;
