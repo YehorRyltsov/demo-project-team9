@@ -7,8 +7,11 @@ import { createPagination } from './pagination';
 
 // console.log(currentUserId);
 
-let movieWatchedList = getWatchedFilmsByUser(currentUserId);
-let movieQueueList = getQueueFilmsByUser(currentUserId);
+// let movieWatchedList = getWatchedFilmsByUser(currentUserId);
+// let movieQueueList = getQueueFilmsByUser(currentUserId);
+let movieWatchedList = [];
+let movieQueueList = [];
+
 import emptyLibraryPageUrl from '../images/empty-library-page.jpg';
 
 const header = document.querySelector('.header');
@@ -42,6 +45,8 @@ export function onHeaderHomeClick(evt) {
 
 function onMyLibraryClick(evt) {
   evt.preventDefault();
+  getDataByUserID();
+  console.log(movieQueueList);
   if (currentUserId !== null) {
     searchInput.classList.add('visually-hidden');
     myLibraryBtnWrap.classList.remove('visually-hidden');
@@ -54,12 +59,16 @@ function onMyLibraryClick(evt) {
     showModal();
   }
 }
+function getDataByUserID() {
+  return console.log((movieQueueList = getQueueFilmsByUser(currentUserId)));
+}
 
 function onWatchedBtnClick() {
   queueBtn.classList.remove('active');
   watchedBtn.classList.add('active');
   watchedBtn.disabled = true;
   queueBtn.disabled = false;
+  getDataByUserID;
   retrieveWatchedMovies(movieWatchedList);
 }
 
@@ -68,6 +77,7 @@ function onQueueBtnClick() {
   queueBtn.classList.add('active');
   watchedBtn.disabled = false;
   queueBtn.disabled = true;
+  getDataByUserID();
   retrieveWatchedMovies(movieQueueList);
 }
 
@@ -76,22 +86,29 @@ export { onWatchedBtnClick, onQueueBtnClick };
 // Функция для пустого массива
 
 function showEmptyLibrary() {
+  cardList.style.justifyContent = 'center';
+  // cardList.style.margin = '0';
+
   cardList.innerHTML = `<li>
   <p class="empty-library__text"> There is nothing here yet! </p>
   <img class="empty-library__image" src="${emptyLibraryPageUrl}" alt="empty cinema hall">
   </li>`;
+  const cardNoMovies = document.querySelector('.empty-library__text');
+  cardNoMovies.style.margin = '0';
 }
 
 //------------------ My library functional -----------------
 
 function retrieveWatchedMovies(movies) {
-  if (movies.length !== 0) {
-    return renderWatchedList(movies);
-  } else {
-    console.log('No Movies');
-    showEmptyLibrary();
-    sectionPagination.style.display = 'none';
-  }
+  setTimeout(function () {
+    if (movies.length !== 0) {
+      return renderWatchedList(movies);
+    } else {
+      console.log('No Movies');
+      showEmptyLibrary();
+      sectionPagination.style.display = 'none';
+    }
+  }, 150);
 }
 
 function renderWatchedList(array) {
@@ -107,10 +124,13 @@ function renderWatchedList(array) {
     );
   });
 
-  cardList.innerHTML = renderMovies;
-  // if (array.lenght > 20) {
-  //   createPagination(page, 20, array.length);
-  // }
+  // cardList.innerHTML = renderMovies;
+  cardList.innerHTML = '';
+  cardList.insertAdjacentHTML('afterbegin', renderMovies.join(''));
+  // createPagination(page, 20, array.total_results);
+  if (array.lenght > 20) {
+    createPagination(page, 20, array.length);
+  }
 
   // cardList.insertAdjacentHTML('beforeend', renderMovies); //---- указать контейнер в котором рендерить список
 }
@@ -136,14 +156,13 @@ function makeMoviesListMarkup(
                     <p class="info-item">
                       <b>${original_title.toUpperCase()}</b>
                     </p>
-                    <p class="info-item">                      
-                      <b class="info-genres">${genresNames.join(', ')}</b>
-                      <b class="info-genres"> | </b>
-                      <b class="info-genres">${year}</b>
-                      <b class="info-genres vote-average">${vote_average.toFixed(
-                        1
-                      )}</b>
-                    </p>                   
+                    <p class="info-item">
+                    <b class="info-genres">${genresNames.join(
+                      ', '
+                    )} | ${year} <span class="info-genres vote-average">${vote_average.toFixed(
+    1
+  )}</span></b>                      
+                                          </p>                   
                   </div>
                   </a>
                 </li>`;
