@@ -41,7 +41,7 @@ export function onHeaderHomeClick(evt) {
 function onMyLibraryClick(evt) {
   evt.preventDefault();
   getUserSavedMovies();
-  // disableBtns(evt);
+  disableBtns(evt);
   if (currentUserId) {
     searchInput.classList.add('visually-hidden');
     myLibraryBtnWrap.classList.remove('visually-hidden');
