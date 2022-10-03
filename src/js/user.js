@@ -1,4 +1,5 @@
 import { create, login, onAuth, logOut } from './firebase';
+import { goHome } from './fn-go-home';
 
 const emailInput = document.querySelector('#email-input');
 const pwdInput = document.querySelector('#pwd-input');
@@ -17,9 +18,14 @@ const body = document.querySelector('body');
 
 export let currentUserId = null;
 
-logOutBtn.addEventListener('click', logOut);
+logOutBtn.addEventListener('click', onLogOut);
 registerForm.addEventListener('submit', registrationUser);
 loginForm.addEventListener('submit', onLogin);
+
+function onLogOut() {
+  logOut();
+  goHome();
+}
 
 function onLogin(e) {
   e.preventDefault();

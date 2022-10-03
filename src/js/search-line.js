@@ -1,3 +1,4 @@
+import {onCardClick} from './modal-review';
 import { searchMovies, fetchGenres } from './fetch-movies';
 import { createPagination } from './pagination';
 import { mainMovieEx } from './main-movies';
@@ -61,9 +62,8 @@ function searchMovie(query, page) {
               if (move.poster_path != null && move.poster_path != 'null') {
                 src = `https://image.tmdb.org/t/p/w500${move.poster_path}`;
               }
-
-              return `
-                <li class="photo-card">
+                return `
+                <li class="photo-card" data-idcard="${move.id}">
                 <a class="link" href="#">
                   <img src= "${src}" alt="${
                 move.original_title
@@ -80,14 +80,15 @@ function searchMovie(query, page) {
                   </div>
                   </a>
                 </li>`;
-            })
-            .join('');
-          cardList.innerHTML = '';
-          cardList.insertAdjacentHTML('afterbegin', arrMove);
-          createPagination(page, 20, movies.total_results);
-          pageUp();
-        });
-      } else {
+              })
+              .join('');
+            cardList.innerHTML = '';
+            cardList.insertAdjacentHTML('afterbegin', arrMove);
+            createPagination(page, 20, movies.total_results);
+            cardList.addEventListener('click', onCardClick);
+            pageUp();
+          });
+        } else {
         cardList.innerHTML = '';
         pagin.innerHTML = '';
         Notiflix.Notify.info('Oops, there is no movies');
