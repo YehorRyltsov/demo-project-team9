@@ -38,7 +38,7 @@ export function onHeaderHomeClick(evt) {
 
 function onMyLibraryClick(evt) {
   evt.preventDefault();
-   watchedBtn.classList.remove('active');
+  watchedBtn.classList.remove('active');
   queueBtn.classList.add('active');
   getQueueMoviesByUserID();
   if (currentUserId !== null) {
@@ -118,36 +118,36 @@ function renderWatchedList(array) {
     );
   });
 
-    cardList.innerHTML = '';
+  cardList.innerHTML = '';
   cardList.insertAdjacentHTML('afterbegin', renderMovies.join(''));
 
   //------- Настроить ПАГИНАЦИЮ ----------------------!!!!!!!!!!!
-//   if (array.length > 10) {
-//     console.log('PAGINATION SHOUL BE HERE');
-//     // libraryPagination(2, array);
-//     createPagination(2, 10, array.length);
-//   } else {
-//     sectionPagination.style.display = 'none';
-//   }
-// }
-// function libraryPagination(page, array) {
-//   createPagination(page, 10, array.length);
-// }
-// ------------------------------------------------------------!!!!!!!!!!
-function makeMoviesListMarkup(
-  poster_path,
-  original_title,
-  genres,
-  release_date,
-  vote_average
-) {
-  const date = new Date(`${release_date}`);
-  const year = date.getFullYear();
+  //   if (array.length > 10) {
+  //     console.log('PAGINATION SHOUL BE HERE');
+  //     // libraryPagination(2, array);
+  //     createPagination(2, 10, array.length);
+  //   } else {
+  //     sectionPagination.style.display = 'none';
+  //   }
+  // }
+  // function libraryPagination(page, array) {
+  //   createPagination(page, 10, array.length);
+  // }
+  // ------------------------------------------------------------!!!!!!!!!!
+  function makeMoviesListMarkup(
+    poster_path,
+    original_title,
+    genres,
+    release_date,
+    vote_average
+  ) {
+    const date = new Date(`${release_date}`);
+    const year = date.getFullYear();
 
-  const genresNames = [];
-  const genreName = genres.map(genre => genresNames.push(genre.name));
+    const genresNames = [];
+    const genreName = genres.map(genre => genresNames.push(genre.name));
 
-  const markup = `
+    const markup = `
                 <li class="photo-card">
                 <a class="link" href="#">
                   <img src= "https://image.tmdb.org/t/p/w500${poster_path}" alt="${original_title} loading="lazy" width: 0px class="card-image">
@@ -159,11 +159,12 @@ function makeMoviesListMarkup(
                     <b class="info-genres">${genresNames.join(
                       ', '
                     )} | ${year} <span class="info-genres vote-average">${vote_average.toFixed(
-    1
-  )}</span></b>                      
+      1
+    )}</span></b>                      
                                           </p>                   
                   </div>
                   </a>
                 </li>`;
-  return markup;
+    return markup;
+  }
 }
