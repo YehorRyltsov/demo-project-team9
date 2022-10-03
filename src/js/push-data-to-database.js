@@ -6,7 +6,7 @@ import {
   isQueue,
   isWatched,
 } from './db';
-import { currentUserId } from './user';
+// import { currentUserId } from './user';
 
 const refs = {
   KEY: 'a115fde3660c9e5b413d785f288ed44e',
@@ -46,18 +46,18 @@ export async function onBtnClickQueue(filmId) {
 
 // -------------- При клике на кнопку Watched ---------------
 
-export async function onBtnClickWatched(filmId) {
+export async function onBtnClickWatched(userId, filmId) {
   refs.btnWatchedEl.classList.add('active');
   refs.btnQueueEl.classList.remove('active');
-  const answer = await isWatched(currentUserId, filmId);
+  const answer = await isWatched(userId, filmId);
 
   findFilmById(filmId).then(film => {
     if (answer) {
-      deleteWatchedFilmById(currentUserId, filmId);
+      deleteWatchedFilmById(userId, filmId);
       console.log('вызвали удалить');
       return;
     } else {
-      addWatchedFilmByUser(currentUserId, film);
+      addWatchedFilmByUser(userId, film);
       console.log('вызвали добавить');
       console.log(film);
     }
@@ -82,7 +82,7 @@ async function answerIsWatched(currentUserId, filmId) {
   return answer;
 }
 
-answerIsWatched(currentUserId, 438148).then(console.log);
+// answerIsWatched(currentUserId, 438148).then(console.log);
 // answerIsWatched(currentUserId, 438148).then(answer => {
 //   if (answer) {
 //     refs.btnWatchedItemAdd.classList.add('hide');

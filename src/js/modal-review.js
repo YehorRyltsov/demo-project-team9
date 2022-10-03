@@ -1,4 +1,4 @@
-import { onBtnClickWatched, onBtnClickQueue } from './push-data-to-database';
+import { onBtnClickWatched } from './push-data-to-database';
 
 const refs = {
   modal: document.querySelector('[data-modal]'),
