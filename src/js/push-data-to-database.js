@@ -17,7 +17,7 @@ export const refs = {
 // -------------- При клике на кнопку Queue ---------------
 
 export async function onBtnClickQueue(filmId, QueueItemAdd, QueueItemRemove) {
-  if (currentUserId === null) {
+  if (currentUserId) {
     showModal();
   } else {
     const btnQueueItemAdd = await QueueItemAdd;
@@ -47,7 +47,7 @@ export async function onBtnClickWatched(
   WatchedItemAdd,
   WatchedItemRemove
 ) {
-  if (currentUserId === null) {
+  if (currentUserId) {
     showModal();
   } else {
     const btnWatchedItemAdd = await WatchedItemAdd;

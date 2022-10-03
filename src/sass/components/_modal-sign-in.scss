@@ -120,6 +120,33 @@
     outline: 2px solid red;
   }
 }
+.d-password-input {
+  position: relative;
+}
+.form-register-svg {
+  position: absolute;
+  top: 11px;
+  right: 12px;
+  height: 20px;
+  width: auto;
+  fill: rgb(4, 242, 59);
+}
+.form-register-svg.pwdInput {
+  display: none;
+}
+.form-register-svg.pwdRepeatInput {
+  display: none;
+}
+.form-register-svg.pwdRepeatInput.checked {
+  display: block;
+  stroke: black;
+  background-color: #d6eede21;
+}
+.form-register-svg.pwdInput.checked {
+  display: block;
+  stroke: black;
+  background-color: #d6eede21;
+}
 
 .form__btn {
   font-size: 16px;

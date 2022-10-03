@@ -11,7 +11,10 @@ const loginPwd = document.querySelector('#login-pwd-input');
 const loginForm = document.querySelector('#login-form');
 const formLoginBtn = document.querySelector('#form-login-btn');
 const formSignupBtn = document.querySelector('#form-signup-btn');
-
+const svgPwdInput = document.querySelector('.form-register-svg.pwdInput');
+const svgPwdRepeatInput = document.querySelector(
+  '.form-register-svg.pwdRepeatInput'
+);
 const logInHeaderBtn = document.querySelector('button[data-id="log-in"]');
 const modal = document.querySelector('[data-log-modal]');
 const body = document.querySelector('body');
@@ -110,9 +113,13 @@ function onPwdRepeatInput(e) {
 function noCheked() {
   pwdInput.classList.remove('checked');
   pwdRepeatInput.classList.remove('checked');
+  svgPwdInput.classList.remove('checked');
+  svgPwdRepeatInput.classList.remove('checked');
 }
 
 function cheked() {
   pwdInput.classList.add('checked');
   pwdRepeatInput.classList.add('checked');
+  svgPwdInput.classList.add('checked');
+  svgPwdRepeatInput.classList.add('checked');
 }

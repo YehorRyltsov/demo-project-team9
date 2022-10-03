@@ -160,14 +160,13 @@ function renderModalCardReview(move) {
   btnQueueEl.addEventListener('click', () =>
     onBtnClickQueue(move.id, btnQueueItemAdd, btnQueueItemRemove)
   );
-  if (currentUserId === null) {
+  if (currentUserId) {
     return;
   } else {
     answerIsWatched(currentUserId, move.id).then(answer => {
       if (answer) {
         btnWatchedItemAdd.classList.add('hide');
         btnWatchedItemRemove.classList.remove('hide');
-
       } else {
         btnWatchedItemAdd.classList.remove('hide');
         btnWatchedItemRemove.classList.add('hide');
