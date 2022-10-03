@@ -71,24 +71,24 @@ export function deleteQueueFilmById(userId, filmId) {
     }
   );
 }
-
+export const watchedFilms = [];
 // Принимет уникальный id пользователя и возвращает массив объектов
 // фильиов списка watched, если список пустой - возвращает пустой массив
 export function getWatchedFilmsByUser(userId) {
-  const result = [];
+  // const result = [];
   const dbRef = ref(db, `user/${userId}/watched/`);
   onValue(
     dbRef,
     snapshot => {
       snapshot.forEach(childSnapshot => {
-        result.push(childSnapshot.val());
+        watchedFilms.push(childSnapshot.val());
       });
     },
     {
       onlyOnce: true,
     }
   );
-  return result;
+  // return ;
 }
 
 // Принимет уникальный id пользователя и возвращает массив объектов

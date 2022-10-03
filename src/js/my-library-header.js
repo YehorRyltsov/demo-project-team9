@@ -1,4 +1,4 @@
-import { getWatchedFilmsByUser, getQueueFilmsByUser } from './db';
+import { getWatchedFilmsByUser, getQueueFilmsByUser, watchedFilms } from './db';
 import { currentUserId } from './user';
 import { showModal } from './hideAndOpen-modal';
 import { fetchMoves, fetchGenres } from './fetch-movies';
@@ -41,10 +41,10 @@ export function onHeaderHomeClick(evt) {
 function onMyLibraryClick(evt) {
   evt.preventDefault();
   console.log(currentUserId);
-  console.log(getWatchedFilmsByUser(currentUserId).length);
-  // let movieWatchedList = getWatchedFilmsByUser(currentUserId).map();
+  // console.log(getWatchedFilmsByUser(currentUserId));
+  getWatchedFilmsByUser(currentUserId);
   // const movieQueueList = getQueueFilmsByUser(currentUserId);
-  console.log(movieQueueList);
+  console.log(watchedFilms);
   if (currentUserId !== null) {
     searchInput.classList.add('visually-hidden');
     myLibraryBtnWrap.classList.remove('visually-hidden');
@@ -52,7 +52,8 @@ function onMyLibraryClick(evt) {
     homeHeader.classList.remove('current');
     header.classList.remove('home-header-bg');
     header.classList.add('header__my-library-bg');
-    retrieveWatchedMovies(movieQueueList);
+    retrieveWatchedMovies(watchedFilms);
+    // console.log(movieWatchedList);
   } else {
     showModal();
   }
@@ -88,7 +89,9 @@ function showEmptyLibrary() {
 //------------------ My library functional -----------------
 
 function retrieveWatchedMovies(movies) {
-  if (movies.length !== 0) {
+  // const films = [...movies].map();
+  console.log(movies);
+  if (movies.length > 0) {
     return renderWatchedList(movies);
   } else {
     console.log('No Movies');
