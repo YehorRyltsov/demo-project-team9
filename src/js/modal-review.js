@@ -1,4 +1,13 @@
 import { hideLoader, showLoader } from './pre_loader';
+import {
+  answerIsQueue,
+  answerIsWatched,
+  onBtnClickWatched,
+  onBtnClickQueue,
+  findFilmById,
+  OnBtnClickCheckUser,
+} from './push-data-to-database';
+import { currentUserId } from './user';
 
 const refs = {
   modal: document.querySelector('[data-modal]'),
@@ -112,8 +121,9 @@ function renderModalCardReview(move) {
         }
         </p>
         <div class="modal-review__btn-container">
-          <button type="button" class="modal-review__btn">
-            ADD TO WATCHAD
+          <button type="button" class="modal-review__btn watched">
+            <span class="d-add-watched">ADD TO WATCHED</span>
+    <span class="d-remove-watched hide">REMOVE WATCHED</span>
           </button>
           <button type="button" class="modal-review__btn queue"> <span class="d-add-queue">ADD TO QUEUE</span>
     <span class="d-remove-queue hide">REMOVE QUEUE</span></button>
@@ -123,49 +133,46 @@ function renderModalCardReview(move) {
   </div>`;
 
   hideLoader();
-
   const closeModalBtn = document.querySelector('.review__btn-close');
   closeModalBtn.addEventListener('click', closeModalReview);
+  // ------------------ DIMA ------------------------------
+  const btnWatchedEl = document.querySelector('.watched');
+  const btnQueueEl = document.querySelector('.queue');
+  const btnWatchedItemAdd = document.querySelector('.d-add-watched');
+  const btnWatchedItemRemove = document.querySelector('.d-remove-watched');
+  const btnQueueItemAdd = document.querySelector('.d-add-queue');
+  const btnQueueItemRemove = document.querySelector('.d-remove-queue');
+
+  btnWatchedEl.addEventListener('click', () =>
+    onBtnClickWatched(move.id, btnWatchedItemAdd, btnWatchedItemRemove)
+  );
+  btnQueueEl.addEventListener('click', () =>
+    onBtnClickQueue(move.id, btnQueueItemAdd, btnQueueItemRemove)
+  );
+  if (currentUserId === null) {
+    return;
+  } else {
+    answerIsWatched(currentUserId, move.id).then(answer => {
+      if (answer) {
+        btnWatchedItemAdd.classList.add('hide');
+        btnWatchedItemRemove.classList.remove('hide');
+
+        console.log(answer);
+      } else {
+        btnWatchedItemAdd.classList.remove('hide');
+        btnWatchedItemRemove.classList.add('hide');
+      }
+    });
+    answerIsQueue(currentUserId, move.id).then(answer => {
+      if (answer) {
+        btnQueueItemAdd.classList.add('hide');
+        btnQueueItemRemove.classList.remove('hide');
+
+        console.log(answer);
+      } else {
+        btnQueueItemAdd.classList.remove('hide');
+        btnQueueItemRemove.classList.add('hide');
+      }
+    });
+  }
 }
-// -------------- При клике на кнопку Queue ---------------
-// async function onBtnClickQueue(filmId) {
-// btnWatchedEl.classList.remove('active');
-// btnQueueEl.classList.add('active');
-// const answer = await isQueue(currentUserId, filmId);
-
-// findFilmById(filmId).then(film => {
-//   if (answer) {
-//     deleteQueueFilmById(currentUserId, filmId);
-//     console.log('вызвали удалить');
-//     return;
-//   } else {
-//     addQueueFilmByUser(currentUserId, film);
-//     console.log('вызвали добавить');
-//     console.log(film);
-//   }
-// });
-// btnQueueItemAdd.classList.toggle('hide');
-// btnQueueItemRemove.classList.toggle('hide');
-//   }
-// }
-
-// async function answerIsWatched(currentUserId, filmId) {
-//   const answer = await isWatched(currentUserId, filmId);
-//   return answer;
-// }
-// async function answerIsQueue(currentUserId, filmId) {
-//   const answer = await isQueue(currentUserId, filmId);
-//   return answer;
-// }
-// function isCurrentUserLog(userID) {
-//   if (userID === null) {
-//     showModal();
-//   }
-// }
-// function TestOnBtnClick(userId) {
-//   if (userId === null) {
-//     showModal();
-//   } else {
-//     console.log('Hello, you are login.');
-//   }
-// }
