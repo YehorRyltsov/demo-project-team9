@@ -8,9 +8,13 @@ const refs = {
 function openModalReview() {
   refs.modal.classList.remove('is-hidden');
   refs.body.classList.add('no-scroll');
+
   refs.modal.addEventListener('click', onBackdropClick);
   window.addEventListener('keydown', onEscKeyPressExit);
 }
+
+refs.modal.addEventListener('click', onBackdropClick);
+window.addEventListener('keydown', onEscKeyPressExit);
 
 function openModalReview() {
   refs.modal.classList.remove('is-hidden');
@@ -108,9 +112,8 @@ function renderModalCardReview(move) {
         }
         </p>
         <div class="modal-review__btn-container">
-          <button type="button" class="modal-review__btn watched">
-            <span class="d-add-watched">ADD TO WATCHED</span>
-    <span class="d-remove-watched hide">REMOVE WATCHED</span>
+          <button type="button" class="modal-review__btn">
+            ADD TO WATCHAD
           </button>
           <button type="button" class="modal-review__btn queue"> <span class="d-add-queue">ADD TO QUEUE</span>
     <span class="d-remove-queue hide">REMOVE QUEUE</span></button>

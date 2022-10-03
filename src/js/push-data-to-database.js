@@ -6,7 +6,6 @@ import {
   isQueue,
   isWatched,
 } from './db';
-import { showModal } from './hideAndOpen-modal';
 // import { currentUserId } from './user';
 
 export const refs = {
@@ -26,8 +25,8 @@ refs.btnQueueEl.addEventListener('click', () => onBtnClickQueue(762504));
 // -------------- При клике на кнопку Queue ---------------
 
 export async function onBtnClickQueue(filmId) {
-  btnWatchedEl.classList.remove('active');
-  btnQueueEl.classList.add('active');
+  refs.btnWatchedEl.classList.remove('active');
+  refs.btnQueueEl.classList.add('active');
   const answer = await isQueue(currentUserId, filmId);
 
   findFilmById(filmId).then(film => {
@@ -47,23 +46,24 @@ export async function onBtnClickQueue(filmId) {
 
 // -------------- При клике на кнопку Watched ---------------
 
-export async function onBtnClickWatched(filmId) {
-  // refs.btnWatchedEl.classList.add('active');
-  // refs.btnQueueEl.classList.remove('active');
-  // const answer = await isWatched(currentUserId, filmId);
-  // findFilmById(filmId).then(film => {
-  //   if (answer) {
-  //     deleteWatchedFilmById(currentUserId, filmId);
-  //     console.log('вызвали удалить');
-  //     return;
-  //   } else {
-  //     addWatchedFilmByUser(currentUserId, film);
-  //     console.log('вызвали добавить');
-  //     console.log(film);
-  //   }
-  // });
-  // refs.btnWatchedItemAdd.classList.toggle('hide');
-  // refs.btnWatchedItemRemove.classList.toggle('hide');
+export async function onBtnClickWatched(userId, filmId) {
+  refs.btnWatchedEl.classList.add('active');
+  refs.btnQueueEl.classList.remove('active');
+  const answer = await isWatched(userId, filmId);
+
+  findFilmById(filmId).then(film => {
+    if (answer) {
+      deleteWatchedFilmById(userId, filmId);
+      console.log('вызвали удалить');
+      return;
+    } else {
+      addWatchedFilmByUser(userId, film);
+      console.log('вызвали добавить');
+      console.log(film);
+    }
+  });
+  refs.btnWatchedItemAdd.classList.toggle('hide');
+  refs.btnWatchedItemRemove.classList.toggle('hide');
 }
 
 // -------------- Для поиска фильма по ID ---------------
@@ -94,10 +94,15 @@ function isCurrentUser(userID) {
   }
 }
 
-function TestOnBtnClick(userId) {
-  if (userId === null) {
-    showModal();
-  } else {
-    console.log('Hello you are login');
-  }
-}
+// answerIsWatched(currentUserId, 438148).then(console.log);
+// answerIsWatched(currentUserId, 438148).then(answer => {
+//   if (answer) {
+//     refs.btnWatchedItemAdd.classList.add('hide');
+//     refs.btnWatchedItemRemove.classList.remove('hide');
+
+//     console.log(answer);
+//   } else {
+//     refs.btnWatchedItemAdd.classList.remove('hide');
+//     refs.btnWatchedItemRemove.classList.add('hide');
+//   }
+// });
