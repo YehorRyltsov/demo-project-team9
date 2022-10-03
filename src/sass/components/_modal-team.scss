@@ -1,9 +1,10 @@
+.noScroll {
+    position: fixed;
+}
 .basicLightbox {
     overflow: scroll;  
 }
-.noScroll{
-    position: fixed;
-}
+
 .basicLightbox__placeholder {
     height: 110%;
 
@@ -24,6 +25,7 @@ margin: -15px;
 border-radius: 15px;
 width: 260px;
 justify-content: space-evenly;
+text-align: center;
 @media screen and (max-width: 767px) {
         margin-top: 70px;
     }
