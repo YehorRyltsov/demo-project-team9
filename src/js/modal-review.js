@@ -1,8 +1,4 @@
-import {hideLoader, showLoader} from './pre_loader';
-
-
-
-
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 const refs = {
   modal: document.querySelector('[data-modal]'),
@@ -17,31 +13,24 @@ function openModalReview() {
   window.addEventListener('keydown', onEscKeyPressExit);
 }
 
+function openModalReview() {
+  refs.modal.classList.remove('is-hidden');
+  refs.body.classList.add('no-scroll');
 
+  refs.modal.addEventListener('click', onBackdropClick);
+  window.addEventListener('keydown', onEscKeyPressExit);
+}
 
-
-
-
-
-
-
-  function openModalReview() {
-
-    refs.modal.classList.remove("is-hidden");
-    refs.body.classList.add("no-scroll");
-
-    refs.modal.addEventListener('click', onBackdropClick);
-    window.addEventListener('keydown', onEscKeyPressExit);
-
-  }
-
-
-  export function onCardClick(e){
-    e.preventDefault();
-    showLoader();
-    const сardId = e.target.closest('li').dataset.idcard;
-    openModalReview();
-    fetchMoveId(сardId)
+export function onCardClick(e) {
+  e.preventDefault();
+  Loading.pulse({
+    svgSize: '150px',
+    svgColor: '#FF6B08',
+  });
+  Loading.remove(600);
+  const сardId = e.target.closest('li').dataset.idcard;
+  openModalReview();
+  fetchMoveId(сardId)
     .then(renderModalCardReview)
     .catch(error => console.error(error));
 }
@@ -133,8 +122,6 @@ function renderModalCardReview(move) {
     </div>
   </div>`;
 
-  hideLoader();
-
-  const closeModalBtn = document.querySelector(".review__btn-close");
-  closeModalBtn.addEventListener("click", closeModalReview);
+  const closeModalBtn = document.querySelector('.review__btn-close');
+  closeModalBtn.addEventListener('click', closeModalReview);
 }
