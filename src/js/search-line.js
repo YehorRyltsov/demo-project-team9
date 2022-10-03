@@ -1,9 +1,12 @@
-import {onCardClick} from './modal-review';
+import { onCardClick } from './modal-review';
 import { searchMovies, fetchGenres } from './fetch-movies';
 import { createPagination } from './pagination';
 import { mainMovieEx } from './main-movies';
 import { pageUp } from './page-up-pagination';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
+// import { spinnerSearch } from './page-up-pagination';
 import Notiflix from 'notiflix';
+
 Notiflix.Notify.init({
   position: 'center-top',
 });
@@ -16,6 +19,7 @@ searchButton.addEventListener('submit', submitSearchForm);
 
 function submitSearchForm(evt) {
   evt.preventDefault();
+
   let query = evt.target.elements['search'].value;
   query = query.replace(/\s+/g, ' ').trim();
   if (query.length > 1) {
@@ -44,6 +48,7 @@ function searchMovie(query, page) {
           const filmsArr = movies.results;
 
           const arrMove = filmsArr
+
             .map(move => {
               const genres = move.genre_ids.map(id => {
                 for (let genre of arrayGen) {
@@ -62,7 +67,7 @@ function searchMovie(query, page) {
               if (move.poster_path != null && move.poster_path != 'null') {
                 src = `https://image.tmdb.org/t/p/w500${move.poster_path}`;
               }
-                return `
+              return `
                 <li class="photo-card" data-idcard="${move.id}">
                 <a class="link" href="#">
                   <img src= "${src}" alt="${
@@ -80,15 +85,20 @@ function searchMovie(query, page) {
                   </div>
                   </a>
                 </li>`;
-              })
-              .join('');
-            cardList.innerHTML = '';
-            cardList.insertAdjacentHTML('afterbegin', arrMove);
-            createPagination(page, 20, movies.total_results);
-            cardList.addEventListener('click', onCardClick);
-            pageUp();
+            })
+            .join('');
+          cardList.innerHTML = '';
+          cardList.insertAdjacentHTML('afterbegin', arrMove);
+          createPagination(page, 20, movies.total_results);
+          cardList.addEventListener('click', onCardClick);
+          pageUp();
+          Loading.pulse({
+            svgSize: '150px',
+            svgColor: '#FF6B08',
           });
-        } else {
+          Loading.remove(600);
+        });
+      } else {
         cardList.innerHTML = '';
         pagin.innerHTML = '';
         Notiflix.Notify.info('Oops, there is no movies');
