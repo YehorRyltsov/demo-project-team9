@@ -33,12 +33,24 @@ function openModalReview() {
   window.addEventListener('keydown', onEscKeyPressExit);
 }
 
-export function onCardClick(e) {
-  e.preventDefault();
-  showLoader();
-  const сardId = e.target.closest('li').dataset.idcard;
-  openModalReview();
-  fetchMoveId(сardId)
+  function openModalReview() {
+
+    refs.modal.classList.remove("is-hidden");
+    refs.body.classList.add("no-scroll");
+
+    refs.modal.addEventListener('click', onBackdropClick);
+    window.addEventListener('keydown', onEscKeyPressExit);
+
+  }
+
+
+  export function onCardClick(e){
+    e.preventDefault();
+    showLoader();
+    const сardId = e.target.closest('li').dataset.idcard;
+    openModalReview();
+    fetchMoveId(сardId)
+
     .then(renderModalCardReview)
     .catch(error => console.error(error));
 }
@@ -88,7 +100,7 @@ function renderModalCardReview(move) {
     </button>
     <div class="modal-review__body">
       <div class="modal-review__card">
-        <img class="modal-review__content" 
+        <img class="modal-review__content"
         src="${src}" />
       </div>
       <div class="modal-review__container">
