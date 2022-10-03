@@ -6,9 +6,10 @@ import {
   isQueue,
   isWatched,
 } from './db';
+import { showModal } from './hideAndOpen-modal';
 // import { currentUserId } from './user';
 
-export const dimarefs = {
+export const refs = {
   KEY: 'a115fde3660c9e5b413d785f288ed44e',
   btnWatchedEl: document.querySelector('#dima-btn-watched'),
   btnQueueEl: document.querySelector('#dima-btn-queue'),
@@ -18,70 +19,85 @@ export const dimarefs = {
   btnQueueItemRemove: document.querySelector('.d-remove-queue'),
 };
 
-dimarefs.btnQueueEl.classList.remove('active');
-// refs.btnWatchedEl.addEventListener('click', () => onBtnClickWatched(642885));
-// refs.btnQueueEl.addEventListener('click', () => onBtnClickQueue(762504));
+refs.btnQueueEl.classList.remove('active');
+refs.btnWatchedEl.addEventListener('click', () => onBtnClickWatched(762504));
+refs.btnQueueEl.addEventListener('click', () => onBtnClickQueue(762504));
 
 // -------------- При клике на кнопку Queue ---------------
 
 export async function onBtnClickQueue(filmId) {
-  refs.btnWatchedEl.classList.remove('active');
-  refs.btnQueueEl.classList.add('active');
-  const answer = await isQueue(UserId, filmId);
+  btnWatchedEl.classList.remove('active');
+  btnQueueEl.classList.add('active');
+  const answer = await isQueue(currentUserId, filmId);
 
   findFilmById(filmId).then(film => {
     if (answer) {
-      deleteQueueFilmById(UserId, filmId);
+      deleteQueueFilmById(currentUserId, filmId);
       console.log('вызвали удалить');
       return;
     } else {
-      addQueueFilmByUser(UserId, film);
+      addQueueFilmByUser(currentUserId, film);
       console.log('вызвали добавить');
       console.log(film);
     }
   });
-  dimarefs.btnQueueItemAdd.classList.toggle('hide');
-  dimarefs.btnQueueItemRemove.classList.toggle('hide');
+  btnQueueItemAdd.classList.toggle('hide');
+  btnQueueItemRemove.classList.toggle('hide');
 }
 
 // -------------- При клике на кнопку Watched ---------------
 
-export async function onBtnClickWatched(filmId, UserId) {
-  refs.btnWatchedEl.classList.add('active');
-  refs.btnQueueEl.classList.remove('active');
-  const answer = await isWatched(UserId, filmId);
-
-  findFilmById(filmId).then(film => {
-    if (answer) {
-      deleteWatchedFilmById(UserId, filmId);
-      console.log('вызвали удалить');
-      return;
-    } else {
-      addWatchedFilmByUser(UserId, film);
-      console.log('вызвали добавить');
-      console.log(film);
-    }
-  });
-  dimarefs.btnWatchedItemAdd.classList.toggle('hide');
-  dimarefs.btnWatchedItemRemove.classList.toggle('hide');
+export async function onBtnClickWatched(filmId) {
+  // refs.btnWatchedEl.classList.add('active');
+  // refs.btnQueueEl.classList.remove('active');
+  // const answer = await isWatched(currentUserId, filmId);
+  // findFilmById(filmId).then(film => {
+  //   if (answer) {
+  //     deleteWatchedFilmById(currentUserId, filmId);
+  //     console.log('вызвали удалить');
+  //     return;
+  //   } else {
+  //     addWatchedFilmByUser(currentUserId, film);
+  //     console.log('вызвали добавить');
+  //     console.log(film);
+  //   }
+  // });
+  // refs.btnWatchedItemAdd.classList.toggle('hide');
+  // refs.btnWatchedItemRemove.classList.toggle('hide');
 }
 
 // -------------- Для поиска фильма по ID ---------------
 
 export async function findFilmById(filmId) {
   const data = await fetch(`
-https://api.themoviedb.org/3/movie/${filmId}?api_key=${dimarefs.KEY}&language=en-US`);
+https://api.themoviedb.org/3/movie/${filmId}?api_key=${refs.KEY}&language=en-US`);
   const film = await data.json();
   return film;
 }
 
 // -------------- Узнать есть фильм в базе или нет (возвращает true/false) ---------------
 
-async function answerIsWatched(currentUserId, filmId) {
+export async function answerIsWatched(currentUserId, filmId) {
   const answer = await isWatched(currentUserId, filmId);
   return answer;
 }
-async function answerIsQueue(currentUserId, filmId) {
+export async function answerIsQueue(currentUserId, filmId) {
   const answer = await isQueue(currentUserId, filmId);
   return answer;
+}
+// ------------Проверка Юзера
+function isCurrentUser(userID) {
+  if (userID === null) {
+    btnWatchedEl.setAttribute('disabled', 'disabled');
+  } else {
+    btnWatchedEl.removeAttribute('disabled');
+  }
+}
+
+function TestOnBtnClick(userId) {
+  if (userId === null) {
+    showModal();
+  } else {
+    console.log('Hello you are login');
+  }
 }
