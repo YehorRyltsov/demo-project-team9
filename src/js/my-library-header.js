@@ -162,7 +162,7 @@ function renderWatchedList(array) {
     const genreName = genres.map(genre => genresNames.push(genre.name));
 
     const markup = `
-                <li class="photo-card data-idcard="${id}"">
+                <li class="photo-card data-idcard=${id}">
                 <a class="link" href="#">
                   <img src= "https://image.tmdb.org/t/p/w500${poster_path}" alt="${original_title} loading="lazy" width: 0px class="card-image">
                   <div class="info">
