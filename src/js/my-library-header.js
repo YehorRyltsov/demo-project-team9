@@ -3,6 +3,7 @@ import { currentUserId } from './user';
 import { showModal } from './hideAndOpen-modal';
 import { createPagination } from './pagination';
 import emptyLibraryPageUrl from '../images/empty-library-page.jpg';
+import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 let movieWatchedList = [];
 let movieQueueList = [];
@@ -95,6 +96,11 @@ function showEmptyLibrary() {
 //------------------ My library functional -----------------
 
 function retrieveWatchedMovies(movies) {
+  Loading.pulse({
+    svgSize: '150px',
+    svgColor: '#FF6B08',
+  });
+  Loading.remove(600);
   setTimeout(function () {
     if (movies.length !== 0) {
       return renderWatchedList(movies);
@@ -102,19 +108,26 @@ function retrieveWatchedMovies(movies) {
       showEmptyLibrary();
       sectionPagination.style.display = 'none';
     }
-  }, 150);
+  }, 300);
 }
 
 function renderWatchedList(array) {
   const renderMovies = array.map(item => {
-    let { poster_path, original_title, genres, release_date, vote_average } =
-      item;
+    let {
+      poster_path,
+      original_title,
+      genres,
+      release_date,
+      vote_average,
+      id,
+    } = item;
     return makeMoviesListMarkup(
       poster_path,
       original_title,
       genres,
       release_date,
-      vote_average
+      vote_average,
+      id
     );
   });
 
@@ -139,7 +152,8 @@ function renderWatchedList(array) {
     original_title,
     genres,
     release_date,
-    vote_average
+    vote_average,
+    id
   ) {
     const date = new Date(`${release_date}`);
     const year = date.getFullYear();
@@ -148,7 +162,7 @@ function renderWatchedList(array) {
     const genreName = genres.map(genre => genresNames.push(genre.name));
 
     const markup = `
-                <li class="photo-card">
+                <li class="photo-card data-idcard="${id}"">
                 <a class="link" href="#">
                   <img src= "https://image.tmdb.org/t/p/w500${poster_path}" alt="${original_title} loading="lazy" width: 0px class="card-image">
                   <div class="info">
