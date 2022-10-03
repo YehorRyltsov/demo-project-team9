@@ -4,7 +4,6 @@ import { createPagination } from './pagination';
 import { mainMovieEx } from './main-movies';
 import { pageUp } from './page-up-pagination';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
-// import { spinnerSearch } from './page-up-pagination';
 import Notiflix from 'notiflix';
 
 Notiflix.Notify.init({
@@ -64,7 +63,7 @@ function searchMovie(query, page) {
               const date = new Date(`${move.release_date}`);
               let year = date.getFullYear();
               if (isNaN(year)) {
-                year = "pending"
+                year = 'pending';
               }
               let src = 'https://i.ibb.co/0GKG6L1/img-Modal-Review.jpg';
               if (move.poster_path != null && move.poster_path != 'null') {
@@ -81,7 +80,9 @@ function searchMovie(query, page) {
                       <b>${move.title.toUpperCase()}</b>
                     </p>
                     <p class="info-item">
-                    <b class="info-genres">${move.genres.join(', ')} | ${year}</b>
+                    <b class="info-genres">${move.genres.join(
+                      ', '
+                    )} | ${year}</b>
                     </p>
                   </div>
                   </a>
