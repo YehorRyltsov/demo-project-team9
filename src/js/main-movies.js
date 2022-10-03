@@ -1,7 +1,9 @@
+import { onCardClick } from './modal-review';
 import { fetchMoves, fetchGenres } from './fetch-movies';
 import { createPagination } from './pagination';
 import { searchMovieEx } from './search-line';
-
+import { pageUp } from './page-up-pagination';
+import { showLoader, hideLoader } from './pre_loader';
 const cardList = document.querySelector('.gallery-films');
 const searchButton = document.querySelector('#search-form');
 
@@ -14,6 +16,7 @@ export function mainMovieEx(page) {
     fetchMove(page);
   }
 }
+
 function fetchMove(page) {
   fetchMoves(page).then(movies => {
     fetchGenres().then(genres => {
@@ -34,9 +37,12 @@ function fetchMove(page) {
         })
         .map(move => {
           const date = new Date(`${move.release_date}`);
-          const year = date.getFullYear();
+          let year = date.getFullYear();
+              if (isNaN(year)) {
+                year = "pending"
+              }
           return `
-                <li class="photo-card">
+                <li class="photo-card" data-idcard="${move.id}">
                 <a class="link" href="#">
                   <img src= "https://image.tmdb.org/t/p/w500${
                     move.poster_path
@@ -47,11 +53,9 @@ function fetchMove(page) {
                     <p class="info-item">
                       <b>${move.title.toUpperCase()}</b>
                     </p>
-                    <p class="info-item">                      
-                      <b class="info-genres">${move.genres.join(', ')}</b>
-                      <b class="info-genres"> | </b>
-                      <b class="info-genres">${year}</b>
-                    </p>                   
+                    <p class="info-item">
+                      <b class="info-genres">${move.genres.join(', ')} | ${year}</b>
+                    </p>
                   </div>
                   </a>
                 </li>`;
@@ -60,6 +64,8 @@ function fetchMove(page) {
       cardList.innerHTML = '';
       cardList.insertAdjacentHTML('afterbegin', arrMove);
       createPagination(page, 20, movies.total_results);
+      pageUp();
+      cardList.addEventListener('click', onCardClick);
     });
   });
 }

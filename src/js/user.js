@@ -1,4 +1,5 @@
 import { create, login, onAuth, logOut } from './firebase';
+import { goHome } from './fn-go-home';
 
 const emailInput = document.querySelector('#email-input');
 const pwdInput = document.querySelector('#pwd-input');
@@ -17,23 +18,21 @@ const body = document.querySelector('body');
 
 export let currentUserId = null;
 
-logOutBtn.addEventListener('click', logOut);
+logOutBtn.addEventListener('click', onLogOut);
 registerForm.addEventListener('submit', registrationUser);
 loginForm.addEventListener('submit', onLogin);
+
+function onLogOut() {
+  logOut();
+  goHome();
+}
 
 function onLogin(e) {
   e.preventDefault();
   try {
     login(loginEmail.value, loginPwd.value);
-    // Notiflix.Notify.success('Login success'); // ...
-
     e.currentTarget.reset();
-  } catch (error) {
-    // Notiflix.Notify.failure('Login failure');
-
-    console.error(error);
-    console.log('неправильные данные для входа');
-  }
+  } catch (error) {}
 }
 
 function registrationUser(e) {
@@ -43,7 +42,6 @@ function registrationUser(e) {
     create(emailInput.value, pwdInput.value);
     e.currentTarget.reset();
   } catch (error) {
-    console.error(error);
     e.currentTarget.reset();
   }
 }
@@ -59,7 +57,6 @@ onAuth(user => {
     // ...
   } else {
     // все для отсутствия юзера
-    console.log('нема юзера');
     currentUserId = null;
     showLogInBtn();
     hideLogOutBtn();
@@ -95,16 +92,12 @@ function hideModal() {
 }
 
 export function loginCheck() {
-  console.log('проверка');
-  // pwdInput.addEventListener('input', onPwdInput);
   pwdRepeatInput.addEventListener('input', onPwdRepeatInput);
 }
 
 function onPwdRepeatInput(e) {
   const element = e.currentTarget;
   const pwdToCheck = pwdInput.value;
-  // console.log(pwdToCheck);
-  // console.log(e.currentTarget.value);
   if (element.value === pwdToCheck) {
     cheked();
     formSignupBtn.disabled = false;
