@@ -7,8 +7,6 @@ import { createPagination } from './pagination';
 
 // console.log(currentUserId);
 
-let movieWatchedList = getWatchedFilmsByUser(currentUserId);
-let movieQueueList = getQueueFilmsByUser(currentUserId);
 import emptyLibraryPageUrl from '../images/empty-library-page.jpg';
 
 const header = document.querySelector('.header');
@@ -42,6 +40,11 @@ export function onHeaderHomeClick(evt) {
 
 function onMyLibraryClick(evt) {
   evt.preventDefault();
+  console.log(currentUserId);
+  console.log(getWatchedFilmsByUser(currentUserId).length);
+  // let movieWatchedList = getWatchedFilmsByUser(currentUserId).map();
+  // const movieQueueList = getQueueFilmsByUser(currentUserId);
+  console.log(movieQueueList);
   if (currentUserId !== null) {
     searchInput.classList.add('visually-hidden');
     myLibraryBtnWrap.classList.remove('visually-hidden');
