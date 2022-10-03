@@ -107,7 +107,7 @@ export function getQueueFilmsByUser(userId) {
       onlyOnce: true,
     }
   );
-  return result.map;
+  return result;
 }
 
 // Проверяет находится ли фильм в списке watched
