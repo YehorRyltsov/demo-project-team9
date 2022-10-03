@@ -1,4 +1,4 @@
-
+import {hideLoader, showLoader} from './pre_loader';
 
 
 
@@ -32,6 +32,7 @@ const refs = {
 
   export function onCardClick(e){
     e.preventDefault();
+    showLoader();
     const сardId = e.target.closest('li').dataset.idcard;
     openModalReview();
     fetchMoveId(сardId)
@@ -117,13 +118,15 @@ function closeModalReview(){
         </p>
         <div class="modal-review__btn-container">
           <button type="button" class="modal-review__btn">
-            ADD TO WACHAD
+            ADD TO WATCHAD
           </button>
           <button type="button" class="modal-review__btn">ADD TO QUEUE</button>
         </div>
       </div>
     </div>
   </div>`;
+
+  hideLoader();
 
   const closeModalBtn = document.querySelector(".review__btn-close");
   closeModalBtn.addEventListener("click", closeModalReview);
