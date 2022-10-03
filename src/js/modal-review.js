@@ -33,7 +33,6 @@ const refs = {
   export function onCardClick(e){
     e.preventDefault();
     const сardId = e.target.closest('li').dataset.idcard;
-    console.log(сardId);
     openModalReview();
     fetchMoveId(сardId)
     .then(renderModalCardReview)
@@ -81,6 +80,10 @@ function closeModalReview(){
 
 
   function renderModalCardReview(move){
+    let src = 'https://i.ibb.co/0GKG6L1/img-Modal-Review.jpg';
+                if (move.poster_path != null && move.poster_path != 'null') {
+                  src = `https://image.tmdb.org/t/p/w500${move.poster_path}`;
+                }
   refs.modal.innerHTML = `<div class="modal-review">
     <button
     type ="button" class="review__btn-close close"
@@ -89,12 +92,7 @@ function closeModalReview(){
     <div class="modal-review__body">
       <div class="modal-review__card">
         <img class="modal-review__content" 
-        src="https://image.tmdb.org/t/p/w500${
-            move.poster_path}"
-            ? "https://image.tmdb.org/t/p/w500${
-            move.poster_path}"
-            : "./images/imgModalReview.jpg" 
-            alt="${move.original_title}" />
+        src="${src}" />
       </div>
       <div class="modal-review__container">
         <h2 class="modal-review__title">${move.title}</h2>
