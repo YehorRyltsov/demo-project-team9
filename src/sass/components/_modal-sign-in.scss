@@ -1,8 +1,8 @@
-:root{
+:root {
   --animation-timer: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.backdrop{
+.backdrop {
   opacity: 1;
   left: 0;
   // overflow-y: none;
@@ -10,63 +10,60 @@
 }
 
 /////////////////////////////////////////
-.modal__container{
+.modal__container {
   width: 700px;
-  height:500px;
-  padding: 40px 0 ;
-
+  height: 500px;
+  padding: 40px 0;
 }
 
-.modal__window{
+.modal__window {
   display: flex;
   align-items: center;
   height: 100%;
   background-color: black;
   border-radius: 20px;
   // box-shadow: 0 5px 45px rgba(0, 0, 0, 0.2);
-
 }
 
 ///////////////////////////////////////////////
 
-
-.modal-item{
+.modal-item {
   text-align: center;
   width: 50%;
 }
 
-.modal-item__title{
+.modal-item__title {
   font-size: 1.2rem;
   font-weight: 500;
-  color:white;
+  color: white;
   margin-bottom: 10px;
 }
 
-.modal-item__btn{
+.modal-item__btn {
   border-radius: 7%;
   border: none;
   cursor: pointer;
-  padding:10px 20px;
+  padding: 10px 20px;
   background-color: #ffda95;
-  color:black;
+  color: black;
   font-size: 16px;
   font-weight: 500;
 
-  &:hover{
+  &:hover {
     background-color: #ffcf76;
   }
 }
 
 /////////////////////
-.form-box{
+.form-box {
   align-items: center;
   background-color: white;
-  height:100%;
+  height: 100%;
   width: 50%;
 
   position: absolute;
-  top:0;
-  left:0;
+  top: 0;
+  left: 0;
   z-index: 1000;
 
   transition: 0.5s ease-in-out;
@@ -74,36 +71,30 @@
   overflow: hidden;
 }
 
-.form-box.active{
-  left:50%;
+.form-box.active {
+  left: 50%;
 }
 
-.form__sign-in{
-  left:0;
+.form__sign-in {
+  left: 0;
   transition-delay: 0.25s;
-
-  
 }
 
-.form__sign-up{
-  left:100%;
+.form__sign-up {
+  left: 100%;
   transition-delay: 0s;
 }
 
-.form-box.active .form__sign-in{
-  left:-100%;
+.form-box.active .form__sign-in {
+  left: -100%;
   transition-delay: 0s;
-  
-
 }
 
-.form-box.active .form__sign-up{
-  left:0;
-  
+.form-box.active .form__sign-up {
+  left: 0;
 }
 
-
-.form{
+.form {
   width: 100%;
   padding: 50px;
   font-size: 16px;
@@ -112,31 +103,31 @@
   transition: 0.5s;
 }
 
-.form__title{
+.form__title {
   font-style: 1.5rem;
   font-weight: 500;
   color: #333;
 }
 
-.form__input{
+.form__input {
   border-radius: 7px;
   width: 100%;
   padding: 10px;
   border: solid 1px #333;
   font-style: inherit;
 
-  &:focus-visible{
+  &:focus-visible {
     outline: 2px solid red;
   }
 }
 
-.form__btn{
+.form__btn {
   font-size: 16px;
   font-weight: 500;
   border-radius: 7px;
   border: none;
   cursor: pointer;
-  font-style:inherit;
+  font-style: inherit;
   background-color: red;
   color: black;
   padding: 10px 40px;
@@ -146,15 +137,14 @@ form p {
   margin: 16px 0px;
 }
 
-.form__btn__sign-up{
+.form__btn__sign-up {
   background-color: orangered;
 }
 
 // //////////////////
-.test-for-open-modal{
-padding: 20px;
+.test-for-open-modal {
+  padding: 20px;
 }
-
 
 .is-hidden {
   opacity: 0;
@@ -194,57 +184,57 @@ padding: 20px;
 }
 
 @media (max-width: 768px) {
-  .modal__container{
+  .modal__container {
     max-width: 300px;
     height: 650px;
     padding: 0;
     // margin: 0 20px;
   }
 
-  .modal__window{
+  .modal__window {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
 
-  .modal-item{
+  .modal-item {
     width: 100%;
     padding: 30px 0;
   }
 
-  .form-box{
+  .form-box {
     width: 100%;
     height: 360px;
     box-shadow: none;
-    top:0;
+    top: 0;
   }
 
-  .form-box.active{
-    top:150px;
-    left:0;
+  .form-box.active {
+    top: 150px;
+    left: 0;
   }
 
-  .form{
+  .form {
     padding: 0px 30px 30px 30px;
   }
 
-  .form__btn{
+  .form__btn {
     display: block;
     margin: 0 auto;
   }
 }
 
 /////////////////////////////
-.test-for-close-modal{
+.test-for-close-modal {
   margin-left: auto;
   display: flex;
 
-  margin:15px;
+  margin: 15px;
   padding: 12px;
 
   cursor: pointer;
 
-  background-color:transparent;
+  background-color: transparent;
 }
 
 .close {
@@ -256,7 +246,7 @@ padding: 20px;
   border-radius: 50%;
   &:before,
   &:after {
-    content: "";
+    content: '';
     position: absolute;
     width: 80%;
     height: 2px;
@@ -280,3 +270,6 @@ padding: 20px;
   }
 }
 
+.checked {
+  background-color: hsla(88, 28%, 62%, 0.131);
+}

@@ -9,12 +9,25 @@
 
 // fn for your code
 
-function showLoader() {
-  document.querySelector('.loader').classList.toggle('loader-is-open');
+export function hideLoader() {
+  document.querySelector('.overlay').classList.add('is-hidden');
 }
 
-function hideLoader() {
-  document.querySelector('.loader').classList.remove('loader-is-open');
+export function showLoader() {
+  document.querySelector('.overlay').classList.remove('is-hidden');
 }
 
-export { showLoader, hideLoader };
+// export { showLoader, hideLoader };
+
+const loaderMain = () => {
+  const loaderContainer = document.querySelector('.overlay');
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      if (!loaderContainer.classList.contains('is-hidden')) {
+        loaderContainer.classList.add('is-hidden');
+      }
+    }, 600);
+  });
+};
+
+loaderMain();

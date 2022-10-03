@@ -1,17 +1,24 @@
 .empty-library__text {
-  margin-bottom: 20px;
-  font-family: $font-stack;
+  margin-top: 20px;
   font-weight: 700;
-  font-size: 24px;
-  line-height: 1.33%;
+  font-size: 14px;
+  line-height: 1.33;
   text-align: center;
   text-transform: uppercase;
-
   color: $color-text-footer;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 60px;
+    font-size: 28px;
+  }
 }
 
 .empty-library__image {
-  width: 360px;
-  height: auto;
-  margin-bottom: 60px;
+  min-width: 280px;
+  margin: 0 auto;
+  margin-top: 6px;
+
+  @media screen and (min-width: 768px) {
+    margin-top: 10px;
+  }
 }

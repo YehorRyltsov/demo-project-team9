@@ -1,8 +1,5 @@
 import Pagination from 'tui-pagination';
-import { fetchMoves } from './fetch-movies';
-import { searchMovieEx } from './search-line';
-// import {} from
-// import {} from Тут будуть імпорти робочих функцій пошуку,топ фільмів та кнопки підняття угору
+import { mainMovieEx } from './main-movies';
 
 const pagin = document.querySelector('#pagination');
 
@@ -20,7 +17,7 @@ export const createPagination = (page, itemsPerPage, totalItems) => {
     page,
     centerAlign: true,
     template: {
-      page: '<a href="#" class="tui-page-btn">{{page}}</a>',
+      page: '<a href="#" class="tui-page-btn link">{{page}}</a>',
       currentPage:
         '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
       moveButton:
@@ -43,19 +40,7 @@ export const createPagination = (page, itemsPerPage, totalItems) => {
 
   pagination.on('afterMove', async event => {
     const currentPage = event.page;
-    console.log(currentPage);
-    console.log(searchMovieEx);
-    searchMovieEx(currentPage);
-    if (paginationInit.searchType === 'popular films') {
-      fetchMoves(currentPage);
-      // pageUp();
-    }
-    if (paginationInit.searchType === 'search films') {
-      //searchMovieEx(currentPage);
-      // pageUp();
-    }
+    mainMovieEx(currentPage);
   });
   return pagination;
 };
-// Тут я вручну викликаю цю функцію щоб відобразити кнопки
-//createPagination(1, 1, 24);

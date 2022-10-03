@@ -1,71 +1,76 @@
-  <div class="backdrop is-hidden" data-log-modal>
-    <!-- MODAL -->
-    <div class="modal__container modal data-modal">
-      <div class="modal__window">
+<div class="backdrop is-hidden" data-log-modal>
+  <!-- MODAL -->
+  <div class="modal__container modal data-modal">
+    <div class="modal__window">
 
-        <section class="modal-item">
-          <h2 class="modal-item__title">Old user? Let's watch movies!</h2>
-          <button class="modal-item__btn sign-in-btn">Log In</button>
-        </section>
+      <section class="modal-item">
+        <h2 class="modal-item__title">Old user? Let's watch movies!</h2>
+        <button class="modal-item__btn sign-in-btn">Log In</button>
+      </section>
 
-        <section class="modal-item">
-          <h2 class="modal-item__title">New user? Let's go! </h2>
-          <button class="modal-item__btn sign-up-btn">Sign Up</button>
-        </section>
-
-      </div>
-
-      <!-- FORM -->
-      <div class="form-box">
-          <button  type ="button" class="test-for-close-modal close" data-modal-log-close >
-            
-          </button>
-        
-        <form action="submit" id="login-form"  class="form form__sign-in">
-          <h3 class="form__title">Enter your account</h3>
-
-          <p>
-            <input type="email" class="form__input" placeholder="Email" id="login-email-input"></input>
-          </p>
-
-          <p>
-            <input type="password" class="form__input"placeholder="Password" id="login-pwd-input"></input>
-          </p>
-
-          <p>
-            <button type="submit" class="form__btn">Log In</button>
-          </p>
-
-        </form>
-        <!-- ///////////////////////////////////////////// -->
-
-        <form class="form form__sign-up" id="register-form">
-          <h3 class="form__title">Create your own account</h3>
-
-          <p>
-            <input type="email" class="form__input" placeholder="Email" id="email-input"></input>
-          </p>
-
-          <p>
-            <input type="password" class="form__input"placeholder="Password" id="pwd-input"></input>
-          </p>
-
-          <p>
-            <input type="password" class="form__input"placeholder="Repeat password" id="second-pwd-input"></input>
-          </p>
-
-          <p>
-            <button type="submit" class="form__btn">Sign Up</button>
-          </p>
-        </form>
+      <section class="modal-item">
+        <h2 class="modal-item__title">New user? Let's go! </h2>
+        <button class="modal-item__btn sign-up-btn">Sign Up</button>
+      </section>
 
     </div>
-      <script src="./js/hideAndOpen-modal.js"  type="module"></script>
-      
+
+    <!-- FORM -->
+    <div class="form-box">
+      <button type="button" class="test-for-close-modal close" data-modal-log-close>
+
+      </button>
+
+      <form action="submit" id="login-form" class="form form__sign-in">
+        <h3 class="form__title">Enter your account</h3>
+
+        <p>
+          <input type="email" class="form__input" autocomplete="on" placeholder="Email" id="login-email-input"
+            required></input>
+        </p>
+
+        <p>
+          <input type="password" autocomplete="on" class="form__input" placeholder="Password" id="login-pwd-input"
+            required minlength="6">
+        </p>
+
+        <p>
+          <button type="submit" class="form__btn" id="forn-login-btn">Log In</button>
+        </p>
+
+      </form>
+      <!-- ///////////////////////////////////////////// -->
+
+      <form class="form form__sign-up" id="register-form">
+        <h3 class="form__title">Create your own account</h3>
+
+        <p>
+          <input type="email" class="form__input" autocomplete="on" placeholder="Email" id="email-input" required />
+
+        </p>
+
+        <p>
+          <input type="password" autocomplete="on" class="form__input" placeholder="Password" id="pwd-input" required
+            minlength="6" />
+        </p>
+
+        <p>
+          <input type="password" autocomplete="on" class="form__input" placeholder="Repeat password"
+            id="second-pwd-input" required />
+        </p>
+
+        <p>
+          <button type="submit" class="form__btn" disabled id="form-signup-btn">Sign Up</button>
+        </p>
+      </form>
+
+    </div>
+
+
   </div>
 
-<!-- ======= -->
-<!-- <div class="modal modal-auth"> -->
+  <!-- ======= -->
+  <!-- <div class="modal modal-auth"> -->
   <!-- <form action="submit" id="register-form">
     <input type="email" placeholder="enter email" id="email-input">
     <input type="password" placeholder="enter password" id="pwd-input"></input>
@@ -79,6 +84,4 @@
   </form> -->
 
   <!-- <button id="log-out">пшел я (временно вышел)</button> -->
-<!-- </div> -->
-
-
+  <!-- </div> -->
