@@ -168,7 +168,6 @@ function renderModalCardReview(move) {
         btnWatchedItemAdd.classList.add('hide');
         btnWatchedItemRemove.classList.remove('hide');
 
-        console.log(answer);
       } else {
         btnWatchedItemAdd.classList.remove('hide');
         btnWatchedItemRemove.classList.add('hide');
