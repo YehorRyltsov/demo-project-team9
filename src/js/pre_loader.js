@@ -9,11 +9,11 @@
 
 // fn for your code
 
-export function showLoader() { 
+export function hideLoader() { 
   document.querySelector('.overlay').classList.add("is-hidden");
 }
 
-export function hideLoader() { 
+export function showLoader() { 
   document.querySelector('.overlay').classList.remove("is-hidden");
 }
 
