@@ -6,7 +6,7 @@ import {
   isQueue,
   isWatched,
 } from './db';
-import { currentUserId } from './user';
+// import { currentUserId } from './user';
 
 export const dimarefs = {
   KEY: 'a115fde3660c9e5b413d785f288ed44e',
@@ -25,17 +25,17 @@ dimarefs.btnQueueEl.classList.remove('active');
 // -------------- При клике на кнопку Queue ---------------
 
 export async function onBtnClickQueue(filmId) {
-  dimarefs.btnWatchedEl.classList.remove('active');
-  dimarefs.btnQueueEl.classList.add('active');
-  const answer = await isQueue(currentUserId, filmId);
+  refs.btnWatchedEl.classList.remove('active');
+  refs.btnQueueEl.classList.add('active');
+  const answer = await isQueue(UserId, filmId);
 
   findFilmById(filmId).then(film => {
     if (answer) {
-      deleteQueueFilmById(currentUserId, filmId);
+      deleteQueueFilmById(UserId, filmId);
       console.log('вызвали удалить');
       return;
     } else {
-      addQueueFilmByUser(currentUserId, film);
+      addQueueFilmByUser(UserId, film);
       console.log('вызвали добавить');
       console.log(film);
     }
@@ -46,18 +46,18 @@ export async function onBtnClickQueue(filmId) {
 
 // -------------- При клике на кнопку Watched ---------------
 
-export async function onBtnClickWatched(filmId) {
-  dimarefs.btnWatchedEl.classList.add('active');
-  dimarefs.btnQueueEl.classList.remove('active');
-  const answer = await isWatched(currentUserId, filmId);
+export async function onBtnClickWatched(filmId, UserId) {
+  refs.btnWatchedEl.classList.add('active');
+  refs.btnQueueEl.classList.remove('active');
+  const answer = await isWatched(UserId, filmId);
 
   findFilmById(filmId).then(film => {
     if (answer) {
-      deleteWatchedFilmById(currentUserId, filmId);
+      deleteWatchedFilmById(UserId, filmId);
       console.log('вызвали удалить');
       return;
     } else {
-      addWatchedFilmByUser(currentUserId, film);
+      addWatchedFilmByUser(UserId, film);
       console.log('вызвали добавить');
       console.log(film);
     }
@@ -77,7 +77,11 @@ https://api.themoviedb.org/3/movie/${filmId}?api_key=${dimarefs.KEY}&language=en
 
 // -------------- Узнать есть фильм в базе или нет (возвращает true/false) ---------------
 
-// async function answerIsWatched(currentUserId, filmId) {
-//   const answer = await isWatched(currentUserId, filmId);
-//   return answer;
-// }
+async function answerIsWatched(currentUserId, filmId) {
+  const answer = await isWatched(currentUserId, filmId);
+  return answer;
+}
+async function answerIsQueue(currentUserId, filmId) {
+  const answer = await isQueue(currentUserId, filmId);
+  return answer;
+}

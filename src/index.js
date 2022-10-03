@@ -1,9 +1,9 @@
 import 'firebaseui/dist/firebaseui.css';
-import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { Report } from 'notiflix/build/notiflix-report-aio';
-import { Confirm } from 'notiflix/build/notiflix-confirm-aio';
-import { Loading } from 'notiflix/build/notiflix-loading-aio';
-import { Block } from 'notiflix/build/notiflix-block-aio';
+import Notiflix from 'notiflix';
+Notiflix.Notify.init({
+  position: 'center-top',
+});
+import './js/db';
 import './js/user';
 // import './js/test-db';
 import { currentUserId } from './js/user';

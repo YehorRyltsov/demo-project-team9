@@ -120,3 +120,4 @@ function renderModalCardReview(move) {
   const closeModalBtn = document.querySelector('.review__btn-close');
   closeModalBtn.addEventListener('click', closeModalReview);
 }
+onBtnClickWatched(762504, currentUserId);
