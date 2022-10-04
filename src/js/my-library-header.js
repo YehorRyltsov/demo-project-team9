@@ -4,6 +4,7 @@ import { showModal } from './hideAndOpen-modal';
 import { createPagination } from './pagination';
 import emptyLibraryPageUrl from '../images/empty-library-page.jpg';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
+import {lengthGenreMovies} from './lengthGenreMovies';
 
 let movieWatchedList = [];
 let movieQueueList = [];
@@ -157,9 +158,7 @@ function renderWatchedList(array) {
   ) {
     const date = new Date(`${release_date}`);
     const year = date.getFullYear();
-
-    const genresNames = [];
-    const genreName = genres.map(genre => genresNames.push(genre.name));
+    let genre = lengthGenreMovies({genres});
 
     const markup = `
                 <li class="photo-card" data-idcard="${id}">
@@ -170,12 +169,9 @@ function renderWatchedList(array) {
                       <b>${original_title.toUpperCase()}</b>
                     </p>
                     <p class="info-item">
-                    <b class="info-genres">${genresNames.join(
-                      ', '
-                    )} | ${year} <span class="info-genres vote-average">${vote_average.toFixed(
+                    <b class="info-genres">${genre} | ${year} <span class="info-genres vote-average">${vote_average.toFixed(
       1
-    )}</span></b>                      
-                                          </p>                   
+    )}</span></b></p>                   
                   </div>
                   </a>
                 </li>`;

@@ -3,6 +3,7 @@ import { fetchMoves, fetchGenres } from './fetch-movies';
 import { createPagination } from './pagination';
 import { searchMovieEx } from './search-line';
 import { pageUp } from './page-up-pagination';
+import {lengthGenreMoviesArray} from './lengthGenreMovies';
 const cardList = document.querySelector('.gallery-films');
 const searchButton = document.querySelector('#search-form');
 
@@ -40,6 +41,7 @@ function fetchMove(page) {
           if (isNaN(year)) {
             year = 'pending';
           }
+          let genresArray = lengthGenreMoviesArray(move);
           return `
                 <li class="photo-card" data-idcard="${move.id}">
                 <a class="link" href="#">
@@ -53,9 +55,7 @@ function fetchMove(page) {
                       <b>${move.title.toUpperCase()}</b>
                     </p>
                     <p class="info-item">
-                      <b class="info-genres">${move.genres.join(
-                        ', '
-                      )} | ${year}</b>
+                      <b class="info-genres">${genresArray} | ${year}</b>
                     </p>
                   </div>
                   </a>

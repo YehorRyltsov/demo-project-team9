@@ -8,6 +8,7 @@ import {
   OnBtnClickCheckUser,
 } from './push-data-to-database';
 import { currentUserId } from './user';
+import {lengthGenreMovies} from './lengthGenreMovies';
 
 const refs = {
   modal: document.querySelector('[data-modal]'),
@@ -93,6 +94,7 @@ function renderModalCardReview(move) {
   if (move.poster_path != null && move.poster_path != 'null') {
     src = `https://image.tmdb.org/t/p/w500${move.poster_path}`;
   }
+  let genre = lengthGenreMovies(move);
   refs.modal.innerHTML = `<div class="modal-review">
     <button
     type ="button" class="review__btn-close close"
@@ -121,9 +123,7 @@ function renderModalCardReview(move) {
           <div class="modal-review__item list">Original Title</div>
           <p class="modal-review__item--dark">${move.original_title}</p>
           <div class="modal-review__item list">Genre</div>
-          <p class="modal-review__item--dark">${move.genres
-            .map(genre => genre.name)
-            .join(', ')} </p>
+          <p class="modal-review__item--dark">${genre} </p>
         </div>
         <p class="modal-review__subtitle">About</p>
         <p class="modal-review__about">${

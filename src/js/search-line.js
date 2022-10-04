@@ -5,6 +5,7 @@ import { mainMovieEx } from './main-movies';
 import { pageUp } from './page-up-pagination';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 import Notiflix from 'notiflix';
+import {lengthGenreMoviesArray} from './lengthGenreMovies';
 
 Notiflix.Notify.init({
   position: 'center-top',
@@ -69,6 +70,7 @@ function searchMovie(query, page) {
               if (move.poster_path != null && move.poster_path != 'null') {
                 src = `https://image.tmdb.org/t/p/w500${move.poster_path}`;
               }
+              let genresArray = lengthGenreMoviesArray(move);
               return `
                 <li class="photo-card" data-idcard="${move.id}">
                 <a class="link" href="#">
@@ -80,9 +82,7 @@ function searchMovie(query, page) {
                       <b>${move.title.toUpperCase()}</b>
                     </p>
                     <p class="info-item">
-                    <b class="info-genres">${move.genres.join(
-                      ', '
-                    )} | ${year}</b>
+                    <b class="info-genres">${genresArray} | ${year}</b>
                     </p>
                   </div>
                   </a>
