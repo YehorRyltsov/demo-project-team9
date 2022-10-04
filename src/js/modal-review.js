@@ -8,6 +8,7 @@ import {
   OnBtnClickCheckUser,
 } from './push-data-to-database';
 import { currentUserId } from './user';
+import {lengthGenreMovies} from './lengthGenreMovies';
 
 const refs = {
   modal: document.querySelector('[data-modal]'),
@@ -93,6 +94,7 @@ function renderModalCardReview(move) {
   if (move.poster_path != null && move.poster_path != 'null') {
     src = `https://image.tmdb.org/t/p/w500${move.poster_path}`;
   }
+  let genre = lengthGenreMovies(move);
   refs.modal.innerHTML = `<div class="modal-review">
     <button
     type ="button" class="review__btn-close close"
@@ -104,7 +106,7 @@ function renderModalCardReview(move) {
         src="${src}" />
       </div>
       <div class="modal-review__container">
-        <h2 class="modal-review__title">${move.title}</h2>
+        <h2 class="modal-review__title">${move.title.toUpperCase()}</h2>
         <div class="modal-review__items">
           <div class="modal-review__item list">Vote / Votes</div>
           <p class="modal-review__item--grid">
@@ -119,11 +121,9 @@ function renderModalCardReview(move) {
           <div class="modal-review__item list">Popularity</div>
           <p class="modal-review__item--dark">${move.popularity.toFixed(1)} </p>
           <div class="modal-review__item list">Original Title</div>
-          <p class="modal-review__item--dark">${move.original_title}</p>
+          <p class="modal-review__item--dark">${move.original_title.toUpperCase()}</p>
           <div class="modal-review__item list">Genre</div>
-          <p class="modal-review__item--dark">${move.genres
-            .map(genre => genre.name)
-            .join(', ')} </p>
+          <p class="modal-review__item--dark">${genre} </p>
         </div>
         <p class="modal-review__subtitle">About</p>
         <p class="modal-review__about">${
