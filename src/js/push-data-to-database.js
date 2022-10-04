@@ -55,6 +55,7 @@ export async function onBtnClickWatched(
     findFilmById(filmId).then(film => {
       if (answer) {
         deleteWatchedFilmById(currentUserId, filmId);
+        refreshQueue(filmId);
         return;
       } else {
         addWatchedFilmByUser(currentUserId, film);
