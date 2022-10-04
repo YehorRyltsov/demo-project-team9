@@ -1,7 +1,7 @@
 import { getWatchedFilmsByUser, getQueueFilmsByUser } from './db';
 import { currentUserId } from './user';
 import { showModal } from './hideAndOpen-modal';
-
+import { createPagination } from './pagination';
 import emptyLibraryPageUrl from '../images/empty-library-page.jpg';
 import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
@@ -17,9 +17,8 @@ const watchedBtn = document.querySelector('.watched-btn');
 const queueBtn = document.querySelector('.queue-btn');
 const logo = document.querySelector('.logo-link');
 const sectionPagination = document.querySelector('.section-pagination');
-const pagin = document.querySelector('#pagination');
-
 const cardList = document.querySelector('.gallery-films');
+const pagin = document.querySelector('#pagination');
 
 homeHeader.addEventListener('click', onHeaderHomeClick);
 myLibraryHeader.addEventListener('click', onMyLibraryClick);
@@ -40,9 +39,10 @@ export function onHeaderHomeClick(evt) {
 
 function onMyLibraryClick(evt) {
   evt.preventDefault();
-  getUserSavedMovies();
-  disableBtns(evt);
-  if (currentUserId) {
+  watchedBtn.classList.remove('active');
+  queueBtn.classList.add('active');
+  getQueueMoviesByUserID();
+  if (currentUserId !== null) {
     searchInput.classList.add('visually-hidden');
     myLibraryBtnWrap.classList.remove('visually-hidden');
     myLibraryHeader.classList.add('current');
@@ -54,40 +54,32 @@ function onMyLibraryClick(evt) {
     showModal();
   }
 }
-
-function getUserSavedMovies() {
-  movieQueueList = getQueueFilmsByUser(currentUserId);
-  movieWatchedList = getWatchedFilmsByUser(currentUserId);
+function getQueueMoviesByUserID() {
+  return (movieQueueList = getQueueFilmsByUser(currentUserId));
+}
+function getWatchedMoviesByUserID() {
+  return (movieWatchedList = getWatchedFilmsByUser(currentUserId));
 }
 
-function onWatchedBtnClick(evt) {
-  disableBtns(evt);
+function onWatchedBtnClick() {
+  queueBtn.classList.remove('active');
+  watchedBtn.classList.add('active');
+  watchedBtn.disabled = true;
+  queueBtn.disabled = false;
+  getWatchedMoviesByUserID();
   retrieveWatchedMovies(movieWatchedList);
 }
 
-function onQueueBtnClick(evt) {
-  disableBtns(evt);
+function onQueueBtnClick() {
+  watchedBtn.classList.remove('active');
+  queueBtn.classList.add('active');
+  watchedBtn.disabled = false;
+  queueBtn.disabled = true;
+  getQueueMoviesByUserID();
   retrieveWatchedMovies(movieQueueList);
 }
 
-function disableBtns(evt) {
-  if (evt.currentTarget.classList.contains('watched-btn')) {
-    queueBtn.classList.remove('active');
-    watchedBtn.classList.add('active');
-
-    watchedBtn.disabled = true;
-    queueBtn.disabled = false;
-  } else if (evt.currentTarget.classList.contains('queue-btn')) {
-    watchedBtn.classList.remove('active');
-    queueBtn.classList.add('active');
-
-    watchedBtn.disabled = false;
-    queueBtn.disabled = true;
-  } else {
-    watchedBtn.classList.remove('active');
-    queueBtn.classList.add('active');
-  }
-}
+export { onWatchedBtnClick, onQueueBtnClick };
 
 // Функция для пустого массива
 
@@ -104,14 +96,13 @@ function showEmptyLibrary() {
 //------------------ My library functional -----------------
 
 function retrieveWatchedMovies(movies) {
-  getUserSavedMovies();
   Loading.pulse({
     svgSize: '150px',
     svgColor: '#FF6B08',
   });
   Loading.remove(600);
   setTimeout(function () {
-    if (movies.length >= 1) {
+    if (movies.length !== 0) {
       return renderWatchedList(movies);
     } else {
       showEmptyLibrary();
@@ -144,23 +135,33 @@ function renderWatchedList(array) {
   cardList.insertAdjacentHTML('afterbegin', renderMovies.join(''));
 
   //------- Настроить ПАГИНАЦИЮ ----------------------!!!!!!!!!!!
-}
+  //   if (array.length > 10) {
+  //     console.log('PAGINATION SHOUL BE HERE');
+  //     // libraryPagination(2, array);
+  //     createPagination(2, 10, array.length);
+  //   } else {
+  //     sectionPagination.style.display = 'none';
+  //   }
+  // }
+  // function libraryPagination(page, array) {
+  //   createPagination(page, 10, array.length);
+  // }
+  // ------------------------------------------------------------!!!!!!!!!!
+  function makeMoviesListMarkup(
+    poster_path,
+    original_title,
+    genres,
+    release_date,
+    vote_average,
+    id
+  ) {
+    const date = new Date(`${release_date}`);
+    const year = date.getFullYear();
 
-// ------------------------------------------------------------!!!!!!!!!!
-function makeMoviesListMarkup(
-  poster_path,
-  original_title,
-  genres,
-  release_date,
-  vote_average,
-  id
-) {
-  const date = new Date(`${release_date}`);
-  const year = date.getFullYear();
+    const genresNames = [];
+    const genreName = genres.map(genre => genresNames.push(genre.name));
 
-  const genreName = genres.map(genre => genre.name);
-
-  const markup = `
+    const markup = `
                 <li class="photo-card" data-idcard="${id}">
                 <a class="link" href="#">
                   <img src= "https://image.tmdb.org/t/p/w500${poster_path}" alt="${original_title} loading="lazy" width: 0px class="card-image">
@@ -169,14 +170,15 @@ function makeMoviesListMarkup(
                       <b>${original_title.toUpperCase()}</b>
                     </p>
                     <p class="info-item">
-                    <b class="info-genres">${genreName.join(
+                    <b class="info-genres">${genresNames.join(
                       ', '
                     )} | ${year} <span class="info-genres vote-average">${vote_average.toFixed(
-    1
-  )}</span></b>                      
+      1
+    )}</span></b>                      
                                           </p>                   
                   </div>
                   </a>
                 </li>`;
-  return markup;
+    return markup;
+  }
 }
