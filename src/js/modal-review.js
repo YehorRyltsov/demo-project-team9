@@ -106,7 +106,7 @@ function renderModalCardReview(move) {
         src="${src}" />
       </div>
       <div class="modal-review__container">
-        <h2 class="modal-review__title">${move.title}</h2>
+        <h2 class="modal-review__title">${move.title.toUpperCase()}</h2>
         <div class="modal-review__items">
           <div class="modal-review__item list">Vote / Votes</div>
           <p class="modal-review__item--grid">
@@ -121,7 +121,7 @@ function renderModalCardReview(move) {
           <div class="modal-review__item list">Popularity</div>
           <p class="modal-review__item--dark">${move.popularity.toFixed(1)} </p>
           <div class="modal-review__item list">Original Title</div>
-          <p class="modal-review__item--dark">${move.original_title}</p>
+          <p class="modal-review__item--dark">${move.original_title.toUpperCase()}</p>
           <div class="modal-review__item list">Genre</div>
           <p class="modal-review__item--dark">${genre} </p>
         </div>
