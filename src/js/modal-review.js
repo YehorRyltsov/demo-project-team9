@@ -160,7 +160,7 @@ function renderModalCardReview(move) {
   btnQueueEl.addEventListener('click', () =>
     onBtnClickQueue(move.id, btnQueueItemAdd, btnQueueItemRemove)
   );
-  if (currentUserId) {
+  if (!currentUserId) {
     return;
   } else {
     answerIsWatched(currentUserId, move.id).then(answer => {
@@ -176,8 +176,6 @@ function renderModalCardReview(move) {
       if (answer) {
         btnQueueItemAdd.classList.add('hide');
         btnQueueItemRemove.classList.remove('hide');
-
-        console.log(answer);
       } else {
         btnQueueItemAdd.classList.remove('hide');
         btnQueueItemRemove.classList.add('hide');

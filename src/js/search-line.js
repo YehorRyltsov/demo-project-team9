@@ -40,7 +40,7 @@ export function searchMovieEx(page) {
 function searchMovie(query, page) {
   searchMovies(query, page)
     .then(movies => {
-      if (movies.results.length > 0) {
+      if (movies.results.length) {
         fetchGenres().then(genres => {
           const arrayGen = genres.genres;
 
@@ -91,7 +91,7 @@ function searchMovie(query, page) {
             .join('');
           cardList.innerHTML = '';
           cardList.insertAdjacentHTML('afterbegin', arrMove);
-          createPagination(page, 20, movies.total_results);
+          createPagination(page, 20, movies.total_results, mainMovieEx);
           cardList.addEventListener('click', onCardClick);
           pageUp();
           Loading.pulse({

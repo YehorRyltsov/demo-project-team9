@@ -1,6 +1,6 @@
 import Pagination from 'tui-pagination';
 import { mainMovieEx } from './main-movies';
-
+import { libraryMovieEx } from './my-library-header';
 const pagin = document.querySelector('#pagination');
 
 export const paginationInit = {
@@ -9,7 +9,12 @@ export const paginationInit = {
   pagination: null,
 };
 
-export const createPagination = (page, itemsPerPage, totalItems) => {
+export const createPagination = (page, itemsPerPage, totalItems, render) => {
+  pagin.style.display = '';
+  if (totalItems <= 20) {
+    pagin.style.display = 'none';
+    return;
+  }
   const options = {
     totalItems,
     itemsPerPage,
@@ -40,7 +45,7 @@ export const createPagination = (page, itemsPerPage, totalItems) => {
 
   pagination.on('afterMove', async event => {
     const currentPage = event.page;
-    mainMovieEx(currentPage);
+    render(currentPage);
   });
   return pagination;
 };

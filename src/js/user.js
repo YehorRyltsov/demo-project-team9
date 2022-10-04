@@ -56,8 +56,6 @@ onAuth(user => {
     showLogOutBtn();
     hideModal();
     currentUserId = user.uid;
-    console.log(`юзер залогинен, ID = ${user.uid}`);
-    // ...
   } else {
     // все для отсутствия юзера
     currentUserId = null;
