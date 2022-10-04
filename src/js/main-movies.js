@@ -64,7 +64,7 @@ function fetchMove(page) {
         .join('');
       cardList.innerHTML = '';
       cardList.insertAdjacentHTML('afterbegin', arrMove);
-      createPagination(page, 20, movies.total_results);
+      createPagination(page, 20, movies.total_results, mainMovieEx);
       pageUp();
       cardList.addEventListener('click', onCardClick);
     });

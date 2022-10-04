@@ -19,7 +19,6 @@ const auth = getAuth(app);
 export function create(email, password) {
   createUserWithEmailAndPassword(auth, email, password)
     .then(userCredential => {
-      // Signed in
       Notiflix.Notify.success(`Yahoooo!!!! Welcome ${email}`);
       const user = userCredential.user;
     })

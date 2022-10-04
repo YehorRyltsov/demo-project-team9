@@ -9,7 +9,7 @@ import {
 import { showModal } from './hideAndOpen-modal';
 import { currentUserId } from './user';
 // import { currentUserId } from './user';
-
+import { refreshQueue } from './my-library-header';
 export const refs = {
   KEY: 'a115fde3660c9e5b413d785f288ed44e',
 };
@@ -17,7 +17,7 @@ export const refs = {
 // -------------- При клике на кнопку Queue ---------------
 
 export async function onBtnClickQueue(filmId, QueueItemAdd, QueueItemRemove) {
-  if (currentUserId) {
+  if (!currentUserId) {
     showModal();
   } else {
     const btnQueueItemAdd = await QueueItemAdd;
@@ -27,12 +27,10 @@ export async function onBtnClickQueue(filmId, QueueItemAdd, QueueItemRemove) {
     findFilmById(filmId).then(film => {
       if (answer) {
         deleteQueueFilmById(currentUserId, filmId);
-        console.log('вызвали удалить');
+        refreshQueue(filmId);
         return;
       } else {
         addQueueFilmByUser(currentUserId, film);
-        console.log('вызвали добавить');
-        console.log(film);
       }
     });
     btnQueueItemAdd.classList.toggle('hide');
@@ -47,7 +45,7 @@ export async function onBtnClickWatched(
   WatchedItemAdd,
   WatchedItemRemove
 ) {
-  if (currentUserId) {
+  if (!currentUserId) {
     showModal();
   } else {
     const btnWatchedItemAdd = await WatchedItemAdd;
@@ -57,12 +55,9 @@ export async function onBtnClickWatched(
     findFilmById(filmId).then(film => {
       if (answer) {
         deleteWatchedFilmById(currentUserId, filmId);
-        console.log('вызвали удалить');
         return;
       } else {
         addWatchedFilmByUser(currentUserId, film);
-        console.log('вызвали добавить');
-        console.log(film);
       }
     });
     btnWatchedItemAdd.classList.toggle('hide');

@@ -7,6 +7,7 @@ import { Loading } from 'notiflix/build/notiflix-loading-aio';
 
 let movieWatchedList = [];
 let movieQueueList = [];
+let chunkQueue = {};
 
 const header = document.querySelector('.header');
 const searchInput = document.querySelector('.search-form');
@@ -37,6 +38,26 @@ export function onHeaderHomeClick(evt) {
   cardList.classList.add('gallery-films');
 }
 
+export function refreshQueue(filmId) {
+  getQueueMoviesByUserID();
+  chunkQueue = refreshChunk(chunkQueue, filmId);
+  if (chunkQueue.total) {
+    renderWatchedList(chunkQueue.moves[0], chunkQueue.total, 1);
+  } else {
+    showEmptyLibrary();
+  }
+}
+function refreshChunk(chunkQueue, filmId) {
+  let newChunk = [];
+  chunkQueue.moves.map(element => {
+    let f = element.filter(function (elem) {
+      return elem.id != filmId;
+    });
+    newChunk.push(f);
+  });
+  return { moves: newChunk, total: chunkQueue.total - 1 };
+}
+
 function onMyLibraryClick(evt) {
   evt.preventDefault();
   watchedBtn.classList.remove('active');
@@ -60,7 +81,13 @@ function getQueueMoviesByUserID() {
 function getWatchedMoviesByUserID() {
   return (movieWatchedList = getWatchedFilmsByUser(currentUserId));
 }
-
+function chunkByPage(list_moves) {
+  var moves = [];
+  var total = list_moves.length;
+  for (var i = 0, len = list_moves.length; i < len; i += 20)
+    moves.push(list_moves.slice(i, i + 20));
+  return { total: total, moves: moves };
+}
 function onWatchedBtnClick() {
   queueBtn.classList.remove('active');
   watchedBtn.classList.add('active');
@@ -94,7 +121,10 @@ function showEmptyLibrary() {
 }
 
 //------------------ My library functional -----------------
-
+export function libraryMovieEx(page) {
+  let pageInd = page - 1;
+  renderWatchedList(chunkQueue.moves[pageInd], chunkQueue.total, page);
+}
 function retrieveWatchedMovies(movies) {
   Loading.pulse({
     svgSize: '150px',
@@ -102,8 +132,9 @@ function retrieveWatchedMovies(movies) {
   });
   Loading.remove(600);
   setTimeout(function () {
-    if (movies.length !== 0) {
-      return renderWatchedList(movies);
+    if (movies.length) {
+      chunkQueue = chunkByPage(movies);
+      return renderWatchedList(chunkQueue.moves[0], chunkQueue.total, 1);
     } else {
       showEmptyLibrary();
       sectionPagination.style.display = 'none';
@@ -111,8 +142,8 @@ function retrieveWatchedMovies(movies) {
   }, 300);
 }
 
-function renderWatchedList(array) {
-  const renderMovies = array.map(item => {
+function renderWatchedList(arrayOfWatched, totalCout, page) {
+  const renderMovies = arrayOfWatched.map(item => {
     let {
       poster_path,
       original_title,
@@ -133,20 +164,8 @@ function renderWatchedList(array) {
 
   cardList.innerHTML = '';
   cardList.insertAdjacentHTML('afterbegin', renderMovies.join(''));
+  createPagination(page, 20, totalCout, libraryMovieEx);
 
-  //------- Настроить ПАГИНАЦИЮ ----------------------!!!!!!!!!!!
-  //   if (array.length > 10) {
-  //     console.log('PAGINATION SHOUL BE HERE');
-  //     // libraryPagination(2, array);
-  //     createPagination(2, 10, array.length);
-  //   } else {
-  //     sectionPagination.style.display = 'none';
-  //   }
-  // }
-  // function libraryPagination(page, array) {
-  //   createPagination(page, 10, array.length);
-  // }
-  // ------------------------------------------------------------!!!!!!!!!!
   function makeMoviesListMarkup(
     poster_path,
     original_title,
