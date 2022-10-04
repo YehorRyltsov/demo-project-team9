@@ -161,8 +161,6 @@ function renderModalCardReview(move) {
     onBtnClickQueue(move.id, btnQueueItemAdd, btnQueueItemRemove)
   );
   if (currentUserId) {
-    return;
-  } else {
     answerIsWatched(currentUserId, move.id).then(answer => {
       if (answer) {
         btnWatchedItemAdd.classList.add('hide');
@@ -183,5 +181,7 @@ function renderModalCardReview(move) {
         btnQueueItemRemove.classList.add('hide');
       }
     });
+  } else {
+    return;
   }
 }

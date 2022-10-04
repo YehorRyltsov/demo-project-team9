@@ -18,8 +18,6 @@ export const refs = {
 
 export async function onBtnClickQueue(filmId, QueueItemAdd, QueueItemRemove) {
   if (currentUserId) {
-    showModal();
-  } else {
     const btnQueueItemAdd = await QueueItemAdd;
     const btnQueueItemRemove = await QueueItemRemove;
     const answer = await isQueue(currentUserId, filmId);
@@ -37,6 +35,8 @@ export async function onBtnClickQueue(filmId, QueueItemAdd, QueueItemRemove) {
     });
     btnQueueItemAdd.classList.toggle('hide');
     btnQueueItemRemove.classList.toggle('hide');
+  } else {
+    showModal();
   }
 }
 
@@ -48,8 +48,6 @@ export async function onBtnClickWatched(
   WatchedItemRemove
 ) {
   if (currentUserId) {
-    showModal();
-  } else {
     const btnWatchedItemAdd = await WatchedItemAdd;
     const btnWatchedItemRemove = await WatchedItemRemove;
     const answer = await isWatched(currentUserId, filmId);
@@ -67,6 +65,8 @@ export async function onBtnClickWatched(
     });
     btnWatchedItemAdd.classList.toggle('hide');
     btnWatchedItemRemove.classList.toggle('hide');
+  } else {
+    showModal();
   }
 }
 
